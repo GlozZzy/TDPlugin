@@ -64,7 +64,7 @@
         <Parent guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages1" id="bmpPic1" />
         <Strings>
-          <ButtonText>Show marks</ButtonText>
+          <ButtonText>Show project statistics</ButtonText>
         </Strings>
       </Button>
       

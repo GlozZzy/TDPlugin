@@ -32,91 +32,130 @@ namespace TDPlugin.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.num_val = new System.Windows.Forms.NumericUpDown();
-            this.namemarkTB = new System.Windows.Forms.TextBox();
+            this.markname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.commentTB = new System.Windows.Forms.TextBox();
+            this.comment = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.filename = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.num_val)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 82);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(12, 114);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.Size = new System.Drawing.Size(134, 24);
             this.label2.TabIndex = 7;
             this.label2.Text = "Your comment";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 29);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.Size = new System.Drawing.Size(107, 24);
             this.label1.TabIndex = 6;
             this.label1.Text = "Name mark";
             // 
             // num_val
             // 
-            this.num_val.Location = new System.Drawing.Point(85, 53);
+            this.num_val.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.num_val.Location = new System.Drawing.Point(125, 77);
             this.num_val.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            this.num_val.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.num_val.Name = "num_val";
-            this.num_val.Size = new System.Drawing.Size(57, 20);
-            this.num_val.TabIndex = 5;
+            this.num_val.Size = new System.Drawing.Size(57, 29);
+            this.num_val.TabIndex = 3;
+            this.num_val.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // namemarkTB
+            // markname
             // 
-            this.namemarkTB.Location = new System.Drawing.Point(85, 26);
-            this.namemarkTB.Name = "namemarkTB";
-            this.namemarkTB.Size = new System.Drawing.Size(153, 20);
-            this.namemarkTB.TabIndex = 4;
+            this.markname.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.markname.Location = new System.Drawing.Point(125, 44);
+            this.markname.Name = "markname";
+            this.markname.Size = new System.Drawing.Size(177, 29);
+            this.markname.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 55);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(12, 79);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.Size = new System.Drawing.Size(59, 24);
             this.label3.TabIndex = 8;
             this.label3.Text = "Value";
             // 
-            // commentTB
+            // comment
             // 
-            this.commentTB.Location = new System.Drawing.Point(89, 82);
-            this.commentTB.Multiline = true;
-            this.commentTB.Name = "commentTB";
-            this.commentTB.Size = new System.Drawing.Size(153, 138);
-            this.commentTB.TabIndex = 9;
+            this.comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comment.Location = new System.Drawing.Point(12, 141);
+            this.comment.Multiline = true;
+            this.comment.Name = "comment";
+            this.comment.Size = new System.Drawing.Size(290, 138);
+            this.comment.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(167, 226);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(95, 289);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
+            this.button1.Size = new System.Drawing.Size(130, 40);
+            this.button1.TabIndex = 5;
             this.button1.Text = "Accept";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(12, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 24);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "File name";
+            // 
+            // filename
+            // 
+            this.filename.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.filename.Location = new System.Drawing.Point(125, 9);
+            this.filename.Name = "filename";
+            this.filename.Size = new System.Drawing.Size(177, 29);
+            this.filename.TabIndex = 1;
             // 
             // Form_Mark
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 261);
+            this.ClientSize = new System.Drawing.Size(314, 341);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.filename);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.commentTB);
+            this.Controls.Add(this.comment);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.num_val);
-            this.Controls.Add(this.namemarkTB);
-            this.MaximumSize = new System.Drawing.Size(280, 300);
-            this.MinimumSize = new System.Drawing.Size(280, 300);
+            this.Controls.Add(this.markname);
+            this.MaximumSize = new System.Drawing.Size(330, 380);
+            this.MinimumSize = new System.Drawing.Size(330, 380);
             this.Name = "Form_Mark";
             this.Text = "Mark bad code";
             ((System.ComponentModel.ISupportInitialize)(this.num_val)).EndInit();
@@ -130,9 +169,11 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown num_val;
-        private System.Windows.Forms.TextBox namemarkTB;
+        private System.Windows.Forms.TextBox markname;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox commentTB;
+        private System.Windows.Forms.TextBox comment;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox filename;
     }
 }
