@@ -45,7 +45,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Change_BD_info.cs" />
+    <Compile Include="Change_DB_info.cs" />
     <Compile Include="ClassTables\comments_table.cs" />
     <Compile Include="ClassTables\filenames_table.cs" />
     <Compile Include="ClassTables\marks_table.cs" />

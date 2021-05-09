@@ -50,7 +50,7 @@ namespace TDPlugin
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await MarkBadCode.InitializeAsync(this);
             await Show_TDandComments.InitializeAsync(this);
-            await Change_BD_info.InitializeAsync(this);
+            await Change_DB_info.InitializeAsync(this);
         }
 
         #endregion

@@ -20,15 +20,22 @@ namespace TDPlugin.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (StreamWriter sw = new StreamWriter("CurBDinfo.txt", false, System.Text.Encoding.Default))
+            if (tb_host.Text == "" || tb_port.Text == "" || tb_un.Text == "" || tb_ps.Text == "" || tb_namebd.Text == "")
             {
-                sw.WriteLine(tb_host.Text);
-                sw.WriteLine(tb_port.Text);
-                sw.WriteLine(tb_un.Text);
-                sw.WriteLine(tb_ps.Text);
-                sw.WriteLine(tb_namebd.Text);
+                MessageBox.Show("Fill in all the fields", "Error");
             }
-            Close();
+            else
+            {
+                using (StreamWriter sw = new StreamWriter("CurBDinfo.txt", false, System.Text.Encoding.Default))
+                {
+                    sw.WriteLine(tb_host.Text);
+                    sw.WriteLine(tb_port.Text);
+                    sw.WriteLine(tb_un.Text);
+                    sw.WriteLine(tb_ps.Text);
+                    sw.WriteLine(tb_namebd.Text);
+                }
+                Close();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

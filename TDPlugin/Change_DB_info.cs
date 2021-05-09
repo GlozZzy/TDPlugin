@@ -15,7 +15,7 @@ namespace TDPlugin
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class Change_BD_info
+    internal sealed class Change_DB_info
     {
         /// <summary>
         /// Command ID.
@@ -33,12 +33,12 @@ namespace TDPlugin
         private readonly AsyncPackage package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Change_BD_info"/> class.
+        /// Initializes a new instance of the <see cref="Change_DB_info"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private Change_BD_info(AsyncPackage package, OleMenuCommandService commandService)
+        private Change_DB_info(AsyncPackage package, OleMenuCommandService commandService)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -51,7 +51,7 @@ namespace TDPlugin
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static Change_BD_info Instance
+        public static Change_DB_info Instance
         {
             get;
             private set;
@@ -79,7 +79,7 @@ namespace TDPlugin
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-            Instance = new Change_BD_info(package, commandService);
+            Instance = new Change_DB_info(package, commandService);
         }
 
         /// <summary>
