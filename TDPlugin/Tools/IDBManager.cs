@@ -8,7 +8,7 @@ using System.Data;
 
 namespace TDPlugin.Tools
 {
-    interface IBDManager
+    interface IDBManager
     {
         bool check_connection();
         void OpenConnection();

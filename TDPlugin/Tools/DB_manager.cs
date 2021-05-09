@@ -12,7 +12,7 @@ using System.Net.Sockets;
 
 namespace TDPlugin.Tools
 {
-    class BD_manager : IBDManager
+    class DB_manager : IDBManager
     {
         MySqlConnection connection;
         DataTable table;
@@ -22,7 +22,7 @@ namespace TDPlugin.Tools
         marks_table marks_ = new marks_table("marks", "id_mark", "name", "id_file", "avg_val");
         filenames_table filenames_ = new filenames_table("filenames", "id_file", "name", "avg_val");
 
-        public BD_manager(string host, string port, string username, string password, string nameBD)
+        public DB_manager(string host, string port, string username, string password, string nameBD)
         {
             string str = String.Format("server={0};port={1};username={2};password={3};database={4}", 
                 host, port, username, password, nameBD);

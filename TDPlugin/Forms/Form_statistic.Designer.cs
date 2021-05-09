@@ -1,7 +1,7 @@
 ﻿
 namespace TDPlugin.Forms
 {
-    partial class Form_statistic
+    partial class Form_Statistic
     {
         /// <summary>
         /// Required designer variable.

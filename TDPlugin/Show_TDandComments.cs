@@ -99,7 +99,7 @@ namespace TDPlugin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_statistic());
+            Application.Run(new Form_Statistic());
         }
     }
 }

@@ -14,7 +14,7 @@ namespace TDPlugin.Forms
 {
     public partial class Form_Mark : Form
     {
-        IBDManager bd;
+        IDBManager bd;
         string[] BDinfo;
 
         public Form_Mark()
@@ -43,7 +43,7 @@ namespace TDPlugin.Forms
             }
             else
             {
-                bd = new BD_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
+                bd = new DB_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
 
                 if (bd.check_connection())
                 {

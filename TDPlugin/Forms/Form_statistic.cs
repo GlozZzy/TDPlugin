@@ -12,9 +12,9 @@ using TDPlugin.Tools;
 
 namespace TDPlugin.Forms
 {
-    public partial class Form_statistic : Form
+    public partial class Form_Statistic : Form
     {
-        BD_manager bd;
+        DB_manager bd;
 
         int curr_file;
         int curr_mark;
@@ -23,7 +23,7 @@ namespace TDPlugin.Forms
         string cur_filename;
         string cur_markname;
 
-        public Form_statistic()
+        public Form_Statistic()
         {
             InitializeComponent();
         }
@@ -397,7 +397,7 @@ namespace TDPlugin.Forms
                 }
             }
 
-            bd = new BD_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
+            bd = new DB_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
 
             if (bd.check_connection())
             {

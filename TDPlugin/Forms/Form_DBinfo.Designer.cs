@@ -1,7 +1,7 @@
 ﻿
 namespace TDPlugin.Forms
 {
-    partial class Form_change_DBinfo
+    partial class Form_DBinfo
     {
         /// <summary>
         /// Required designer variable.
