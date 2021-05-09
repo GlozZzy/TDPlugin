@@ -99,7 +99,7 @@ namespace TDPlugin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_change_BDinfo());
+            Application.Run(new Form_change_DBinfo());
         }
     }
 }

@@ -54,13 +54,16 @@ namespace TDPlugin.Forms
             this.button_file_cancel = new System.Windows.Forms.Button();
             this.button_mark_cancel = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lab_db_connection = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(12, 51);
+            this.label1.Location = new System.Drawing.Point(12, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 24);
             this.label1.TabIndex = 0;
@@ -70,7 +73,7 @@ namespace TDPlugin.Forms
             // 
             this.lab_mark_avg.AutoSize = true;
             this.lab_mark_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.lab_mark_avg.Location = new System.Drawing.Point(348, 51);
+            this.lab_mark_avg.Location = new System.Drawing.Point(348, 70);
             this.lab_mark_avg.Name = "lab_mark_avg";
             this.lab_mark_avg.Size = new System.Drawing.Size(40, 24);
             this.lab_mark_avg.TabIndex = 1;
@@ -81,7 +84,7 @@ namespace TDPlugin.Forms
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label4.Location = new System.Drawing.Point(322, 85);
+            this.label4.Location = new System.Drawing.Point(322, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 24);
             this.label4.TabIndex = 2;
@@ -91,7 +94,7 @@ namespace TDPlugin.Forms
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label6.Location = new System.Drawing.Point(12, 84);
+            this.label6.Location = new System.Drawing.Point(12, 103);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 24);
             this.label6.TabIndex = 4;
@@ -100,7 +103,7 @@ namespace TDPlugin.Forms
             // but_mark_pr
             // 
             this.but_mark_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_mark_pr.Location = new System.Drawing.Point(402, 48);
+            this.but_mark_pr.Location = new System.Drawing.Point(402, 67);
             this.but_mark_pr.Name = "but_mark_pr";
             this.but_mark_pr.Size = new System.Drawing.Size(45, 31);
             this.but_mark_pr.TabIndex = 6;
@@ -112,7 +115,7 @@ namespace TDPlugin.Forms
             // but_mark_next
             // 
             this.but_mark_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_mark_next.Location = new System.Drawing.Point(450, 48);
+            this.but_mark_next.Location = new System.Drawing.Point(450, 67);
             this.but_mark_next.Name = "but_mark_next";
             this.but_mark_next.Size = new System.Drawing.Size(45, 31);
             this.but_mark_next.TabIndex = 7;
@@ -124,7 +127,7 @@ namespace TDPlugin.Forms
             // textBox_comm
             // 
             this.textBox_comm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBox_comm.Location = new System.Drawing.Point(55, 114);
+            this.textBox_comm.Location = new System.Drawing.Point(55, 133);
             this.textBox_comm.Multiline = true;
             this.textBox_comm.Name = "textBox_comm";
             this.textBox_comm.ReadOnly = true;
@@ -135,7 +138,7 @@ namespace TDPlugin.Forms
             // but_file_del
             // 
             this.but_file_del.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_file_del.Location = new System.Drawing.Point(364, 285);
+            this.but_file_del.Location = new System.Drawing.Point(364, 304);
             this.but_file_del.Name = "but_file_del";
             this.but_file_del.Size = new System.Drawing.Size(131, 35);
             this.but_file_del.TabIndex = 11;
@@ -147,7 +150,7 @@ namespace TDPlugin.Forms
             // but_com_next
             // 
             this.but_com_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_com_next.Location = new System.Drawing.Point(10, 181);
+            this.but_com_next.Location = new System.Drawing.Point(10, 200);
             this.but_com_next.Name = "but_com_next";
             this.but_com_next.Size = new System.Drawing.Size(40, 34);
             this.but_com_next.TabIndex = 13;
@@ -159,7 +162,7 @@ namespace TDPlugin.Forms
             // but_com_pr
             // 
             this.but_com_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_com_pr.Location = new System.Drawing.Point(10, 143);
+            this.but_com_pr.Location = new System.Drawing.Point(10, 162);
             this.but_com_pr.Name = "but_com_pr";
             this.but_com_pr.Size = new System.Drawing.Size(40, 34);
             this.but_com_pr.TabIndex = 12;
@@ -171,7 +174,7 @@ namespace TDPlugin.Forms
             // but_com_del
             // 
             this.but_com_del.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_com_del.Location = new System.Drawing.Point(55, 285);
+            this.but_com_del.Location = new System.Drawing.Point(55, 304);
             this.but_com_del.Name = "but_com_del";
             this.but_com_del.Size = new System.Drawing.Size(159, 35);
             this.but_com_del.TabIndex = 14;
@@ -184,7 +187,7 @@ namespace TDPlugin.Forms
             // 
             this.lab_file_avg.AutoSize = true;
             this.lab_file_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.lab_file_avg.Location = new System.Drawing.Point(348, 16);
+            this.lab_file_avg.Location = new System.Drawing.Point(348, 35);
             this.lab_file_avg.Name = "lab_file_avg";
             this.lab_file_avg.Size = new System.Drawing.Size(40, 24);
             this.lab_file_avg.TabIndex = 16;
@@ -195,7 +198,7 @@ namespace TDPlugin.Forms
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label3.Location = new System.Drawing.Point(12, 16);
+            this.label3.Location = new System.Drawing.Point(12, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 24);
             this.label3.TabIndex = 15;
@@ -204,7 +207,7 @@ namespace TDPlugin.Forms
             // but_file_next
             // 
             this.but_file_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_file_next.Location = new System.Drawing.Point(450, 13);
+            this.but_file_next.Location = new System.Drawing.Point(450, 32);
             this.but_file_next.Name = "but_file_next";
             this.but_file_next.Size = new System.Drawing.Size(45, 30);
             this.but_file_next.TabIndex = 18;
@@ -216,7 +219,7 @@ namespace TDPlugin.Forms
             // but_file_pr
             // 
             this.but_file_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_file_pr.Location = new System.Drawing.Point(402, 13);
+            this.but_file_pr.Location = new System.Drawing.Point(402, 32);
             this.but_file_pr.Name = "but_file_pr";
             this.but_file_pr.Size = new System.Drawing.Size(45, 30);
             this.but_file_pr.TabIndex = 17;
@@ -228,7 +231,7 @@ namespace TDPlugin.Forms
             // textBox_file
             // 
             this.textBox_file.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_file.Location = new System.Drawing.Point(125, 13);
+            this.textBox_file.Location = new System.Drawing.Point(125, 32);
             this.textBox_file.Name = "textBox_file";
             this.textBox_file.ReadOnly = true;
             this.textBox_file.Size = new System.Drawing.Size(212, 29);
@@ -238,7 +241,7 @@ namespace TDPlugin.Forms
             // textBox_mark
             // 
             this.textBox_mark.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_mark.Location = new System.Drawing.Point(125, 48);
+            this.textBox_mark.Location = new System.Drawing.Point(125, 67);
             this.textBox_mark.Name = "textBox_mark";
             this.textBox_mark.ReadOnly = true;
             this.textBox_mark.Size = new System.Drawing.Size(212, 29);
@@ -248,7 +251,7 @@ namespace TDPlugin.Forms
             // but_mark_del
             // 
             this.but_mark_del.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_mark_del.Location = new System.Drawing.Point(220, 285);
+            this.but_mark_del.Location = new System.Drawing.Point(220, 304);
             this.but_mark_del.Name = "but_mark_del";
             this.but_mark_del.Size = new System.Drawing.Size(138, 35);
             this.but_mark_del.TabIndex = 21;
@@ -260,7 +263,7 @@ namespace TDPlugin.Forms
             // but_mark_chg
             // 
             this.but_mark_chg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_mark_chg.Location = new System.Drawing.Point(55, 244);
+            this.but_mark_chg.Location = new System.Drawing.Point(55, 263);
             this.but_mark_chg.Name = "but_mark_chg";
             this.but_mark_chg.Size = new System.Drawing.Size(216, 35);
             this.but_mark_chg.TabIndex = 24;
@@ -272,7 +275,7 @@ namespace TDPlugin.Forms
             // but_file_chg
             // 
             this.but_file_chg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_file_chg.Location = new System.Drawing.Point(277, 244);
+            this.but_file_chg.Location = new System.Drawing.Point(277, 263);
             this.but_file_chg.Name = "but_file_chg";
             this.but_file_chg.Size = new System.Drawing.Size(218, 35);
             this.but_file_chg.TabIndex = 22;
@@ -284,7 +287,7 @@ namespace TDPlugin.Forms
             // button_accept_file
             // 
             this.button_accept_file.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.button_accept_file.Location = new System.Drawing.Point(277, 244);
+            this.button_accept_file.Location = new System.Drawing.Point(277, 263);
             this.button_accept_file.Name = "button_accept_file";
             this.button_accept_file.Size = new System.Drawing.Size(218, 35);
             this.button_accept_file.TabIndex = 25;
@@ -296,7 +299,7 @@ namespace TDPlugin.Forms
             // button_accept_mark
             // 
             this.button_accept_mark.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.button_accept_mark.Location = new System.Drawing.Point(55, 244);
+            this.button_accept_mark.Location = new System.Drawing.Point(55, 263);
             this.button_accept_mark.Name = "button_accept_mark";
             this.button_accept_mark.Size = new System.Drawing.Size(216, 35);
             this.button_accept_mark.TabIndex = 26;
@@ -308,7 +311,7 @@ namespace TDPlugin.Forms
             // button_file_cancel
             // 
             this.button_file_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.button_file_cancel.Location = new System.Drawing.Point(55, 244);
+            this.button_file_cancel.Location = new System.Drawing.Point(55, 263);
             this.button_file_cancel.Name = "button_file_cancel";
             this.button_file_cancel.Size = new System.Drawing.Size(216, 35);
             this.button_file_cancel.TabIndex = 27;
@@ -321,7 +324,7 @@ namespace TDPlugin.Forms
             // button_mark_cancel
             // 
             this.button_mark_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.button_mark_cancel.Location = new System.Drawing.Point(277, 244);
+            this.button_mark_cancel.Location = new System.Drawing.Point(277, 263);
             this.button_mark_cancel.Name = "button_mark_cancel";
             this.button_mark_cancel.Size = new System.Drawing.Size(216, 35);
             this.button_mark_cancel.TabIndex = 28;
@@ -334,19 +337,43 @@ namespace TDPlugin.Forms
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(10, 285);
+            this.button1.Location = new System.Drawing.Point(10, 304);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 36);
+            this.button1.Size = new System.Drawing.Size(40, 35);
             this.button1.TabIndex = 29;
+            this.button1.TabStop = false;
             this.button1.Text = "🗘";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lab_db_connection);
+            this.panel1.Location = new System.Drawing.Point(10, 9);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(485, 18);
+            this.panel1.TabIndex = 31;
+            // 
+            // lab_db_connection
+            // 
+            this.lab_db_connection.AutoSize = true;
+            this.lab_db_connection.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.lab_db_connection.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lab_db_connection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lab_db_connection.ForeColor = System.Drawing.Color.Blue;
+            this.lab_db_connection.Location = new System.Drawing.Point(407, 0);
+            this.lab_db_connection.Name = "lab_db_connection";
+            this.lab_db_connection.Size = new System.Drawing.Size(78, 13);
+            this.lab_db_connection.TabIndex = 13;
+            this.lab_db_connection.Text = "db_connection";
+            this.lab_db_connection.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form_statistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 329);
+            this.ClientSize = new System.Drawing.Size(509, 349);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button_mark_cancel);
             this.Controls.Add(this.button_file_cancel);
@@ -372,11 +399,13 @@ namespace TDPlugin.Forms
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_accept_file);
             this.Controls.Add(this.button_accept_mark);
-            this.MaximumSize = new System.Drawing.Size(525, 368);
-            this.MinimumSize = new System.Drawing.Size(525, 368);
+            this.MaximumSize = new System.Drawing.Size(525, 388);
+            this.MinimumSize = new System.Drawing.Size(525, 388);
             this.Name = "Form_statistic";
             this.Text = "Project statistics";
             this.Load += new System.EventHandler(this.Form_statistic_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,5 +438,7 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.Button button_file_cancel;
         private System.Windows.Forms.Button button_mark_cancel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lab_db_connection;
     }
 }

@@ -15,10 +15,24 @@ namespace TDPlugin.Forms
     public partial class Form_Mark : Form
     {
         IBDManager bd;
+        string[] BDinfo;
 
         public Form_Mark()
         {
             InitializeComponent();
+
+            BDinfo = new string[5];
+            using (StreamReader sr = new StreamReader("CurBDInfo.txt", Encoding.Default))
+            {
+                string line;
+                int i = 0;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    BDinfo[i] = line;
+                    i++;
+                }
+            }
+            lab_db_connection.Text = BDinfo[4];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,19 +43,6 @@ namespace TDPlugin.Forms
             }
             else
             {
-
-                string[] BDinfo = new string[5];
-                using (StreamReader sr = new StreamReader("CurBDInfo.txt", Encoding.Default))
-                {
-                    string line;
-                    int i = 0;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        BDinfo[i] = line;
-                        i++;
-                    }
-                }
-
                 bd = new BD_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
 
                 if (bd.check_connection())
@@ -72,6 +73,11 @@ namespace TDPlugin.Forms
                     MessageBox.Show("Some problems with db connection", "Error");
                 }
             }
+        }
+
+        private void db_connection_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

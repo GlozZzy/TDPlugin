@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace TDPlugin.Forms
 {
-    public partial class Form_change_BDinfo : Form
+    public partial class Form_change_DBinfo : Form
     {
-        public Form_change_BDinfo()
+        public Form_change_DBinfo()
         {
             InitializeComponent();
         }

@@ -26,72 +26,6 @@ namespace TDPlugin.Forms
         public Form_statistic()
         {
             InitializeComponent();
-
-            /*string[] BDinfo = new string[5];
-            using (StreamReader sr = new StreamReader("CurBDInfo.txt", Encoding.Default))
-            {
-                string line;
-                int i = 0;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    BDinfo[i] = line;
-                    i++;
-                }
-            }
-
-            bd = new BD_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
-
-            if (bd.check_connection())
-            {
-                curr_file = 0;
-                curr_mark = 0;
-                curr_comm = 0;
-
-                var file = bd.get_file(curr_file);
-
-                if (file.avg > 0)
-                {
-                    textBox_file.Text = file.name;
-                    lab_file_avg.Text = "" + file.avg;
-                    var mark = bd.get_mark(file.name, curr_mark);
-                    if (mark.avg > 0)
-                    {
-                        textBox_mark.Text = mark.name;
-                        lab_mark_avg.Text = "" + mark.avg;
-                        textBox_comm.Text = bd.get_comment(file.name, mark.name, curr_comm);
-                    }
-                    else
-                    {
-                        textBox_mark.Text = "";
-                        lab_mark_avg.Text = "";
-                        textBox_comm.Text = "";
-                    }
-                }
-                else
-                {
-                    textBox_file.Text = "";
-                    lab_file_avg.Text = "";
-                    textBox_mark.Text = "";
-                    lab_mark_avg.Text = "";
-                    textBox_comm.Text = "";
-                }
-            }
-            else
-            {
-                MessageBox.Show("Some problems with db connection", "Error");
-
-                but_mark_chg.Enabled = false;
-                but_file_chg.Enabled = false;
-                but_mark_del.Enabled = false;
-                but_mark_next.Enabled = false;
-                but_mark_pr.Enabled = false;
-                but_file_del.Enabled = false;
-                but_file_next.Enabled = false;
-                but_file_pr.Enabled = false;
-                but_com_del.Enabled = false;
-                but_com_next.Enabled = false;
-                but_com_pr.Enabled = false;
-            }*/
         }
 
         
@@ -467,6 +401,7 @@ namespace TDPlugin.Forms
 
             if (bd.check_connection())
             {
+                lab_db_connection.Text = BDinfo[4];
                 curr_file = 0;
                 curr_mark = 0;
                 curr_comm = 0;

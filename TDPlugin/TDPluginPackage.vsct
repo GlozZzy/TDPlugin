@@ -72,7 +72,7 @@
         <Parent guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages3" id="bmpPic1" />
         <Strings>
-          <ButtonText>Change BD connection</ButtonText>
+          <ButtonText>Change DB connection</ButtonText>
         </Strings>
       </Button>
     </Buttons>

@@ -1,7 +1,7 @@
 ﻿
 namespace TDPlugin.Forms
 {
-    partial class Form_change_BDinfo
+    partial class Form_change_DBinfo
     {
         /// <summary>
         /// Required designer variable.
@@ -153,9 +153,9 @@ namespace TDPlugin.Forms
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 24);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Name BD";
+            this.label5.Text = "Name DB";
             // 
-            // Form_change_BDinfo
+            // Form_change_DBinfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -174,8 +174,8 @@ namespace TDPlugin.Forms
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(315, 335);
             this.MinimumSize = new System.Drawing.Size(315, 335);
-            this.Name = "Form_change_BDinfo";
-            this.Text = "Change current BD";
+            this.Name = "Form_change_DBinfo";
+            this.Text = "Change current DB";
             this.ResumeLayout(false);
             this.PerformLayout();
 
