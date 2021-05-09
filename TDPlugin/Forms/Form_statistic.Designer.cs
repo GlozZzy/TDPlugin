@@ -368,7 +368,7 @@ namespace TDPlugin.Forms
             this.lab_db_connection.Text = "db_connection";
             this.lab_db_connection.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Form_statistic
+            // Form_Statistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -401,7 +401,7 @@ namespace TDPlugin.Forms
             this.Controls.Add(this.button_accept_mark);
             this.MaximumSize = new System.Drawing.Size(525, 388);
             this.MinimumSize = new System.Drawing.Size(525, 388);
-            this.Name = "Form_statistic";
+            this.Name = "Form_Statistic";
             this.Text = "Project statistics";
             this.Load += new System.EventHandler(this.Form_statistic_Load);
             this.panel1.ResumeLayout(false);

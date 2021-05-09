@@ -226,6 +226,8 @@ namespace TDPlugin.Forms
                 but_mark_chg.Visible = false;
                 button_mark_cancel.Visible = true;
 
+                button1.Enabled = false;
+
                 but_mark_del.Enabled = false;
                 but_mark_next.Enabled = false;
                 but_mark_pr.Enabled = false;
@@ -247,6 +249,8 @@ namespace TDPlugin.Forms
                 textBox_file.ReadOnly = false;
                 but_file_chg.Visible = false;
                 button_file_cancel.Visible = true;
+
+                button1.Enabled = false;
 
                 but_mark_del.Enabled = false;
                 but_mark_next.Enabled = false;
@@ -291,6 +295,8 @@ namespace TDPlugin.Forms
             but_mark_chg.Visible = true;
             button_mark_cancel.Visible = false;
 
+            button1.Enabled = true;
+
             but_mark_del.Enabled = true;
             but_mark_next.Enabled = true;
             but_mark_pr.Enabled = true;
@@ -332,6 +338,8 @@ namespace TDPlugin.Forms
             but_file_chg.Visible = true;
             button_file_cancel.Visible = false;
 
+            button1.Enabled = true;
+
             but_mark_del.Enabled = true;
             but_mark_next.Enabled = true;
             but_mark_pr.Enabled = true;
@@ -350,6 +358,8 @@ namespace TDPlugin.Forms
             but_file_chg.Visible = true;
             button_file_cancel.Visible = false;
 
+            button1.Enabled = true;
+
             but_mark_del.Enabled = true;
             but_mark_next.Enabled = true;
             but_mark_pr.Enabled = true;
@@ -367,6 +377,8 @@ namespace TDPlugin.Forms
             textBox_mark.ReadOnly = true;
             but_mark_chg.Visible = true;
             button_mark_cancel.Visible = false;
+
+            button1.Enabled = true;
 
             but_mark_del.Enabled = true;
             but_mark_next.Enabled = true;
