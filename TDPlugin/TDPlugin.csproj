@@ -49,6 +49,9 @@
     <Compile Include="ClassTables\comments_table.cs" />
     <Compile Include="ClassTables\filenames_table.cs" />
     <Compile Include="ClassTables\marks_table.cs" />
+    <Compile Include="DBclasses\Comment.cs" />
+    <Compile Include="DBclasses\Filename.cs" />
+    <Compile Include="DBclasses\Mark.cs" />
     <Compile Include="Forms\Form_DBinfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,7 +64,9 @@
     <Compile Include="Forms\Form_Statistic.Designer.cs">
       <DependentUpon>Form_Statistic.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\IDBManager.cs" />
+    <Compile Include="TextAdornment1.cs" />
+    <Compile Include="TextAdornment1TextViewCreationListener.cs" />
+    <Compile Include="Manager\IDBManager.cs" />
     <Compile Include="Show_TDandComments.cs" />
     <Compile Include="Forms\Form_Mark.cs">
       <SubType>Form</SubType>
@@ -69,7 +74,7 @@
     <Compile Include="Forms\Form_Mark.Designer.cs">
       <DependentUpon>Form_Mark.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\DB_manager.cs" />
+    <Compile Include="Manager\DB_manager.cs" />
     <Compile Include="MarkBadCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TDPluginPackage.cs" />
@@ -86,12 +91,18 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.23\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
       <Ngen>True</Ngen>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="16.0.206" ExcludeAssets="runtime" />

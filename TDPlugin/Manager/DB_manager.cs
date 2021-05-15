@@ -9,6 +9,7 @@ using System.Data;
 using TDPlugin.ClassTables;
 using System.Data.SqlClient;
 using System.Net.Sockets;
+using TDPlugin.DBclasses;
 
 namespace TDPlugin.Tools
 {
@@ -142,9 +143,9 @@ namespace TDPlugin.Tools
 
 
         // Edit
-        public void edit_record_file(string filename, string Ename) 
+        public void edit_record_file(Filename filename, string Ename) 
         {
-            int Fid = search_filename_id(filename);
+            int Fid = filename.id;
 
             MySqlCommand command = new MySqlCommand("UPDATE `" + filenames_.tab_title + "` SET `" + filenames_.col_name +
                "` = @val WHERE `" + filenames_.tab_title + "`.`" + filenames_.col_id + "` = @id;", connection);
@@ -156,10 +157,9 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void edit_record_mark(string filename, string markname, string Ename) 
+        public void edit_record_mark(Mark markname, string Ename) 
         {
-            int Fid = search_filename_id(filename);
-            int Mid = search_mark_id(Fid, markname);
+            int Mid = markname.id;
 
             MySqlCommand command = new MySqlCommand("UPDATE `" + marks_.tab_title + "` SET `" + marks_.col_name +
                "` = @val WHERE `" + marks_.tab_title + "`.`" + marks_.col_id + "` = @id;", connection);
@@ -171,18 +171,27 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void edit_record_comment(string filename, string markname, string text, int Eval, string Etext) 
-        { }
+        public void edit_record_comment(Comment comm, string Etext) 
+        {
+            MySqlCommand command = new MySqlCommand("UPDATE `" + comments_.tab_title + "` SET `" + comments_.col_text +
+               "` = @val WHERE `" + comments_.tab_title + "`.`" + comments_.col_id + "` = @id;", connection);
+            command.Parameters.Add("@val", MySqlDbType.VarChar).Value = Etext;
+            command.Parameters.Add("@id", MySqlDbType.VarChar).Value = comm.id;
+
+            OpenConnection();
+            command.ExecuteNonQuery();
+            CloseConnection();
+        }
 
 
 
         // Delete
-        public void delete_record_file(string filename)
+        public void delete_record_file(Filename filename)
         {
             MySqlCommand command1;
             MySqlCommand command2;
 
-            int Fid = search_filename_id(filename);
+            int Fid = filename.id;
 
             MySqlCommand command = new MySqlCommand("SELECT * FROM `" + marks_.tab_title +
                 "` WHERE `" + marks_.col_foreign + "` = @value", connection);
@@ -219,10 +228,9 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void delete_record_mark(string filename, string markname)
+        public void delete_record_mark(Mark markname)
         {
-            int Fid = search_filename_id(filename);
-            int Mid = search_mark_id(Fid, markname);
+            int Mid = markname.id;
 
             MySqlCommand command1 = new MySqlCommand("DELETE FROM `" + comments_.tab_title + 
                 "` WHERE `" + comments_.col_foreign + "` = @id", connection);
@@ -238,15 +246,13 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void delete_record_comment(string filename, string markname, string name)
+        public void delete_record_comment(Comment comm)
         {
-            int Fid = search_filename_id(filename);
-            int Mid = search_mark_id(Fid, markname);
+            int Cid = comm.id;
 
             MySqlCommand command = new MySqlCommand("DELETE FROM `" + comments_.tab_title + 
-                "` WHERE `" + comments_.col_foreign + "` = @id AND `" + comments_.col_text + "` = @com", connection);
-            command.Parameters.Add("@id", MySqlDbType.VarChar).Value = Mid;
-            command.Parameters.Add("@com", MySqlDbType.VarChar).Value = name;
+                "` WHERE  `" + comments_.col_id + "` = @id", connection);
+            command.Parameters.Add("@id", MySqlDbType.VarChar).Value = Cid;
 
             OpenConnection();
             command.ExecuteNonQuery();
@@ -256,9 +262,9 @@ namespace TDPlugin.Tools
 
 
 
-        public (string name, int avg) get_file(int i)
+        public Filename get_file(int i)
         {
-            MySqlCommand command = new MySqlCommand("SELECT * FROM `" +filenames_.tab_title +
+            MySqlCommand command = new MySqlCommand("SELECT * FROM `" + filenames_.tab_title +
                 "` ORDER BY `" + filenames_.col_avg + "` DESC", connection);
             table = new DataTable();
             adapter = new MySqlDataAdapter();
@@ -267,14 +273,19 @@ namespace TDPlugin.Tools
             adapter.Fill(table);
 
             if (table.Rows.Count > i)
-                return (name: table.Rows[i][1].ToString(), avg: (int)table.Rows[i][2]);
-            else return (name: "", avg: 0);
+            {
+                var id = int.Parse(table.Rows[i][0].ToString());
+                var name = table.Rows[i][1].ToString();
+                var avg_val = (int)table.Rows[i][2];
+                return new Filename(id, name, avg_val);
+            }
+            else return null;
         }
 
 
-        public (string name, int avg) get_mark(string filename, int i)
+        public Mark get_mark(Filename filename, int i)
         {
-            int Fid = search_filename_id(filename);
+            int Fid = filename.id;
 
             MySqlCommand command = new MySqlCommand("SELECT * FROM `" + marks_.tab_title + 
                 "` WHERE `" + marks_.col_foreign + "` = @id ORDER BY `" + marks_.col_avg + "` DESC", connection);
@@ -287,15 +298,20 @@ namespace TDPlugin.Tools
             adapter.Fill(table);
 
             if (table.Rows.Count > i)
-                return (name: table.Rows[i][1].ToString(), avg: (int)table.Rows[i][3]);
-            else return (name: "", avg: 0);
+            {
+                var id = int.Parse(table.Rows[i][0].ToString());
+                var name = table.Rows[i][1].ToString();
+                var id_file = int.Parse(table.Rows[i][2].ToString());
+                var avg_val = int.Parse(table.Rows[i][3].ToString());
+                return new Mark(id, name, id_file, avg_val); ;
+            }
+            else return null;
         }
 
 
-        public string get_comment(string filename, string markname, int i)
+        public Comment get_comment(Mark markname, int i)
         {
-            int Fid = search_filename_id(filename);
-            int Mid = search_mark_id(Fid, markname);
+            int Mid = markname.id;
 
             MySqlCommand command = new MySqlCommand("SELECT * FROM `" + comments_.tab_title +
                 "` WHERE `" + comments_.col_foreign + "` = @id ORDER BY `" + comments_.col_val + "` DESC", connection);
@@ -307,9 +323,15 @@ namespace TDPlugin.Tools
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
-            if (table.Rows.Count > i)
-                return table.Rows[i][3].ToString();
-            else return "";
+            if (table.Rows.Count > i) 
+            {
+                var id = int.Parse(table.Rows[i][0].ToString());
+                var id_mark = int.Parse(table.Rows[i][1].ToString());
+                var val = int.Parse(table.Rows[i][2].ToString());
+                var text = table.Rows[i][3].ToString();
+                return new Comment(id, id_mark, text, val); 
+            }
+            else return null;
         }
 
 

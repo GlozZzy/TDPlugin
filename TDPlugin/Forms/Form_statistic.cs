@@ -9,12 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TDPlugin.Tools;
+using TDPlugin.DBclasses;
 
 namespace TDPlugin.Forms
 {
     public partial class Form_Statistic : Form
     {
         DB_manager bd;
+
+        Filename file;
+        Mark mark;
+        Comment comm;
 
         int curr_file;
         int curr_mark;
@@ -33,22 +38,24 @@ namespace TDPlugin.Forms
 
         private void but_com_pr_Click(object sender, EventArgs e)
         {
-            if (textBox_mark.Text != "")
+            if (mark != null)
             {
                 curr_comm--;
                 if (curr_comm < 0) curr_comm = 0;
-                var comm = bd.get_comment(textBox_file.Text, textBox_mark.Text, curr_comm);
-                textBox_comm.Text = comm;
+                comm = bd.get_comment(mark, curr_comm);
+                if (comm == null) textBox_comm.Text = "";
+                else textBox_comm.Text = comm.text;
             }
         }
 
         private void but_com_next_Click(object sender, EventArgs e)
         {
-            if (textBox_mark.Text != "")
+            if (mark != null)
             {
                 if (textBox_comm.Text != "") curr_comm++;
-                var comm = bd.get_comment(textBox_file.Text, textBox_mark.Text, curr_comm);
-                textBox_comm.Text = comm;
+                comm = bd.get_comment(mark, curr_comm);
+                if (comm == null) textBox_comm.Text = "";
+                else textBox_comm.Text = comm.text;
             }
         }
 
@@ -57,21 +64,22 @@ namespace TDPlugin.Forms
 
         private void but_mark_pr_Click(object sender, EventArgs e)
         {
-            if (textBox_file.Text != "")
+            if (file != null)
             {
                 curr_mark--;
                 if (curr_mark < 0) curr_mark = 0;
-                var mark = bd.get_mark(textBox_file.Text, curr_mark);
+                mark = bd.get_mark(file, curr_mark);
 
-                if (mark.avg > 0)
+                if (mark != null)
                 {
                     textBox_mark.Text = mark.name;
-                    lab_mark_avg.Text = "" + mark.avg;
+                    lab_mark_avg.Text = "" + mark.avg_val;
                     curr_comm = 0;
                     but_com_pr_Click(sender, e);
                 }
                 else
                 {
+                    comm = null;
                     textBox_mark.Text = "";
                     lab_mark_avg.Text = "";
                     textBox_comm.Text = "";
@@ -81,20 +89,21 @@ namespace TDPlugin.Forms
 
         private void but_mark_next_Click(object sender, EventArgs e)
         {
-            if (textBox_file.Text != "")
+            if (file != null)
             {
-                if (textBox_mark.Text != "") curr_mark++;
-                var mark = bd.get_mark(textBox_file.Text, curr_mark);
+                if (mark != null) curr_mark++;
+                mark = bd.get_mark(file, curr_mark);
 
-                if (mark.avg > 0)
+                if (mark != null)
                 {
                     textBox_mark.Text = mark.name;
-                    lab_mark_avg.Text = "" + mark.avg;
+                    lab_mark_avg.Text = "" + mark.avg_val;
                     curr_comm = 0;
                     but_com_pr_Click(sender, e);
                 }
                 else
                 {
+                    comm = null;
                     textBox_mark.Text = "";
                     lab_mark_avg.Text = "";
                     textBox_comm.Text = "";
@@ -109,17 +118,19 @@ namespace TDPlugin.Forms
         {
             curr_file--;
             if (curr_file < 0) curr_file = 0;
-            var file = bd.get_file(curr_file);
+            file = bd.get_file(curr_file);
 
-            if (file.avg > 0)
+            if (file != null)
             {
                 textBox_file.Text = file.name;
-                lab_file_avg.Text = "" + file.avg;
+                lab_file_avg.Text = "" + file.avg_val;
                 curr_mark = 0;
                 but_mark_pr_Click(sender, e);
             }
             else
             {
+                mark = null;
+                comm = null;
                 textBox_file.Text = "";
                 lab_file_avg.Text = "";
                 textBox_mark.Text = "";
@@ -131,18 +142,20 @@ namespace TDPlugin.Forms
 
         private void but_file_next_Click(object sender, EventArgs e)
         {
-            if (textBox_mark.Text != "") curr_file++;
-            var file = bd.get_file(curr_file);
+            if (file != null) curr_file++;
+            file = bd.get_file(curr_file);
 
-            if (file.avg > 0)
+            if (file != null)
             {
                 textBox_file.Text = file.name;
-                lab_file_avg.Text = "" + file.avg;
+                lab_file_avg.Text = "" + file.avg_val;
                 curr_mark = 0;
                 but_mark_pr_Click(sender, e);
             }
             else
             {
+                mark = null;
+                comm = null;
                 textBox_file.Text = "";
                 lab_file_avg.Text = "";
                 textBox_mark.Text = "";
@@ -156,7 +169,7 @@ namespace TDPlugin.Forms
 
         private void but_com_del_Click(object sender, EventArgs e)
         {
-            if (textBox_comm.Text != "")
+            if (comm != null)
             {
                 string message = "Are you sure you want to delete the comment?";
                 string caption = "Confirmation of action";
@@ -167,7 +180,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_comment(textBox_file.Text, textBox_mark.Text, textBox_comm.Text);
+                    bd.delete_record_comment(comm);
                     bd.recount_mark_avg_value(textBox_file.Text, textBox_mark.Text);
                     bd.recount_file_avg_value(textBox_file.Text);
                     but_com_pr_Click(sender, e);
@@ -178,7 +191,7 @@ namespace TDPlugin.Forms
 
         private void but_mark_del_Click(object sender, EventArgs e)
         {
-            if (textBox_mark.Text != "")
+            if (mark != null)
             {
                 string message = "Are you sure you want to delete the " + textBox_mark.Text + "?";
                 string caption = "Confirmation of action";
@@ -189,7 +202,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_mark(textBox_file.Text, textBox_mark.Text);
+                    bd.delete_record_mark(mark);
                     bd.recount_file_avg_value(textBox_file.Text);
                     but_mark_pr_Click(sender, e);
                 }
@@ -199,7 +212,7 @@ namespace TDPlugin.Forms
 
         private void but_file_del_Click(object sender, EventArgs e)
         {
-            if (textBox_file.Text != "")
+            if (file != null)
             {
                 string message = "Are you sure you want to delete the note " + textBox_file.Text + "?";
                 string caption = "Confirmation of action";
@@ -210,7 +223,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_file(textBox_file.Text);
+                    bd.delete_record_file(file);
                     but_file_pr_Click(sender, e);
                 }
             }
@@ -219,7 +232,7 @@ namespace TDPlugin.Forms
 
         private void but_mark_chg_Click(object sender, EventArgs e)
         {
-            if (textBox_mark.Text != "")
+            if (mark != null)
             {
                 cur_markname = textBox_mark.Text;
                 textBox_mark.ReadOnly = false;
@@ -243,7 +256,7 @@ namespace TDPlugin.Forms
 
         private void but_file_chg_Click(object sender, EventArgs e)
         {
-            if (textBox_file.Text != "")
+            if (file != null)
             {
                 cur_filename = textBox_file.Text;
                 textBox_file.ReadOnly = false;
@@ -269,7 +282,7 @@ namespace TDPlugin.Forms
         {
             if (textBox_mark.Text != "")
             {
-                bd.edit_record_mark(textBox_file.Text, cur_markname, textBox_mark.Text);
+                bd.edit_record_mark(mark, textBox_mark.Text);
             }
             else
             {
@@ -282,7 +295,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_mark(textBox_file.Text, textBox_mark.Text);
+                    bd.delete_record_mark(mark);
                     but_mark_pr_Click(sender, e);
                 }
                 else
@@ -312,7 +325,7 @@ namespace TDPlugin.Forms
         {
             if (textBox_file.Text != "")
             {
-                bd.edit_record_file(cur_filename, textBox_file.Text);
+                bd.edit_record_file(file, textBox_file.Text);
             }
             else
             {
@@ -325,7 +338,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_file(textBox_file.Text);
+                    bd.delete_record_file(file);
                     but_file_pr_Click(sender, e);
                 }
                 else
@@ -418,18 +431,20 @@ namespace TDPlugin.Forms
                 curr_mark = 0;
                 curr_comm = 0;
 
-                var file = bd.get_file(curr_file);
+                file = bd.get_file(curr_file);
 
-                if (file.avg > 0)
+                if (file != null)
                 {
                     textBox_file.Text = file.name;
-                    lab_file_avg.Text = "" + file.avg;
-                    var mark = bd.get_mark(file.name, curr_mark);
-                    if (mark.avg > 0)
+                    lab_file_avg.Text = "" + file.avg_val;
+                    mark = bd.get_mark(file, curr_mark);
+                    if (mark != null)
                     {
                         textBox_mark.Text = mark.name;
-                        lab_mark_avg.Text = "" + mark.avg;
-                        textBox_comm.Text = bd.get_comment(file.name, mark.name, curr_comm);
+                        lab_mark_avg.Text = "" + mark.avg_val;
+                        comm = bd.get_comment(mark, curr_comm);
+                        if (comm != null) textBox_comm.Text = comm.text;
+                        else textBox_comm.Text = "";
                     }
                     else
                     {
