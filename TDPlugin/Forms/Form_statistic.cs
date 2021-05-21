@@ -15,18 +15,24 @@ namespace TDPlugin.Forms
 {
     public partial class Form_Statistic : Form
     {
-        DB_manager bd;
+        string[] severity =
+            { "comment",
+            "proposal",
+            "low importance",
+            "high importance",
+            "critical" };
+
+        IDBManager db;
+
+        string username;
 
         Filename file;
-        Mark mark;
+        Issues issue;
         Comment comm;
 
         int curr_file;
         int curr_mark;
         int curr_comm;
-
-        string cur_filename;
-        string cur_markname;
 
         public Form_Statistic()
         {
@@ -34,28 +40,27 @@ namespace TDPlugin.Forms
         }
 
         
-        
 
         private void but_com_pr_Click(object sender, EventArgs e)
         {
-            if (mark != null)
+            if (issue != null)
             {
                 curr_comm--;
                 if (curr_comm < 0) curr_comm = 0;
-                comm = bd.get_comment(mark, curr_comm);
+                comm = db.get_comment(issue, curr_comm);
                 if (comm == null) textBox_comm.Text = "";
-                else textBox_comm.Text = comm.text;
+                else textBox_comm.Text = comm.author + ": " + comm.text;
             }
         }
 
         private void but_com_next_Click(object sender, EventArgs e)
         {
-            if (mark != null)
+            if (issue != null)
             {
                 if (textBox_comm.Text != "") curr_comm++;
-                comm = bd.get_comment(mark, curr_comm);
+                comm = db.get_comment(issue, curr_comm);
                 if (comm == null) textBox_comm.Text = "";
-                else textBox_comm.Text = comm.text;
+                else textBox_comm.Text = comm.author + ": " + comm.text;
             }
         }
 
@@ -68,12 +73,12 @@ namespace TDPlugin.Forms
             {
                 curr_mark--;
                 if (curr_mark < 0) curr_mark = 0;
-                mark = bd.get_mark(file, curr_mark);
+                issue = db.get_mark(file, curr_mark);
 
-                if (mark != null)
+                if (issue != null)
                 {
-                    textBox_mark.Text = mark.name;
-                    lab_mark_avg.Text = "" + mark.avg_val;
+                    textBox_mark.Text = issue.name;
+                    comboBox_val.Text = severity[issue.severity];
                     curr_comm = 0;
                     but_com_pr_Click(sender, e);
                 }
@@ -81,7 +86,7 @@ namespace TDPlugin.Forms
                 {
                     comm = null;
                     textBox_mark.Text = "";
-                    lab_mark_avg.Text = "";
+                    comboBox_val.SelectedIndex = -1;
                     textBox_comm.Text = "";
                 }
             }
@@ -91,13 +96,13 @@ namespace TDPlugin.Forms
         {
             if (file != null)
             {
-                if (mark != null) curr_mark++;
-                mark = bd.get_mark(file, curr_mark);
+                if (issue != null) curr_mark++;
+                issue = db.get_mark(file, curr_mark);
 
-                if (mark != null)
+                if (issue != null)
                 {
-                    textBox_mark.Text = mark.name;
-                    lab_mark_avg.Text = "" + mark.avg_val;
+                    textBox_mark.Text = issue.name;
+                    comboBox_val.Text = severity[issue.severity];
                     curr_comm = 0;
                     but_com_pr_Click(sender, e);
                 }
@@ -105,7 +110,7 @@ namespace TDPlugin.Forms
                 {
                     comm = null;
                     textBox_mark.Text = "";
-                    lab_mark_avg.Text = "";
+                    comboBox_val.SelectedIndex = -1;
                     textBox_comm.Text = "";
                 }
             }
@@ -118,23 +123,21 @@ namespace TDPlugin.Forms
         {
             curr_file--;
             if (curr_file < 0) curr_file = 0;
-            file = bd.get_file(curr_file);
+            file = db.get_file(curr_file);
 
             if (file != null)
             {
                 textBox_file.Text = file.name;
-                lab_file_avg.Text = "" + file.avg_val;
                 curr_mark = 0;
                 but_mark_pr_Click(sender, e);
             }
             else
             {
-                mark = null;
+                issue = null;
                 comm = null;
                 textBox_file.Text = "";
-                lab_file_avg.Text = "";
                 textBox_mark.Text = "";
-                lab_mark_avg.Text = "";
+                comboBox_val.SelectedIndex = -1;
                 textBox_comm.Text = "";
             }
         }
@@ -143,23 +146,21 @@ namespace TDPlugin.Forms
         private void but_file_next_Click(object sender, EventArgs e)
         {
             if (file != null) curr_file++;
-            file = bd.get_file(curr_file);
+            file = db.get_file(curr_file);
 
             if (file != null)
             {
                 textBox_file.Text = file.name;
-                lab_file_avg.Text = "" + file.avg_val;
                 curr_mark = 0;
                 but_mark_pr_Click(sender, e);
             }
             else
             {
-                mark = null;
+                issue = null;
                 comm = null;
                 textBox_file.Text = "";
-                lab_file_avg.Text = "";
                 textBox_mark.Text = "";
-                lab_mark_avg.Text = "";
+                comboBox_val.SelectedIndex = -1;
                 textBox_comm.Text = "";
             }
         }
@@ -180,9 +181,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_comment(comm);
-                    bd.recount_mark_avg_value(textBox_file.Text, textBox_mark.Text);
-                    bd.recount_file_avg_value(textBox_file.Text);
+                    db.delete_record_comment(comm);
                     but_com_pr_Click(sender, e);
                 }
             }
@@ -191,7 +190,7 @@ namespace TDPlugin.Forms
 
         private void but_mark_del_Click(object sender, EventArgs e)
         {
-            if (mark != null)
+            if (issue != null)
             {
                 string message = "Are you sure you want to delete the " + textBox_mark.Text + "?";
                 string caption = "Confirmation of action";
@@ -202,8 +201,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_mark(mark);
-                    bd.recount_file_avg_value(textBox_file.Text);
+                    db.delete_record_mark(issue);
                     but_mark_pr_Click(sender, e);
                 }
             }
@@ -223,7 +221,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_file(file);
+                    db.delete_record_file(file);
                     but_file_pr_Click(sender, e);
                 }
             }
@@ -232,24 +230,14 @@ namespace TDPlugin.Forms
 
         private void but_mark_chg_Click(object sender, EventArgs e)
         {
-            if (mark != null)
+            if (issue != null)
             {
-                cur_markname = textBox_mark.Text;
+                disable_interface();
+
+                button_mark_cancel.Visible = true;
                 textBox_mark.ReadOnly = false;
                 but_mark_chg.Visible = false;
-                button_mark_cancel.Visible = true;
-
-                button1.Enabled = false;
-
-                but_mark_del.Enabled = false;
-                but_mark_next.Enabled = false;
-                but_mark_pr.Enabled = false;
-                but_file_del.Enabled = false;
-                but_file_next.Enabled = false;
-                but_file_pr.Enabled = false;
-                but_com_del.Enabled = false;
-                but_com_next.Enabled = false;
-                but_com_pr.Enabled = false;
+                comboBox_val.Enabled = true;
             }
         }
 
@@ -258,22 +246,11 @@ namespace TDPlugin.Forms
         {
             if (file != null)
             {
-                cur_filename = textBox_file.Text;
                 textBox_file.ReadOnly = false;
                 but_file_chg.Visible = false;
                 button_file_cancel.Visible = true;
 
-                button1.Enabled = false;
-
-                but_mark_del.Enabled = false;
-                but_mark_next.Enabled = false;
-                but_mark_pr.Enabled = false;
-                but_file_del.Enabled = false;
-                but_file_next.Enabled = false;
-                but_file_pr.Enabled = false;
-                but_com_del.Enabled = false;
-                but_com_next.Enabled = false;
-                but_com_pr.Enabled = false;
+                disable_interface();
             }
         }
 
@@ -282,11 +259,11 @@ namespace TDPlugin.Forms
         {
             if (textBox_mark.Text != "")
             {
-                bd.edit_record_mark(mark, textBox_mark.Text);
+                db.edit_record_mark(issue, textBox_mark.Text, comboBox_val.SelectedIndex);
             }
             else
             {
-                string message = "Are you sure you want to delete the " + cur_markname + "?";
+                string message = "Are you sure you want to delete the " + issue.name + "?";
                 string caption = "Confirmation of action";
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                 DialogResult result;
@@ -295,41 +272,35 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_mark(mark);
+                    db.delete_record_mark(issue);
                     but_mark_pr_Click(sender, e);
                 }
                 else
                 {
-                    textBox_mark.Text = cur_markname;
+                    textBox_mark.Text = issue.name;
                 }
             }
+
+            issue = db.get_mark(file, curr_mark);
 
             textBox_mark.ReadOnly = true;
             but_mark_chg.Visible = true;
             button_mark_cancel.Visible = false;
 
-            button1.Enabled = true;
+            comboBox_val.Enabled = false;
 
-            but_mark_del.Enabled = true;
-            but_mark_next.Enabled = true;
-            but_mark_pr.Enabled = true;
-            but_file_del.Enabled = true;
-            but_file_next.Enabled = true;
-            but_file_pr.Enabled = true;
-            but_com_del.Enabled = true;
-            but_com_next.Enabled = true;
-            but_com_pr.Enabled = true;
+            enable_interface();
         }
 
         private void button_accept_file_Click(object sender, EventArgs e)
         {
             if (textBox_file.Text != "")
             {
-                bd.edit_record_file(file, textBox_file.Text);
+                db.edit_record_file(file, textBox_file.Text);
             }
             else
             {
-                string message = "Are you sure you want to delete the note " + cur_filename + "?";
+                string message = "Are you sure you want to delete the note " + file.name + "?";
                 string caption = "Confirmation of action";
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                 DialogResult result;
@@ -338,70 +309,45 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bd.delete_record_file(file);
+                    db.delete_record_file(file);
                     but_file_pr_Click(sender, e);
                 }
                 else
                 {
-                    textBox_file.Text = cur_filename;
+                    textBox_file.Text = file.name;
                 }
             }
+
+            file = db.get_file(curr_file);
 
             textBox_file.ReadOnly = true;
             but_file_chg.Visible = true;
             button_file_cancel.Visible = false;
 
-            button1.Enabled = true;
-
-            but_mark_del.Enabled = true;
-            but_mark_next.Enabled = true;
-            but_mark_pr.Enabled = true;
-            but_file_del.Enabled = true;
-            but_file_next.Enabled = true;
-            but_file_pr.Enabled = true;
-            but_com_del.Enabled = true;
-            but_com_next.Enabled = true;
-            but_com_pr.Enabled = true;
+            enable_interface();
         }
 
         private void button_file_cancel_Click(object sender, EventArgs e)
         {
-            textBox_file.Text = cur_filename;
+            textBox_file.Text = file.name;
             textBox_file.ReadOnly = true;
             but_file_chg.Visible = true;
             button_file_cancel.Visible = false;
 
-            button1.Enabled = true;
-
-            but_mark_del.Enabled = true;
-            but_mark_next.Enabled = true;
-            but_mark_pr.Enabled = true;
-            but_file_del.Enabled = true;
-            but_file_next.Enabled = true;
-            but_file_pr.Enabled = true;
-            but_com_del.Enabled = true;
-            but_com_next.Enabled = true;
-            but_com_pr.Enabled = true;
+            enable_interface();
         }
 
         private void button_mark_cancel_Click(object sender, EventArgs e)
         {
-            textBox_mark.Text = cur_markname;
+            textBox_mark.Text = issue.name;
             textBox_mark.ReadOnly = true;
             but_mark_chg.Visible = true;
             button_mark_cancel.Visible = false;
 
-            button1.Enabled = true;
+            comboBox_val.Enabled = false;
+            comboBox_val.Text = severity[issue.severity];
 
-            but_mark_del.Enabled = true;
-            but_mark_next.Enabled = true;
-            but_mark_pr.Enabled = true;
-            but_file_del.Enabled = true;
-            but_file_next.Enabled = true;
-            but_file_pr.Enabled = true;
-            but_com_del.Enabled = true;
-            but_com_next.Enabled = true;
-            but_com_pr.Enabled = true;
+            enable_interface();
         }
 
 
@@ -422,43 +368,42 @@ namespace TDPlugin.Forms
                 }
             }
 
-            bd = new DB_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
+            username = BDinfo[2];
+            db = new DB_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
 
-            if (bd.check_connection())
+            if (db.check_connection())
             {
                 lab_db_connection.Text = BDinfo[4];
                 curr_file = 0;
                 curr_mark = 0;
                 curr_comm = 0;
 
-                file = bd.get_file(curr_file);
+                file = db.get_file(curr_file);
 
                 if (file != null)
                 {
                     textBox_file.Text = file.name;
-                    lab_file_avg.Text = "" + file.avg_val;
-                    mark = bd.get_mark(file, curr_mark);
-                    if (mark != null)
+                    issue = db.get_mark(file, curr_mark);
+                    if (issue != null)
                     {
-                        textBox_mark.Text = mark.name;
-                        lab_mark_avg.Text = "" + mark.avg_val;
-                        comm = bd.get_comment(mark, curr_comm);
-                        if (comm != null) textBox_comm.Text = comm.text;
+                        textBox_mark.Text = issue.name;
+                        comboBox_val.Text = severity[issue.severity];
+                        comm = db.get_comment(issue, curr_comm);
+                        if (comm != null) textBox_comm.Text = comm.author + ": " + comm.text;
                         else textBox_comm.Text = "";
                     }
                     else
                     {
                         textBox_mark.Text = "";
-                        lab_mark_avg.Text = "";
+                        comboBox_val.SelectedIndex = -1;
                         textBox_comm.Text = "";
                     }
                 }
                 else
                 {
                     textBox_file.Text = "";
-                    lab_file_avg.Text = "";
                     textBox_mark.Text = "";
-                    lab_mark_avg.Text = "";
+                    comboBox_val.SelectedIndex = -1;
                     textBox_comm.Text = "";
                 }
             }
@@ -468,21 +413,236 @@ namespace TDPlugin.Forms
 
                 but_mark_chg.Enabled = false;
                 but_file_chg.Enabled = false;
-                but_mark_del.Enabled = false;
-                but_mark_next.Enabled = false;
-                but_mark_pr.Enabled = false;
-                but_file_del.Enabled = false;
-                but_file_next.Enabled = false;
-                but_file_pr.Enabled = false;
-                but_com_del.Enabled = false;
-                but_com_next.Enabled = false;
-                but_com_pr.Enabled = false;
+
+                disable_interface();
+
+                button_opt.Enabled = false;
+                button_open_stngs.Enabled = false;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_refresh_Click(object sender, EventArgs e)
         {
             Form_statistic_Load(sender, e);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panel_opt.Visible = true;
+        }
+
+        private void button_cl_Click(object sender, EventArgs e)
+        {
+            panel_opt.Visible = false;
+        }
+        
+
+        private void button_open_stngs_Click(object sender, EventArgs e)
+        {
+            panel_opt_vote.Visible = true;
+        }
+
+        private void button_close_stngs_Click(object sender, EventArgs e)
+        {
+            panel_opt_vote.Visible = false;
+        }
+
+        private void button_agree_Click(object sender, EventArgs e)
+        {
+            if (issue != null)
+            {
+                if (db.search_exist_author_comment(issue, username, 1) != null)
+                    MessageBox.Show("You have already agreed with this problem", "No changes");
+                else 
+                { 
+                    var a = db.search_exist_author_comment(issue, username, -1);
+                    if (a != null)
+                    {
+                        string message = "Do you want to replace your 'disagree' comment?";
+                        string caption = "You have already disagreed with this problem";
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        DialogResult result;
+
+                        // Displays the MessageBox.
+                        result = MessageBox.Show(message, caption, buttons);
+                        if (result == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            db.delete_record_comment(a);
+                            db.add_new_record_comment(file.name, issue.name, "", username, 1);
+                        }
+                    }
+                    else db.add_new_record_comment(file.name, issue.name, "", username, 1);
+                }
+            }
+        }
+
+        private void button_disagree_Click(object sender, EventArgs e)
+        {
+            if (issue != null)
+            {
+                if (db.search_exist_author_comment(issue, username, -1) != null)
+                    MessageBox.Show("You have already disagreed with this problem", "No changes");
+                else
+                {
+                    var a = db.search_exist_author_comment(issue, username, 1);
+                    if (a != null)
+                    {
+                        string message = "Do you want to replace your 'agree' comment?";
+                        string caption = "You have already agreed with this problem";
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        DialogResult result;
+
+                        // Displays the MessageBox.
+                        result = MessageBox.Show(message, caption, buttons);
+                        if (result == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            db.delete_record_comment(a);
+                            button_disagree.BackColor = Color.LightSkyBlue;
+                            disable_interface();
+                            textBox_comm.Text = "";
+                            textBox_comm.ReadOnly = false;
+
+                            label_advice_disagree.Visible = true;
+                            button_disagree_accept.Visible = true;
+                            button_disagree_cancel.Visible = true;
+                        }
+                    }
+                    else 
+                    {
+                        button_disagree.BackColor = Color.LightSkyBlue;
+                        disable_interface();
+                        textBox_comm.Text = "";
+                        textBox_comm.ReadOnly = false;
+
+                        label_advice_disagree.Visible = true;
+                        button_disagree_accept.Visible = true;
+                        button_disagree_cancel.Visible = true;
+                    }
+                }
+            } 
+        }
+
+        private void button_comment_Click(object sender, EventArgs e)
+        {
+            if (issue != null)
+            {
+                button_comment.BackColor = Color.LightSkyBlue;
+                disable_interface();
+                textBox_comm.Text = "";
+                textBox_comm.ReadOnly = false;
+
+                label_advice_com.Visible = true;
+                button_com_acept.Visible = true;
+                button_com_cancel.Visible = true;
+            }
+
+        }
+
+
+        private void disable_interface() 
+        { 
+            but_mark_del.Enabled = false;
+            but_mark_next.Enabled = false;
+            but_mark_pr.Enabled = false;
+            but_file_del.Enabled = false;
+            but_file_next.Enabled = false;
+            but_file_pr.Enabled = false;
+            but_com_del.Enabled = false;
+            but_com_next.Enabled = false;
+            but_com_pr.Enabled = false;
+
+            button_agree.Enabled = false;
+            button_comment.Enabled = false;
+            button_disagree.Enabled = false;
+            button_cl.Enabled = false;
+
+            but_mark_chg.Enabled = false;
+            but_file_chg.Enabled = false;
+        }
+
+        private void enable_interface()
+        {
+            but_mark_del.Enabled = true;
+            but_mark_next.Enabled = true;
+            but_mark_pr.Enabled = true;
+            but_file_del.Enabled = true;
+            but_file_next.Enabled = true;
+            but_file_pr.Enabled = true;
+            but_com_del.Enabled = true;
+            but_com_next.Enabled = true;
+            but_com_pr.Enabled = true;
+
+            button_agree.Enabled = true;
+            button_comment.Enabled = true;
+            button_disagree.Enabled = true;
+            button_cl.Enabled = true;
+
+            but_mark_chg.Enabled = true;
+            but_file_chg.Enabled = true;
+        }
+
+
+        private void button_com_acept_Click(object sender, EventArgs e)
+        {
+            if (textBox_comm.Text != "")
+            {
+                db.add_new_record_comment(file.name, issue.name, textBox_comm.Text, username, 0);
+                enable_interface();
+
+                label_advice_com.Visible = false;
+                button_com_acept.Visible = false;
+                button_com_cancel.Visible = false;
+
+                curr_comm = 0;
+                comm = db.get_comment(issue, curr_comm);
+                textBox_comm.Text = comm.author + ": " + comm.text;
+                textBox_comm.ReadOnly = true;
+                button_comment.BackColor = Color.Gainsboro;
+            }
+        }
+
+        private void button_com_cancel_Click(object sender, EventArgs e)
+        {
+            enable_interface();
+            textBox_comm.Text = comm.author + ": " + comm.text;
+
+            label_advice_com.Visible = false;
+            button_com_acept.Visible = false;
+            button_com_cancel.Visible = false;
+            textBox_comm.ReadOnly = true;
+            button_comment.BackColor = Color.Gainsboro;
+        }
+
+        private void button_disagree_accept_Click(object sender, EventArgs e)
+        {
+            if (textBox_comm.Text != "")
+            {
+                db.add_new_record_comment(file.name, issue.name, textBox_comm.Text, username, -1);
+                enable_interface();
+
+                label_advice_disagree.Visible = false;
+                button_disagree_accept.Visible = false;
+                button_disagree_cancel.Visible = false;
+
+                curr_comm = 0;
+                comm = db.get_comment(issue, curr_comm);
+                textBox_comm.Text = comm.author + ": " + comm.text;
+                textBox_comm.ReadOnly = true;
+                button_disagree.BackColor = Color.Gainsboro;
+            }
+        }
+
+        private void button_disagree_cancel_Click(object sender, EventArgs e)
+        {
+            enable_interface();
+            textBox_comm.Text = comm.author + ": " + comm.text;
+
+            label_advice_disagree.Visible = false;
+            button_disagree_accept.Visible = false;
+            button_disagree_cancel.Visible = false;
+
+            textBox_comm.ReadOnly = true;
+            button_disagree.BackColor = Color.Gainsboro;
         }
     }
 }

@@ -47,11 +47,11 @@
   <ItemGroup>
     <Compile Include="Change_DB_info.cs" />
     <Compile Include="ClassTables\comments_table.cs" />
-    <Compile Include="ClassTables\filenames_table.cs" />
-    <Compile Include="ClassTables\marks_table.cs" />
+    <Compile Include="ClassTables\files_table.cs" />
+    <Compile Include="ClassTables\issues_table.cs" />
     <Compile Include="DBclasses\Comment.cs" />
     <Compile Include="DBclasses\Filename.cs" />
-    <Compile Include="DBclasses\Mark.cs" />
+    <Compile Include="DBclasses\Issues.cs" />
     <Compile Include="Forms\Form_DBinfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,8 +64,6 @@
     <Compile Include="Forms\Form_Statistic.Designer.cs">
       <DependentUpon>Form_Statistic.cs</DependentUpon>
     </Compile>
-    <Compile Include="TextAdornment1.cs" />
-    <Compile Include="TextAdornment1TextViewCreationListener.cs" />
     <Compile Include="Manager\IDBManager.cs" />
     <Compile Include="Show_TDandComments.cs" />
     <Compile Include="Forms\Form_Mark.cs">
@@ -78,6 +76,8 @@
     <Compile Include="MarkBadCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TDPluginPackage.cs" />
+    <Compile Include="TextAdornment1.cs" />
+    <Compile Include="TextAdornment1TextViewCreationListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">

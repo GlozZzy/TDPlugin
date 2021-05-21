@@ -155,7 +155,7 @@ namespace TDPlugin.Forms
             this.label5.TabIndex = 10;
             this.label5.Text = "Name DB";
             // 
-            // Form_change_DBinfo
+            // Form_DBinfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -174,7 +174,7 @@ namespace TDPlugin.Forms
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(315, 335);
             this.MinimumSize = new System.Drawing.Size(315, 335);
-            this.Name = "Form_change_DBinfo";
+            this.Name = "Form_DBinfo";
             this.Text = "Change current DB";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace TDPlugin.DBclasses
 {
-    class Mark
+    class Issues
     {
         public int id;
         public string name;
         public int id_file;
-        public int avg_val;
+        public int severity;
 
-        public Mark(int id, string name, int id_file, int avg_val = 0)
+        public Issues(int id, string name, int severity, int id_file)
         {
             this.id = id;
             this.name = name;
             this.id_file = id_file;
-            this.avg_val = avg_val;
+            this.severity = severity;
         }
     }
 }

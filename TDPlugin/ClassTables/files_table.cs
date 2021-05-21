@@ -6,20 +6,18 @@ using System.Threading.Tasks;
 
 namespace TDPlugin.ClassTables
 {
-    class filenames_table
+    class files_table
     {
         public string tab_title { get; }
         // Names of collums in table
         public string col_id { get; }
         public string col_name { get; }
-        public string col_avg { get; }
 
-        public filenames_table(string title, string id, string name, string avg_value)
+        public files_table(string title, string id, string name)
         {
             tab_title = title;
             col_id = id;
             col_name = name;
-            col_avg = avg_value;
         }
     }
 }

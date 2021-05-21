@@ -12,17 +12,19 @@ namespace TDPlugin.ClassTables
 
         // Names of collums in table
         public string col_id { get; }
-        public string col_val { get; }
         public string col_text { get; }
         public string col_foreign { get; }
+        public string col_author { get; }
+        public string col_status { get; }
 
-        public comments_table(string title, string id, string text, string val, string foreign)
+        public comments_table(string title, string id, string text, string foreign, string author, string status)
         {
             tab_title = title;
             col_id = id;
-            col_val = val;
             col_text = text;
             col_foreign = foreign;
+            col_author = author;
+            col_status = status;
         }
     }
 }

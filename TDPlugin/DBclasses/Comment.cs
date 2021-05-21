@@ -10,15 +10,17 @@ namespace TDPlugin.DBclasses
     {
         public int id;
         public string text;
-        public int id_mark;
-        public int val;
+        public int id_issue;
+        public string author;
+        public int status;
 
-        public Comment(int id, int id_mark, string text, int val)
+        public Comment(int id, int id_mark, string text, string author, int status)
         {
             this.id = id;
             this.text = text;
-            this.id_mark = id_mark;
-            this.val = val;
+            this.id_issue = id_mark;
+            this.author = author;
+            this.status = status;
         }
     }
 }

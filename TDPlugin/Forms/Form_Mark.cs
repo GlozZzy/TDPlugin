@@ -49,23 +49,19 @@ namespace TDPlugin.Forms
                 {
                     if (bd.search_exist_file(filename.Text))
                         if (bd.search_exist_mark(filename.Text, markname.Text))
-                            bd.add_new_record_comment(filename.Text, markname.Text, (int)num_val.Value, comment.Text);
+                            bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                         else
                         {
-                            bd.add_new_record_mark(filename.Text, markname.Text);
-                            bd.add_new_record_comment(filename.Text, markname.Text, (int)num_val.Value, comment.Text);
+                            bd.add_new_record_mark(filename.Text, markname.Text, 0);
+                            bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                         }
                     else
                     {
                         bd.add_new_record_file(filename.Text);
-                        bd.add_new_record_mark(filename.Text, markname.Text);
-                        bd.add_new_record_comment(filename.Text, markname.Text, (int)num_val.Value, comment.Text);
+                        bd.add_new_record_mark(filename.Text, markname.Text, 0);
+                        bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                     }
-                    bd.recount_file_avg_value(filename.Text);
-                    bd.recount_mark_avg_value(filename.Text, markname.Text);
-
                     comment.Text = "";
-                    num_val.Value = 1M;
                     MessageBox.Show("Everything went well", "Successfully");
                 }
                 else
@@ -73,11 +69,6 @@ namespace TDPlugin.Forms
                     MessageBox.Show("Some problems with db connection", "Error");
                 }
             }
-        }
-
-        private void db_connection_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
