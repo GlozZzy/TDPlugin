@@ -27,7 +27,7 @@ namespace TDPlugin.Forms
             }
             else
             {
-                using (StreamWriter sw = new StreamWriter("CurBDinfo.txt", false, System.Text.Encoding.Default))
+                using (StreamWriter sw = new StreamWriter(@"..\..\Resources\CurBDinfo.txt", false, System.Text.Encoding.Default))
                 {
                     sw.WriteLine(tb_host.Text);
                     sw.WriteLine(tb_port.Text);
@@ -43,7 +43,7 @@ namespace TDPlugin.Forms
         {
             BDinfo = new string[5];
 
-            using (StreamReader sr = new StreamReader("CurBDInfo.txt", Encoding.Default))
+            using (StreamReader sr = new StreamReader(@"..\..\Resources\CurBDinfo.txt", Encoding.Default))
             {
                 string line;
                 int i = 0;

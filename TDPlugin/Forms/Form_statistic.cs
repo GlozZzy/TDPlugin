@@ -357,7 +357,7 @@ namespace TDPlugin.Forms
         private void Form_statistic_Load(object sender, EventArgs e)
         {
             string[] BDinfo = new string[5];
-            using (StreamReader sr = new StreamReader("CurBDInfo.txt", Encoding.Default))
+            using (StreamReader sr = new StreamReader(@"..\..\Resources\CurBDinfo.txt", Encoding.Default))
             {
                 string line;
                 int i = 0;
