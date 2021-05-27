@@ -51,7 +51,7 @@
     <Compile Include="ClassTables\issues_table.cs" />
     <Compile Include="DBclasses\Comment.cs" />
     <Compile Include="DBclasses\Filename.cs" />
-    <Compile Include="DBclasses\Issues.cs" />
+    <Compile Include="DBclasses\Issue.cs" />
     <Compile Include="Forms\Form_DBinfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,7 +65,7 @@
       <DependentUpon>Form_Statistic.cs</DependentUpon>
     </Compile>
     <Compile Include="Manager\IDBManager.cs" />
-    <Compile Include="Show_TDandComments.cs" />
+    <Compile Include="Show_statistics.cs" />
     <Compile Include="Forms\Form_Mark.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -49,7 +49,7 @@ namespace TDPlugin
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await MarkBadCode.InitializeAsync(this);
-            await Show_TDandComments.InitializeAsync(this);
+            await Show_statistics.InitializeAsync(this);
             await Change_DB_info.InitializeAsync(this);
         }
 

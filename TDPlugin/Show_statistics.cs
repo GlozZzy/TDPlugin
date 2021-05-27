@@ -14,7 +14,7 @@ namespace TDPlugin
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class Show_TDandComments
+    internal sealed class Show_statistics
     {
         /// <summary>
         /// Command ID.
@@ -32,12 +32,12 @@ namespace TDPlugin
         private readonly AsyncPackage package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Show_TDandComments"/> class.
+        /// Initializes a new instance of the <see cref="Show_statistics"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private Show_TDandComments(AsyncPackage package, OleMenuCommandService commandService)
+        private Show_statistics(AsyncPackage package, OleMenuCommandService commandService)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -50,7 +50,7 @@ namespace TDPlugin
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static Show_TDandComments Instance
+        public static Show_statistics Instance
         {
             get;
             private set;
@@ -78,7 +78,7 @@ namespace TDPlugin
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-            Instance = new Show_TDandComments(package, commandService);
+            Instance = new Show_statistics(package, commandService);
         }
 
         /// <summary>

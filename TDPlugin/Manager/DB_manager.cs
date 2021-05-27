@@ -76,7 +76,7 @@ namespace TDPlugin.Tools
             return table.Rows.Count > 0;
         }
 
-        public bool search_exist_mark(string filename, string issue)
+        public bool search_exist_issue(string filename, string issue)
         {
             int Fid = search_filename_id(filename);
 
@@ -95,7 +95,7 @@ namespace TDPlugin.Tools
         }
 
 
-        public Comment search_exist_author_comment(Issues issue, string author, int status)
+        public Comment search_exist_author_comment(Issue issue, string author, int status)
         {
             MySqlCommand command = new MySqlCommand("SELECT * FROM `" + comments_.tab_title +
                 "` WHERE `" + comments_.col_author + "` = @auth AND `" + comments_.col_status + "` = @st AND `" 
@@ -136,7 +136,7 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void add_new_record_mark(string filename, string issue, int val)
+        public void add_new_record_issue(string filename, string issue, int severity)
         {
             int Fid = search_filename_id(filename);
 
@@ -145,7 +145,7 @@ namespace TDPlugin.Tools
                 "`) VALUES(@cur_name, @cur_id, @cur_severity)", connection);
             command.Parameters.Add("@cur_name", MySqlDbType.VarChar).Value = issue;
             command.Parameters.Add("@cur_id", MySqlDbType.VarChar).Value = Fid;
-            command.Parameters.Add("@cur_severity", MySqlDbType.VarChar).Value = val;
+            command.Parameters.Add("@cur_severity", MySqlDbType.VarChar).Value = severity;
 
             OpenConnection();
             command.ExecuteNonQuery();
@@ -155,7 +155,7 @@ namespace TDPlugin.Tools
         public void add_new_record_comment(string filename, string issue, string text, string author, int status)
         {
             int Fid = search_filename_id(filename);
-            int Mid = search_mark_id(Fid, issue);
+            int Mid = search_issue_id(Fid, issue);
 
             MySqlCommand command = new MySqlCommand("INSERT INTO `"+ comments_.tab_title + "` (`" 
                 + comments_.col_foreign + "`, `"+ comments_.col_author + "`, `"+ comments_.col_text 
@@ -187,7 +187,7 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void edit_record_mark(Issues issue, string Ename, int Eseverity) 
+        public void edit_record_issue(Issue issue, string Ename, int Eseverity) 
         {
             int Mid = issue.id;
 
@@ -263,7 +263,7 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void delete_record_mark(Issues issue)
+        public void delete_record_issue(Issue issue)
         {
             int Mid = issue.id;
 
@@ -322,7 +322,7 @@ namespace TDPlugin.Tools
         }
 
 
-        public Issues get_mark(Filename filename, int i)
+        public Issue get_issue(Filename filename, int i)
         {
             int Fid = filename.id;
             
@@ -346,13 +346,13 @@ namespace TDPlugin.Tools
                 var severity = int.Parse(table.Rows[i][2].ToString());
                 var id_file = int.Parse(table.Rows[i][3].ToString());
                 
-                return new Issues(id, name, severity, id_file);
+                return new Issue(id, name, severity, id_file);
             }
             else return null;
         }
 
 
-        public Comment get_comment(Issues issue, int i)
+        public Comment get_comment(Issue issue, int i)
         {
             int Mid = issue.id;
 
@@ -380,7 +380,7 @@ namespace TDPlugin.Tools
 
 
 
-        public int search_filename_id(string filename)
+        private int search_filename_id(string filename)
         {
             MySqlCommand command = new MySqlCommand("SELECT * FROM `" + files_.tab_title +
                 "` WHERE `"+ files_.col_name + "` = @value", connection);
@@ -395,7 +395,7 @@ namespace TDPlugin.Tools
             return (int)table.Rows[0][0];
         }
 
-        public int search_mark_id(int fval, string issue)
+        private int search_issue_id(int fval, string issue)
         {
             MySqlCommand command = new MySqlCommand("SELECT * FROM `" + issues_.tab_title + 
                 "` WHERE `" + issues_.col_foreign + "` = @value AND `" + issues_.col_name + "` = @cur_name", connection);

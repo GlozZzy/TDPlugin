@@ -13,12 +13,13 @@ namespace TDPlugin.Forms
 {
     public partial class Form_DBinfo : Form
     {
+        string[] BDinfo;
         public Form_DBinfo()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void change_current_connection_from_textfile(object sender, EventArgs e)
         {
             if (tb_host.Text == "" || tb_port.Text == "" || tb_un.Text == "" || tb_ps.Text == "" || tb_namebd.Text == "")
             {
@@ -38,9 +39,9 @@ namespace TDPlugin.Forms
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void get_current_connection_from_textfile(object sender, EventArgs e)
         {
-            string[] BDinfo = new string[5];
+            BDinfo = new string[5];
 
             using (StreamReader sr = new StreamReader("CurBDInfo.txt", Encoding.Default))
             {

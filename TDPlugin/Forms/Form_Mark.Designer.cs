@@ -33,7 +33,7 @@ namespace TDPlugin.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.markname = new System.Windows.Forms.TextBox();
             this.comment = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_accept = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.filename = new System.Windows.Forms.TextBox();
             this.lab_db_connection = new System.Windows.Forms.Label();
@@ -84,16 +84,16 @@ namespace TDPlugin.Forms
             this.comment.Size = new System.Drawing.Size(290, 138);
             this.comment.TabIndex = 4;
             // 
-            // button1
+            // button_accept
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(93, 341);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 40);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Accept";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_accept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_accept.Location = new System.Drawing.Point(93, 341);
+            this.button_accept.Name = "button_accept";
+            this.button_accept.Size = new System.Drawing.Size(130, 40);
+            this.button_accept.TabIndex = 5;
+            this.button_accept.Text = "Accept";
+            this.button_accept.UseVisualStyleBackColor = true;
+            this.button_accept.Click += new System.EventHandler(this.button_accept_Click);
             // 
             // label4
             // 
@@ -212,7 +212,7 @@ namespace TDPlugin.Forms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.filename);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_accept);
             this.Controls.Add(this.comment);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -234,7 +234,7 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox markname;
         private System.Windows.Forms.TextBox comment;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_accept;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox filename;
         private System.Windows.Forms.Label lab_db_connection;

@@ -27,11 +27,11 @@ namespace TDPlugin.Forms
         string username;
 
         Filename file;
-        Issues issue;
+        Issue issue;
         Comment comm;
 
         int curr_file;
-        int curr_mark;
+        int cur_issue;
         int curr_comm;
 
         public Form_Statistic()
@@ -71,9 +71,9 @@ namespace TDPlugin.Forms
         {
             if (file != null)
             {
-                curr_mark--;
-                if (curr_mark < 0) curr_mark = 0;
-                issue = db.get_mark(file, curr_mark);
+                cur_issue--;
+                if (cur_issue < 0) cur_issue = 0;
+                issue = db.get_issue(file, cur_issue);
 
                 if (issue != null)
                 {
@@ -96,8 +96,8 @@ namespace TDPlugin.Forms
         {
             if (file != null)
             {
-                if (issue != null) curr_mark++;
-                issue = db.get_mark(file, curr_mark);
+                if (issue != null) cur_issue++;
+                issue = db.get_issue(file, cur_issue);
 
                 if (issue != null)
                 {
@@ -128,7 +128,7 @@ namespace TDPlugin.Forms
             if (file != null)
             {
                 textBox_file.Text = file.name;
-                curr_mark = 0;
+                cur_issue = 0;
                 but_mark_pr_Click(sender, e);
             }
             else
@@ -151,7 +151,7 @@ namespace TDPlugin.Forms
             if (file != null)
             {
                 textBox_file.Text = file.name;
-                curr_mark = 0;
+                cur_issue = 0;
                 but_mark_pr_Click(sender, e);
             }
             else
@@ -201,7 +201,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    db.delete_record_mark(issue);
+                    db.delete_record_issue(issue);
                     but_mark_pr_Click(sender, e);
                 }
             }
@@ -259,7 +259,7 @@ namespace TDPlugin.Forms
         {
             if (textBox_mark.Text != "")
             {
-                db.edit_record_mark(issue, textBox_mark.Text, comboBox_val.SelectedIndex);
+                db.edit_record_issue(issue, textBox_mark.Text, comboBox_val.SelectedIndex);
             }
             else
             {
@@ -272,7 +272,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    db.delete_record_mark(issue);
+                    db.delete_record_issue(issue);
                     but_mark_pr_Click(sender, e);
                 }
                 else
@@ -281,7 +281,7 @@ namespace TDPlugin.Forms
                 }
             }
 
-            issue = db.get_mark(file, curr_mark);
+            issue = db.get_issue(file, cur_issue);
 
             textBox_mark.ReadOnly = true;
             but_mark_chg.Visible = true;
@@ -375,7 +375,7 @@ namespace TDPlugin.Forms
             {
                 lab_db_connection.Text = BDinfo[4];
                 curr_file = 0;
-                curr_mark = 0;
+                cur_issue = 0;
                 curr_comm = 0;
 
                 file = db.get_file(curr_file);
@@ -383,7 +383,7 @@ namespace TDPlugin.Forms
                 if (file != null)
                 {
                     textBox_file.Text = file.name;
-                    issue = db.get_mark(file, curr_mark);
+                    issue = db.get_issue(file, cur_issue);
                     if (issue != null)
                     {
                         textBox_mark.Text = issue.name;

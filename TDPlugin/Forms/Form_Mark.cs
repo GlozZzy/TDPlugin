@@ -35,7 +35,7 @@ namespace TDPlugin.Forms
             lab_db_connection.Text = BDinfo[4];
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_accept_Click(object sender, EventArgs e)
         {
             if (filename.Text == "" || markname.Text == "" || comment.Text == "")
             {
@@ -48,17 +48,17 @@ namespace TDPlugin.Forms
                 if (bd.check_connection())
                 {
                     if (bd.search_exist_file(filename.Text))
-                        if (bd.search_exist_mark(filename.Text, markname.Text))
+                        if (bd.search_exist_issue(filename.Text, markname.Text))
                             bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                         else
                         {
-                            bd.add_new_record_mark(filename.Text, markname.Text, 0);
+                            bd.add_new_record_issue(filename.Text, markname.Text, 0);
                             bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                         }
                     else
                     {
                         bd.add_new_record_file(filename.Text);
-                        bd.add_new_record_mark(filename.Text, markname.Text, 0);
+                        bd.add_new_record_issue(filename.Text, markname.Text, 0);
                         bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                     }
                     comment.Text = "";
