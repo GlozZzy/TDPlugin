@@ -79,6 +79,8 @@ namespace TDPlugin.Forms
                 {
                     textBox_mark.Text = issue.name;
                     comboBox_val.Text = severity[issue.severity];
+                    textBox_linefrom.Text = "" + issue.linefrom;
+                    textBox_lineto.Text = "" + issue.lineto;
                     curr_comm = 0;
                     but_com_pr_Click(sender, e);
                 }
@@ -88,6 +90,8 @@ namespace TDPlugin.Forms
                     textBox_mark.Text = "";
                     comboBox_val.SelectedIndex = -1;
                     textBox_comm.Text = "";
+                    textBox_linefrom.Text = "";
+                    textBox_lineto.Text = "";
                 }
             }
         }
@@ -103,6 +107,8 @@ namespace TDPlugin.Forms
                 {
                     textBox_mark.Text = issue.name;
                     comboBox_val.Text = severity[issue.severity];
+                    textBox_linefrom.Text = "" + issue.linefrom;
+                    textBox_lineto.Text = "" + issue.lineto;
                     curr_comm = 0;
                     but_com_pr_Click(sender, e);
                 }
@@ -111,6 +117,8 @@ namespace TDPlugin.Forms
                     comm = null;
                     textBox_mark.Text = "";
                     comboBox_val.SelectedIndex = -1;
+                    textBox_linefrom.Text = "";
+                    textBox_lineto.Text = "";
                     textBox_comm.Text = "";
                 }
             }
@@ -235,9 +243,13 @@ namespace TDPlugin.Forms
                 disable_interface();
 
                 button_mark_cancel.Visible = true;
+                button_accept_mark.Visible = true;
                 textBox_mark.ReadOnly = false;
                 but_mark_chg.Visible = false;
                 comboBox_val.Enabled = true;
+
+                textBox_linefrom.ReadOnly = false;
+                textBox_lineto.ReadOnly = false;
             }
         }
 
@@ -249,6 +261,7 @@ namespace TDPlugin.Forms
                 textBox_file.ReadOnly = false;
                 but_file_chg.Visible = false;
                 button_file_cancel.Visible = true;
+                button_accept_file.Visible = true;
 
                 disable_interface();
             }
@@ -259,7 +272,7 @@ namespace TDPlugin.Forms
         {
             if (textBox_mark.Text != "")
             {
-                db.edit_record_issue(issue, textBox_mark.Text, comboBox_val.SelectedIndex);
+                db.edit_record_issue(issue, textBox_mark.Text, comboBox_val.SelectedIndex, int.Parse(textBox_linefrom.Text), int.Parse(textBox_lineto.Text));
             }
             else
             {
@@ -286,8 +299,11 @@ namespace TDPlugin.Forms
             textBox_mark.ReadOnly = true;
             but_mark_chg.Visible = true;
             button_mark_cancel.Visible = false;
+            button_accept_mark.Visible = false;
 
             comboBox_val.Enabled = false;
+            textBox_linefrom.ReadOnly = true;
+            textBox_lineto.ReadOnly = true;
 
             enable_interface();
         }
@@ -323,6 +339,7 @@ namespace TDPlugin.Forms
             textBox_file.ReadOnly = true;
             but_file_chg.Visible = true;
             button_file_cancel.Visible = false;
+            button_accept_file.Visible = false;
 
             enable_interface();
         }
@@ -333,6 +350,7 @@ namespace TDPlugin.Forms
             textBox_file.ReadOnly = true;
             but_file_chg.Visible = true;
             button_file_cancel.Visible = false;
+            button_accept_file.Visible = false;
 
             enable_interface();
         }
@@ -343,9 +361,15 @@ namespace TDPlugin.Forms
             textBox_mark.ReadOnly = true;
             but_mark_chg.Visible = true;
             button_mark_cancel.Visible = false;
+            button_accept_mark.Visible = false;
 
             comboBox_val.Enabled = false;
             comboBox_val.Text = severity[issue.severity];
+
+            textBox_linefrom.ReadOnly = true;
+            textBox_linefrom.Text = "" + issue.linefrom;
+            textBox_lineto.ReadOnly = true;
+            textBox_lineto.Text = "" + issue.lineto;
 
             enable_interface();
         }
@@ -388,6 +412,8 @@ namespace TDPlugin.Forms
                     {
                         textBox_mark.Text = issue.name;
                         comboBox_val.Text = severity[issue.severity];
+                        textBox_linefrom.Text = "" + issue.linefrom;
+                        textBox_lineto.Text = "" + issue.lineto;
                         comm = db.get_comment(issue, curr_comm);
                         if (comm != null) textBox_comm.Text = comm.author + ": " + comm.text;
                         else textBox_comm.Text = "";
@@ -395,6 +421,8 @@ namespace TDPlugin.Forms
                     else
                     {
                         textBox_mark.Text = "";
+                        textBox_linefrom.Text = "";
+                        textBox_lineto.Text = "";
                         comboBox_val.SelectedIndex = -1;
                         textBox_comm.Text = "";
                     }
@@ -404,6 +432,9 @@ namespace TDPlugin.Forms
                     textBox_file.Text = "";
                     textBox_mark.Text = "";
                     comboBox_val.SelectedIndex = -1;
+                    textBox_linefrom.Text = "";
+                    textBox_lineto.Text = "";
+                    textBox_mark.Text = "";
                     textBox_comm.Text = "";
                 }
             }
@@ -429,22 +460,26 @@ namespace TDPlugin.Forms
         private void button4_Click(object sender, EventArgs e)
         {
             panel_opt.Visible = true;
+            button_cl.Visible = true;
         }
 
         private void button_cl_Click(object sender, EventArgs e)
         {
             panel_opt.Visible = false;
+            button_cl.Visible = false;
         }
         
 
         private void button_open_stngs_Click(object sender, EventArgs e)
         {
             panel_opt_vote.Visible = true;
+            button_close_stngs.Visible = true;
         }
 
         private void button_close_stngs_Click(object sender, EventArgs e)
         {
             panel_opt_vote.Visible = false;
+            button_close_stngs.Visible = false;
         }
 
         private void button_agree_Click(object sender, EventArgs e)
@@ -471,7 +506,12 @@ namespace TDPlugin.Forms
                             db.add_new_record_comment(file.name, issue.name, "", username, 1);
                         }
                     }
-                    else db.add_new_record_comment(file.name, issue.name, "", username, 1);
+                    else 
+                    {
+                        button_close_stngs_Click(sender, e);
+                        db.add_new_record_comment(file.name, issue.name, "", username, 1);
+                        MessageBox.Show("Your opinion was taken into account", "Successfully");
+                    }
                 }
             }
         }
@@ -496,6 +536,7 @@ namespace TDPlugin.Forms
                         result = MessageBox.Show(message, caption, buttons);
                         if (result == System.Windows.Forms.DialogResult.Yes)
                         {
+                            button_close_stngs_Click(sender, e);
                             db.delete_record_comment(a);
                             button_disagree.BackColor = Color.LightSkyBlue;
                             disable_interface();
@@ -509,6 +550,7 @@ namespace TDPlugin.Forms
                     }
                     else 
                     {
+                        button_close_stngs_Click(sender, e);
                         button_disagree.BackColor = Color.LightSkyBlue;
                         disable_interface();
                         textBox_comm.Text = "";
@@ -526,6 +568,7 @@ namespace TDPlugin.Forms
         {
             if (issue != null)
             {
+                button_close_stngs_Click(sender, e);
                 button_comment.BackColor = Color.LightSkyBlue;
                 disable_interface();
                 textBox_comm.Text = "";
@@ -554,7 +597,6 @@ namespace TDPlugin.Forms
             button_agree.Enabled = false;
             button_comment.Enabled = false;
             button_disagree.Enabled = false;
-            button_cl.Enabled = false;
 
             but_mark_chg.Enabled = false;
             but_file_chg.Enabled = false;
@@ -575,7 +617,6 @@ namespace TDPlugin.Forms
             button_agree.Enabled = true;
             button_comment.Enabled = true;
             button_disagree.Enabled = true;
-            button_cl.Enabled = true;
 
             but_mark_chg.Enabled = true;
             but_file_chg.Enabled = true;

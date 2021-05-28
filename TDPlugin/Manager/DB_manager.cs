@@ -20,7 +20,7 @@ namespace TDPlugin.Tools
         MySqlDataAdapter adapter;
 
         comments_table comments_ = new comments_table("comments", "id_comm", "text", "id_issue", "author", "status");
-        issues_table issues_ = new issues_table("issues", "id_issue", "name", "severity", "id_file");
+        issues_table issues_ = new issues_table("issues", "id_issue", "name", "severity", "id_file", "line_from", "line_to");
         files_table files_ = new files_table("files", "id_file", "name");
 
         public DB_manager(string host, string port, string username, string password, string nameBD)
@@ -136,16 +136,18 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void add_new_record_issue(string filename, string issue, int severity)
+        public void add_new_record_issue(string filename, string issue, int severity, int linefrom, int lineto)
         {
             int Fid = search_filename_id(filename);
 
             MySqlCommand command = new MySqlCommand("INSERT INTO `"+ issues_.tab_title + "` (`" 
                 + issues_.col_name + "`, `"+ issues_.col_foreign + "`, `" + issues_.col_severity + 
-                "`) VALUES(@cur_name, @cur_id, @cur_severity)", connection);
+                "`, `" + issues_.col_linefrom + "`, `" + issues_.col_lineto + "`) VALUES(@cur_name, @cur_id, @cur_severity, @lfrom, @lto)", connection);
             command.Parameters.Add("@cur_name", MySqlDbType.VarChar).Value = issue;
             command.Parameters.Add("@cur_id", MySqlDbType.VarChar).Value = Fid;
             command.Parameters.Add("@cur_severity", MySqlDbType.VarChar).Value = severity;
+            command.Parameters.Add("@lfrom", MySqlDbType.VarChar).Value = linefrom;
+            command.Parameters.Add("@lto", MySqlDbType.VarChar).Value = lineto;
 
             OpenConnection();
             command.ExecuteNonQuery();
@@ -187,16 +189,18 @@ namespace TDPlugin.Tools
             CloseConnection();
         }
 
-        public void edit_record_issue(Issue issue, string Ename, int Eseverity) 
+        public void edit_record_issue(Issue issue, string Ename, int Eseverity, int Elinefrom, int Elineto) 
         {
             int Mid = issue.id;
 
             MySqlCommand command = new MySqlCommand("UPDATE `" + issues_.tab_title + "` SET `" + issues_.col_name +
-               "` = @name, `" + issues_.col_severity + "` = @sev  WHERE `" + issues_.tab_title +
-               "`.`" + issues_.col_id + "` = @id;", connection);
+               "` = @name, `" + issues_.col_severity + "` = @sev, `" + issues_.col_linefrom + "` = @lfrom, `" + issues_.col_lineto +
+               "` = @lto  WHERE `" + issues_.tab_title + "`.`" + issues_.col_id + "` = @id;", connection);
             command.Parameters.Add("@name", MySqlDbType.VarChar).Value = Ename;
             command.Parameters.Add("@id", MySqlDbType.VarChar).Value = Mid;
             command.Parameters.Add("@sev", MySqlDbType.VarChar).Value = Eseverity;
+            command.Parameters.Add("@lfrom", MySqlDbType.VarChar).Value = Elinefrom;
+            command.Parameters.Add("@lto", MySqlDbType.VarChar).Value = Elineto;
 
             OpenConnection();
             command.ExecuteNonQuery();
@@ -345,8 +349,10 @@ namespace TDPlugin.Tools
                 var name = table.Rows[i][1].ToString();
                 var severity = int.Parse(table.Rows[i][2].ToString());
                 var id_file = int.Parse(table.Rows[i][3].ToString());
-                
-                return new Issue(id, name, severity, id_file);
+                var linefrom = int.Parse(table.Rows[i][4].ToString());
+                var lineto = int.Parse(table.Rows[i][5].ToString());
+
+                return new Issue(id, name, severity, id_file, linefrom, lineto);
             }
             else return null;
         }

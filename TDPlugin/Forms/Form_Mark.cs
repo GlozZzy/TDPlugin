@@ -56,13 +56,13 @@ namespace TDPlugin.Forms
                             bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                         else
                         {
-                            bd.add_new_record_issue(filename.Text, markname.Text, 0);
+                            bd.add_new_record_issue(filename.Text, markname.Text, 0, (int)numericUpDownFrom.Value, (int)numericUpDownTo.Value);
                             bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                         }
                     else
                     {
                         bd.add_new_record_file(filename.Text);
-                        bd.add_new_record_issue(filename.Text, markname.Text, 0);
+                        bd.add_new_record_issue(filename.Text, markname.Text, 0, (int)numericUpDownFrom.Value, (int)numericUpDownTo.Value);
                         bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                     }
                     comment.Text = "";

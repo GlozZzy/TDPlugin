@@ -15,14 +15,18 @@ namespace TDPlugin.ClassTables
         public string col_name { get; }
         public string col_severity { get; }
         public string col_foreign { get; }
+        public string col_linefrom { get; }
+        public string col_lineto { get; }
 
-        public issues_table(string title, string id, string name, string severity, string foreign)
+        public issues_table(string title, string id, string name, string severity, string foreign, string linefrom, string lineto)
         {
             tab_title = title;
             col_id = id;
             col_name = name;
             col_foreign = foreign;
             col_severity = severity;
+            col_linefrom = linefrom;
+            col_lineto = lineto;
         }
     }
 }

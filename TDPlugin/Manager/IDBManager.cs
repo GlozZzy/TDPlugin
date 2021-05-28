@@ -20,11 +20,11 @@ namespace TDPlugin.Tools
         Comment search_exist_author_comment(Issue issue, string author, int status);
 
         void add_new_record_file(string filename);
-        void add_new_record_issue(string filename, string issuename, int severity);
+        void add_new_record_issue(string filename, string issuename, int severity, int linefrom, int lineto);
         void add_new_record_comment(string filename, string issuename, string text, string author, int status);
 
         void edit_record_file(Filename filename, string Ename);
-        void edit_record_issue(Issue issuename, string Ename, int Eseverity);
+        void edit_record_issue(Issue issue, string Ename, int Eseverity, int Elinefrom, int Elineto);
         void edit_record_comment(Comment comm, string Etext, string Eauthor, int Estatus);
 
         void delete_record_file(Filename filename);
