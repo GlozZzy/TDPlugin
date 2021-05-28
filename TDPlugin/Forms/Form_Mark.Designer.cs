@@ -38,13 +38,13 @@ namespace TDPlugin.Forms
             this.filename = new System.Windows.Forms.TextBox();
             this.lab_db_connection = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownFrom = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownTo = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTo)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -134,47 +134,47 @@ namespace TDPlugin.Forms
             this.panel1.Size = new System.Drawing.Size(290, 18);
             this.panel1.TabIndex = 14;
             // 
-            // numericUpDown1
+            // numericUpDownFrom
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Location = new System.Drawing.Point(125, 99);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numericUpDownFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numericUpDownFrom.Location = new System.Drawing.Point(125, 99);
+            this.numericUpDownFrom.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numericUpDownFrom.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(86, 29);
-            this.numericUpDown1.TabIndex = 15;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numericUpDownFrom.Name = "numericUpDownFrom";
+            this.numericUpDownFrom.Size = new System.Drawing.Size(86, 29);
+            this.numericUpDownFrom.TabIndex = 15;
+            this.numericUpDownFrom.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown2
+            // numericUpDownTo
             // 
-            this.numericUpDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown2.Location = new System.Drawing.Point(125, 134);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.numericUpDownTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numericUpDownTo.Location = new System.Drawing.Point(125, 134);
+            this.numericUpDownTo.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.numericUpDownTo.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(86, 29);
-            this.numericUpDown2.TabIndex = 16;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.numericUpDownTo.Name = "numericUpDownTo";
+            this.numericUpDownTo.Size = new System.Drawing.Size(86, 29);
+            this.numericUpDownTo.TabIndex = 16;
+            this.numericUpDownTo.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -207,8 +207,8 @@ namespace TDPlugin.Forms
             this.ClientSize = new System.Drawing.Size(314, 391);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numericUpDownTo);
+            this.Controls.Add(this.numericUpDownFrom);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.filename);
@@ -221,8 +221,8 @@ namespace TDPlugin.Forms
             this.Text = "Mark bad code";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,8 +239,8 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.TextBox filename;
         private System.Windows.Forms.Label lab_db_connection;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDownFrom;
+        private System.Windows.Forms.NumericUpDown numericUpDownTo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
     }

@@ -17,12 +17,15 @@ namespace TDPlugin.Forms
         IDBManager bd;
         string[] BDinfo;
 
+        public int linefrom;
+        public int lineto;
+
         public Form_Mark()
         {
             InitializeComponent();
 
             BDinfo = new string[5];
-            using (StreamReader sr = new StreamReader(@"..\..\Resources\CurBDinfo.txt", Encoding.Default))
+            using (StreamReader sr = new StreamReader(@"..\..\Resources\CurDBInfo.txt", Encoding.Default))
             {
                 string line;
                 int i = 0;
@@ -68,6 +71,8 @@ namespace TDPlugin.Forms
                 {
                     MessageBox.Show("Some problems with db connection", "Error");
                 }
+                linefrom = (int)numericUpDownFrom.Value;
+                lineto = (int)numericUpDownTo.Value;
             }
         }
     }
