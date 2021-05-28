@@ -685,5 +685,21 @@ namespace TDPlugin.Forms
             textBox_comm.ReadOnly = true;
             button_disagree.BackColor = Color.Gainsboro;
         }
+
+        private void textBox_linefrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_lineto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

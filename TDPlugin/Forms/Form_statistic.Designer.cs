@@ -340,9 +340,9 @@ namespace TDPlugin.Forms
             // panel1
             // 
             this.panel1.Controls.Add(this.lab_db_connection);
-            this.panel1.Location = new System.Drawing.Point(343, 9);
+            this.panel1.Location = new System.Drawing.Point(16, 9);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(269, 18);
+            this.panel1.Size = new System.Drawing.Size(596, 18);
             this.panel1.TabIndex = 31;
             // 
             // lab_db_connection
@@ -352,7 +352,7 @@ namespace TDPlugin.Forms
             this.lab_db_connection.Dock = System.Windows.Forms.DockStyle.Right;
             this.lab_db_connection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lab_db_connection.ForeColor = System.Drawing.Color.Blue;
-            this.lab_db_connection.Location = new System.Drawing.Point(191, 0);
+            this.lab_db_connection.Location = new System.Drawing.Point(518, 0);
             this.lab_db_connection.Name = "lab_db_connection";
             this.lab_db_connection.Size = new System.Drawing.Size(78, 13);
             this.lab_db_connection.TabIndex = 13;
@@ -583,6 +583,7 @@ namespace TDPlugin.Forms
             this.textBox_linefrom.Size = new System.Drawing.Size(68, 29);
             this.textBox_linefrom.TabIndex = 47;
             this.textBox_linefrom.TabStop = false;
+            this.textBox_linefrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_linefrom_KeyPress);
             // 
             // textBox_lineto
             // 
@@ -593,6 +594,7 @@ namespace TDPlugin.Forms
             this.textBox_lineto.Size = new System.Drawing.Size(68, 29);
             this.textBox_lineto.TabIndex = 48;
             this.textBox_lineto.TabStop = false;
+            this.textBox_lineto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_lineto_KeyPress);
             // 
             // label2
             // 
