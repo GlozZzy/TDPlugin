@@ -432,11 +432,11 @@ namespace TDPlugin.Forms
             this.comboBox_val.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_val.FormattingEnabled = true;
             this.comboBox_val.Items.AddRange(new object[] {
-            "comment",
-            "proposal",
-            "low importance",
-            "high importance",
-            "critical"});
+            "Comment",
+            "Proposal",
+            "Low importance",
+            "High importance",
+            "Critical"});
             this.comboBox_val.Location = new System.Drawing.Point(343, 64);
             this.comboBox_val.Name = "comboBox_val";
             this.comboBox_val.Size = new System.Drawing.Size(170, 32);
@@ -656,6 +656,8 @@ namespace TDPlugin.Forms
             this.Controls.Add(this.button_opt);
             this.Controls.Add(this.button_open_stngs);
             this.Controls.Add(this.label5);
+            this.MaximumSize = new System.Drawing.Size(642, 371);
+            this.MinimumSize = new System.Drawing.Size(642, 371);
             this.Name = "Form_Statistic";
             this.Text = "Project statistics";
             this.Load += new System.EventHandler(this.Form_statistic_Load);

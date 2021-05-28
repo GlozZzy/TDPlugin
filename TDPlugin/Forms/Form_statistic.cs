@@ -16,11 +16,11 @@ namespace TDPlugin.Forms
     public partial class Form_Statistic : Form
     {
         string[] severity =
-            { "comment",
-            "proposal",
-            "low importance",
-            "high importance",
-            "critical" };
+            { "Comment",
+            "Proposal",
+            "Low importance",
+            "High importance",
+            "Critical" };
 
         IDBManager db;
 
