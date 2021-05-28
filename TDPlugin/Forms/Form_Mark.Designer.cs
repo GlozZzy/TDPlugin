@@ -139,7 +139,7 @@ namespace TDPlugin.Forms
             this.numericUpDownFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.numericUpDownFrom.Location = new System.Drawing.Point(125, 99);
             this.numericUpDownFrom.Maximum = new decimal(new int[] {
-            1000000,
+            100000000,
             0,
             0,
             0});
@@ -162,7 +162,7 @@ namespace TDPlugin.Forms
             this.numericUpDownTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.numericUpDownTo.Location = new System.Drawing.Point(125, 134);
             this.numericUpDownTo.Maximum = new decimal(new int[] {
-            1000000,
+            100000000,
             0,
             0,
             0});

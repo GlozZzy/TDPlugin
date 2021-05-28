@@ -44,6 +44,7 @@ namespace TDPlugin.Forms
             {
                 MessageBox.Show("Fill in all the fields", "Error");
             }
+            else if (numericUpDownFrom.Value > numericUpDownTo.Value) MessageBox.Show("Incorrect lines range", "Error");
             else
             {
                 bd = new DB_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
