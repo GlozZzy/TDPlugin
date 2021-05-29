@@ -528,7 +528,7 @@ namespace TDPlugin.Forms
             // 
             this.button_com_acept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_com_acept.ForeColor = System.Drawing.Color.Green;
-            this.button_com_acept.Location = new System.Drawing.Point(389, 0);
+            this.button_com_acept.Location = new System.Drawing.Point(388, -1);
             this.button_com_acept.Name = "button_com_acept";
             this.button_com_acept.Size = new System.Drawing.Size(37, 33);
             this.button_com_acept.TabIndex = 42;
@@ -542,7 +542,7 @@ namespace TDPlugin.Forms
             // 
             this.button_com_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_com_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.button_com_cancel.Location = new System.Drawing.Point(430, 0);
+            this.button_com_cancel.Location = new System.Drawing.Point(429, -1);
             this.button_com_cancel.Name = "button_com_cancel";
             this.button_com_cancel.Size = new System.Drawing.Size(37, 33);
             this.button_com_cancel.TabIndex = 43;
@@ -556,7 +556,7 @@ namespace TDPlugin.Forms
             // 
             this.label_advice_com.AutoSize = true;
             this.label_advice_com.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label_advice_com.Location = new System.Drawing.Point(204, 7);
+            this.label_advice_com.Location = new System.Drawing.Point(203, 3);
             this.label_advice_com.Name = "label_advice_com";
             this.label_advice_com.Size = new System.Drawing.Size(179, 24);
             this.label_advice_com.TabIndex = 42;
@@ -567,7 +567,7 @@ namespace TDPlugin.Forms
             // 
             this.button_disagree_accept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_disagree_accept.ForeColor = System.Drawing.Color.Green;
-            this.button_disagree_accept.Location = new System.Drawing.Point(389, 0);
+            this.button_disagree_accept.Location = new System.Drawing.Point(388, -1);
             this.button_disagree_accept.Name = "button_disagree_accept";
             this.button_disagree_accept.Size = new System.Drawing.Size(37, 33);
             this.button_disagree_accept.TabIndex = 44;
@@ -581,7 +581,7 @@ namespace TDPlugin.Forms
             // 
             this.button_disagree_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_disagree_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.button_disagree_cancel.Location = new System.Drawing.Point(430, 0);
+            this.button_disagree_cancel.Location = new System.Drawing.Point(429, -1);
             this.button_disagree_cancel.Name = "button_disagree_cancel";
             this.button_disagree_cancel.Size = new System.Drawing.Size(37, 33);
             this.button_disagree_cancel.TabIndex = 45;
@@ -595,7 +595,7 @@ namespace TDPlugin.Forms
             // 
             this.label_advice_disagree.AutoSize = true;
             this.label_advice_disagree.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label_advice_disagree.Location = new System.Drawing.Point(4, 7);
+            this.label_advice_disagree.Location = new System.Drawing.Point(3, 3);
             this.label_advice_disagree.Name = "label_advice_disagree";
             this.label_advice_disagree.Size = new System.Drawing.Size(384, 24);
             this.label_advice_disagree.TabIndex = 46;
