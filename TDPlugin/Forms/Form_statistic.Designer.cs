@@ -76,19 +76,38 @@ namespace TDPlugin.Forms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel_footer = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel_right = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel_opt.SuspendLayout();
             this.panel_opt_vote.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel_footer.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel_right.SuspendLayout();
+            this.panel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(12, 70);
+            this.label1.Location = new System.Drawing.Point(12, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 24);
             this.label1.TabIndex = 0;
@@ -98,7 +117,7 @@ namespace TDPlugin.Forms
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label4.Location = new System.Drawing.Point(480, 39);
+            this.label4.Location = new System.Drawing.Point(145, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 24);
             this.label4.TabIndex = 2;
@@ -108,7 +127,7 @@ namespace TDPlugin.Forms
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label6.Location = new System.Drawing.Point(12, 143);
+            this.label6.Location = new System.Drawing.Point(18, 131);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 24);
             this.label6.TabIndex = 4;
@@ -140,12 +159,13 @@ namespace TDPlugin.Forms
             // 
             // textBox_comm
             // 
+            this.textBox_comm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox_comm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBox_comm.Location = new System.Drawing.Point(54, 170);
+            this.textBox_comm.Location = new System.Drawing.Point(53, 163);
             this.textBox_comm.Multiline = true;
             this.textBox_comm.Name = "textBox_comm";
             this.textBox_comm.ReadOnly = true;
-            this.textBox_comm.Size = new System.Drawing.Size(558, 110);
+            this.textBox_comm.Size = new System.Drawing.Size(563, 131);
             this.textBox_comm.TabIndex = 8;
             this.textBox_comm.TabStop = false;
             // 
@@ -201,7 +221,7 @@ namespace TDPlugin.Forms
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label3.Location = new System.Drawing.Point(12, 35);
+            this.label3.Location = new System.Drawing.Point(12, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 24);
             this.label3.TabIndex = 15;
@@ -233,21 +253,23 @@ namespace TDPlugin.Forms
             // 
             // textBox_file
             // 
+            this.textBox_file.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBox_file.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_file.Location = new System.Drawing.Point(125, 32);
+            this.textBox_file.Location = new System.Drawing.Point(123, 25);
             this.textBox_file.Name = "textBox_file";
             this.textBox_file.ReadOnly = true;
-            this.textBox_file.Size = new System.Drawing.Size(212, 29);
+            this.textBox_file.Size = new System.Drawing.Size(217, 29);
             this.textBox_file.TabIndex = 19;
             this.textBox_file.TabStop = false;
             // 
             // textBox_mark
             // 
+            this.textBox_mark.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBox_mark.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_mark.Location = new System.Drawing.Point(125, 67);
+            this.textBox_mark.Location = new System.Drawing.Point(123, 59);
             this.textBox_mark.Name = "textBox_mark";
             this.textBox_mark.ReadOnly = true;
-            this.textBox_mark.Size = new System.Drawing.Size(212, 29);
+            this.textBox_mark.Size = new System.Drawing.Size(217, 29);
             this.textBox_mark.TabIndex = 20;
             this.textBox_mark.TabStop = false;
             // 
@@ -266,9 +288,9 @@ namespace TDPlugin.Forms
             // but_mark_chg
             // 
             this.but_mark_chg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_mark_chg.Location = new System.Drawing.Point(149, 286);
+            this.but_mark_chg.Location = new System.Drawing.Point(146, 9);
             this.but_mark_chg.Name = "but_mark_chg";
-            this.but_mark_chg.Size = new System.Drawing.Size(227, 35);
+            this.but_mark_chg.Size = new System.Drawing.Size(232, 35);
             this.but_mark_chg.TabIndex = 24;
             this.but_mark_chg.TabStop = false;
             this.but_mark_chg.Text = "Change Issue";
@@ -278,9 +300,9 @@ namespace TDPlugin.Forms
             // but_file_chg
             // 
             this.but_file_chg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_file_chg.Location = new System.Drawing.Point(385, 286);
+            this.but_file_chg.Location = new System.Drawing.Point(384, 9);
             this.but_file_chg.Name = "but_file_chg";
-            this.but_file_chg.Size = new System.Drawing.Size(227, 35);
+            this.but_file_chg.Size = new System.Drawing.Size(232, 35);
             this.but_file_chg.TabIndex = 22;
             this.but_file_chg.TabStop = false;
             this.but_file_chg.Text = "Change File name";
@@ -291,9 +313,9 @@ namespace TDPlugin.Forms
             // 
             this.button_accept_file.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.button_accept_file.ForeColor = System.Drawing.Color.Green;
-            this.button_accept_file.Location = new System.Drawing.Point(149, 286);
+            this.button_accept_file.Location = new System.Drawing.Point(146, 9);
             this.button_accept_file.Name = "button_accept_file";
-            this.button_accept_file.Size = new System.Drawing.Size(227, 35);
+            this.button_accept_file.Size = new System.Drawing.Size(232, 35);
             this.button_accept_file.TabIndex = 25;
             this.button_accept_file.TabStop = false;
             this.button_accept_file.Text = "Accept";
@@ -305,9 +327,9 @@ namespace TDPlugin.Forms
             // 
             this.button_accept_mark.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.button_accept_mark.ForeColor = System.Drawing.Color.Green;
-            this.button_accept_mark.Location = new System.Drawing.Point(149, 286);
+            this.button_accept_mark.Location = new System.Drawing.Point(146, 9);
             this.button_accept_mark.Name = "button_accept_mark";
-            this.button_accept_mark.Size = new System.Drawing.Size(227, 35);
+            this.button_accept_mark.Size = new System.Drawing.Size(232, 35);
             this.button_accept_mark.TabIndex = 26;
             this.button_accept_mark.TabStop = false;
             this.button_accept_mark.Text = "Accept";
@@ -319,9 +341,9 @@ namespace TDPlugin.Forms
             // 
             this.button_file_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.button_file_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.button_file_cancel.Location = new System.Drawing.Point(385, 286);
+            this.button_file_cancel.Location = new System.Drawing.Point(384, 9);
             this.button_file_cancel.Name = "button_file_cancel";
-            this.button_file_cancel.Size = new System.Drawing.Size(227, 35);
+            this.button_file_cancel.Size = new System.Drawing.Size(232, 35);
             this.button_file_cancel.TabIndex = 27;
             this.button_file_cancel.TabStop = false;
             this.button_file_cancel.Text = "Cancel";
@@ -333,9 +355,9 @@ namespace TDPlugin.Forms
             // 
             this.button_mark_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.button_mark_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.button_mark_cancel.Location = new System.Drawing.Point(385, 286);
+            this.button_mark_cancel.Location = new System.Drawing.Point(384, 9);
             this.button_mark_cancel.Name = "button_mark_cancel";
-            this.button_mark_cancel.Size = new System.Drawing.Size(227, 35);
+            this.button_mark_cancel.Size = new System.Drawing.Size(232, 35);
             this.button_mark_cancel.TabIndex = 28;
             this.button_mark_cancel.TabStop = false;
             this.button_mark_cancel.Text = "Cancel";
@@ -346,9 +368,9 @@ namespace TDPlugin.Forms
             // panel1
             // 
             this.panel1.Controls.Add(this.lab_db_connection);
-            this.panel1.Location = new System.Drawing.Point(16, 9);
+            this.panel1.Location = new System.Drawing.Point(0, 7);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(596, 18);
+            this.panel1.Size = new System.Drawing.Size(270, 18);
             this.panel1.TabIndex = 31;
             // 
             // lab_db_connection
@@ -358,7 +380,7 @@ namespace TDPlugin.Forms
             this.lab_db_connection.Dock = System.Windows.Forms.DockStyle.Right;
             this.lab_db_connection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lab_db_connection.ForeColor = System.Drawing.Color.Blue;
-            this.lab_db_connection.Location = new System.Drawing.Point(518, 0);
+            this.lab_db_connection.Location = new System.Drawing.Point(192, 0);
             this.lab_db_connection.Name = "lab_db_connection";
             this.lab_db_connection.Size = new System.Drawing.Size(78, 13);
             this.lab_db_connection.TabIndex = 13;
@@ -400,7 +422,7 @@ namespace TDPlugin.Forms
             this.panel_opt.Controls.Add(this.but_file_del);
             this.panel_opt.Controls.Add(this.but_com_del);
             this.panel_opt.Controls.Add(this.but_mark_del);
-            this.panel_opt.Location = new System.Drawing.Point(146, 208);
+            this.panel_opt.Location = new System.Drawing.Point(129, 225);
             this.panel_opt.Name = "panel_opt";
             this.panel_opt.Size = new System.Drawing.Size(181, 113);
             this.panel_opt.TabIndex = 35;
@@ -409,9 +431,9 @@ namespace TDPlugin.Forms
             // button_cl
             // 
             this.button_cl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.button_cl.Location = new System.Drawing.Point(55, 286);
+            this.button_cl.Location = new System.Drawing.Point(54, 9);
             this.button_cl.Name = "button_cl";
-            this.button_cl.Size = new System.Drawing.Size(88, 35);
+            this.button_cl.Size = new System.Drawing.Size(69, 35);
             this.button_cl.TabIndex = 38;
             this.button_cl.TabStop = false;
             this.button_cl.Text = "<<";
@@ -422,12 +444,12 @@ namespace TDPlugin.Forms
             // button_opt
             // 
             this.button_opt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.button_opt.Location = new System.Drawing.Point(55, 286);
+            this.button_opt.Location = new System.Drawing.Point(54, 9);
             this.button_opt.Name = "button_opt";
-            this.button_opt.Size = new System.Drawing.Size(88, 35);
+            this.button_opt.Size = new System.Drawing.Size(69, 35);
             this.button_opt.TabIndex = 36;
             this.button_opt.TabStop = false;
-            this.button_opt.Text = "🗑  >";
+            this.button_opt.Text = "🗑 >";
             this.button_opt.UseVisualStyleBackColor = true;
             this.button_opt.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -443,7 +465,7 @@ namespace TDPlugin.Forms
             "Low importance",
             "High importance",
             "Critical"});
-            this.comboBox_val.Location = new System.Drawing.Point(442, 65);
+            this.comboBox_val.Location = new System.Drawing.Point(106, 57);
             this.comboBox_val.Name = "comboBox_val";
             this.comboBox_val.Size = new System.Drawing.Size(170, 32);
             this.comboBox_val.TabIndex = 37;
@@ -469,7 +491,7 @@ namespace TDPlugin.Forms
             this.panel_opt_vote.Controls.Add(this.button_agree);
             this.panel_opt_vote.Controls.Add(this.button_comment);
             this.panel_opt_vote.Controls.Add(this.button_disagree);
-            this.panel_opt_vote.Location = new System.Drawing.Point(406, 102);
+            this.panel_opt_vote.Location = new System.Drawing.Point(407, 188);
             this.panel_opt_vote.Name = "panel_opt_vote";
             this.panel_opt_vote.Size = new System.Drawing.Size(151, 110);
             this.panel_opt_vote.TabIndex = 39;
@@ -479,7 +501,7 @@ namespace TDPlugin.Forms
             // 
             this.button_close_stngs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_close_stngs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_close_stngs.Location = new System.Drawing.Point(343, 101);
+            this.button_close_stngs.Location = new System.Drawing.Point(8, 91);
             this.button_close_stngs.Name = "button_close_stngs";
             this.button_close_stngs.Size = new System.Drawing.Size(60, 31);
             this.button_close_stngs.TabIndex = 40;
@@ -493,7 +515,7 @@ namespace TDPlugin.Forms
             // 
             this.button_open_stngs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_open_stngs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_open_stngs.Location = new System.Drawing.Point(343, 101);
+            this.button_open_stngs.Location = new System.Drawing.Point(8, 91);
             this.button_open_stngs.Name = "button_open_stngs";
             this.button_open_stngs.Size = new System.Drawing.Size(60, 31);
             this.button_open_stngs.TabIndex = 41;
@@ -505,8 +527,8 @@ namespace TDPlugin.Forms
             // button_com_acept
             // 
             this.button_com_acept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.button_com_acept.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_com_acept.Location = new System.Drawing.Point(534, 134);
+            this.button_com_acept.ForeColor = System.Drawing.Color.Green;
+            this.button_com_acept.Location = new System.Drawing.Point(389, 0);
             this.button_com_acept.Name = "button_com_acept";
             this.button_com_acept.Size = new System.Drawing.Size(37, 33);
             this.button_com_acept.TabIndex = 42;
@@ -519,8 +541,8 @@ namespace TDPlugin.Forms
             // button_com_cancel
             // 
             this.button_com_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.button_com_cancel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_com_cancel.Location = new System.Drawing.Point(575, 134);
+            this.button_com_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.button_com_cancel.Location = new System.Drawing.Point(430, 0);
             this.button_com_cancel.Name = "button_com_cancel";
             this.button_com_cancel.Size = new System.Drawing.Size(37, 33);
             this.button_com_cancel.TabIndex = 43;
@@ -534,7 +556,7 @@ namespace TDPlugin.Forms
             // 
             this.label_advice_com.AutoSize = true;
             this.label_advice_com.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label_advice_com.Location = new System.Drawing.Point(349, 143);
+            this.label_advice_com.Location = new System.Drawing.Point(204, 7);
             this.label_advice_com.Name = "label_advice_com";
             this.label_advice_com.Size = new System.Drawing.Size(179, 24);
             this.label_advice_com.TabIndex = 42;
@@ -545,7 +567,7 @@ namespace TDPlugin.Forms
             // 
             this.button_disagree_accept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_disagree_accept.ForeColor = System.Drawing.Color.Green;
-            this.button_disagree_accept.Location = new System.Drawing.Point(534, 134);
+            this.button_disagree_accept.Location = new System.Drawing.Point(389, 0);
             this.button_disagree_accept.Name = "button_disagree_accept";
             this.button_disagree_accept.Size = new System.Drawing.Size(37, 33);
             this.button_disagree_accept.TabIndex = 44;
@@ -559,7 +581,7 @@ namespace TDPlugin.Forms
             // 
             this.button_disagree_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_disagree_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.button_disagree_cancel.Location = new System.Drawing.Point(575, 134);
+            this.button_disagree_cancel.Location = new System.Drawing.Point(430, 0);
             this.button_disagree_cancel.Name = "button_disagree_cancel";
             this.button_disagree_cancel.Size = new System.Drawing.Size(37, 33);
             this.button_disagree_cancel.TabIndex = 45;
@@ -573,17 +595,17 @@ namespace TDPlugin.Forms
             // 
             this.label_advice_disagree.AutoSize = true;
             this.label_advice_disagree.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label_advice_disagree.Location = new System.Drawing.Point(149, 143);
+            this.label_advice_disagree.Location = new System.Drawing.Point(4, 7);
             this.label_advice_disagree.Name = "label_advice_disagree";
-            this.label_advice_disagree.Size = new System.Drawing.Size(379, 24);
+            this.label_advice_disagree.Size = new System.Drawing.Size(384, 24);
             this.label_advice_disagree.TabIndex = 46;
-            this.label_advice_disagree.Text = "Write below why you disagree with this mark";
+            this.label_advice_disagree.Text = "Write below why you disagree with this isuue";
             this.label_advice_disagree.Visible = false;
             // 
             // textBox_linefrom
             // 
             this.textBox_linefrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_linefrom.Location = new System.Drawing.Point(185, 102);
+            this.textBox_linefrom.Location = new System.Drawing.Point(64, 4);
             this.textBox_linefrom.MaxLength = 8;
             this.textBox_linefrom.Name = "textBox_linefrom";
             this.textBox_linefrom.ReadOnly = true;
@@ -595,7 +617,7 @@ namespace TDPlugin.Forms
             // textBox_lineto
             // 
             this.textBox_lineto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_lineto.Location = new System.Drawing.Point(269, 102);
+            this.textBox_lineto.Location = new System.Drawing.Point(149, 4);
             this.textBox_lineto.MaxLength = 8;
             this.textBox_lineto.Name = "textBox_lineto";
             this.textBox_lineto.ReadOnly = true;
@@ -608,7 +630,7 @@ namespace TDPlugin.Forms
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label2.Location = new System.Drawing.Point(124, 105);
+            this.label2.Location = new System.Drawing.Point(3, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 24);
             this.label2.TabIndex = 49;
@@ -618,7 +640,7 @@ namespace TDPlugin.Forms
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label5.Location = new System.Drawing.Point(255, 105);
+            this.label5.Location = new System.Drawing.Point(134, 7);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(15, 24);
             this.label5.TabIndex = 50;
@@ -630,7 +652,7 @@ namespace TDPlugin.Forms
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.but_com_pr);
             this.panel3.Controls.Add(this.but_com_next);
-            this.panel3.Location = new System.Drawing.Point(6, 182);
+            this.panel3.Location = new System.Drawing.Point(6, 13);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(42, 67);
             this.panel3.TabIndex = 52;
@@ -641,7 +663,7 @@ namespace TDPlugin.Forms
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.but_file_next);
             this.panel2.Controls.Add(this.but_file_pr);
-            this.panel2.Location = new System.Drawing.Point(343, 32);
+            this.panel2.Location = new System.Drawing.Point(8, 25);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(91, 29);
             this.panel2.TabIndex = 53;
@@ -652,52 +674,150 @@ namespace TDPlugin.Forms
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.but_mark_pr);
             this.panel4.Controls.Add(this.but_mark_next);
-            this.panel4.Location = new System.Drawing.Point(343, 67);
+            this.panel4.Location = new System.Drawing.Point(8, 59);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(91, 29);
             this.panel4.TabIndex = 54;
+            // 
+            // panel_footer
+            // 
+            this.panel_footer.Controls.Add(this.button_cl);
+            this.panel_footer.Controls.Add(this.button_opt);
+            this.panel_footer.Controls.Add(this.button_mark_cancel);
+            this.panel_footer.Controls.Add(this.button_accept_file);
+            this.panel_footer.Controls.Add(this.button_file_cancel);
+            this.panel_footer.Controls.Add(this.button_accept_mark);
+            this.panel_footer.Controls.Add(this.but_mark_chg);
+            this.panel_footer.Controls.Add(this.but_file_chg);
+            this.panel_footer.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_footer.Location = new System.Drawing.Point(0, 294);
+            this.panel_footer.Name = "panel_footer";
+            this.panel_footer.Size = new System.Drawing.Size(626, 53);
+            this.panel_footer.TabIndex = 55;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.textBox_mark);
+            this.panel6.Controls.Add(this.textBox_file);
+            this.panel6.Controls.Add(this.panel14);
+            this.panel6.Controls.Add(this.panel13);
+            this.panel6.Controls.Add(this.panel_right);
+            this.panel6.Controls.Add(this.panel10);
+            this.panel6.Controls.Add(this.panel9);
+            this.panel6.Controls.Add(this.panel8);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(626, 163);
+            this.panel6.TabIndex = 56;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel3);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 163);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(53, 131);
+            this.panel5.TabIndex = 57;
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel7.Location = new System.Drawing.Point(616, 163);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(10, 131);
+            this.panel7.TabIndex = 58;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label3);
+            this.panel8.Controls.Add(this.label1);
+            this.panel8.Controls.Add(this.label6);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(123, 163);
+            this.panel8.TabIndex = 55;
+            // 
+            // panel9
+            // 
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(616, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(10, 163);
+            this.panel9.TabIndex = 56;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(123, 128);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(493, 35);
+            this.panel10.TabIndex = 57;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.label_advice_disagree);
+            this.panel11.Controls.Add(this.button_com_cancel);
+            this.panel11.Controls.Add(this.button_disagree_cancel);
+            this.panel11.Controls.Add(this.label_advice_com);
+            this.panel11.Controls.Add(this.button_com_acept);
+            this.panel11.Controls.Add(this.button_disagree_accept);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel11.Location = new System.Drawing.Point(26, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(467, 35);
+            this.panel11.TabIndex = 0;
+            // 
+            // panel_right
+            // 
+            this.panel_right.Controls.Add(this.panel1);
+            this.panel_right.Controls.Add(this.panel2);
+            this.panel_right.Controls.Add(this.button_close_stngs);
+            this.panel_right.Controls.Add(this.button_open_stngs);
+            this.panel_right.Controls.Add(this.comboBox_val);
+            this.panel_right.Controls.Add(this.label4);
+            this.panel_right.Controls.Add(this.panel4);
+            this.panel_right.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel_right.Location = new System.Drawing.Point(340, 0);
+            this.panel_right.Name = "panel_right";
+            this.panel_right.Size = new System.Drawing.Size(276, 128);
+            this.panel_right.TabIndex = 58;
+            // 
+            // panel13
+            // 
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(123, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(217, 25);
+            this.panel13.TabIndex = 59;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.label2);
+            this.panel14.Controls.Add(this.textBox_linefrom);
+            this.panel14.Controls.Add(this.textBox_lineto);
+            this.panel14.Controls.Add(this.label5);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel14.Location = new System.Drawing.Point(123, 88);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(217, 40);
+            this.panel14.TabIndex = 60;
             // 
             // Form_Statistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 332);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel_opt);
-            this.Controls.Add(this.button_accept_file);
-            this.Controls.Add(this.button_accept_mark);
-            this.Controls.Add(this.button_cl);
+            this.ClientSize = new System.Drawing.Size(626, 347);
             this.Controls.Add(this.panel_opt_vote);
-            this.Controls.Add(this.button_file_cancel);
-            this.Controls.Add(this.button_close_stngs);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox_lineto);
-            this.Controls.Add(this.button_mark_cancel);
-            this.Controls.Add(this.textBox_linefrom);
-            this.Controls.Add(this.but_file_chg);
-            this.Controls.Add(this.label_advice_disagree);
-            this.Controls.Add(this.but_mark_chg);
-            this.Controls.Add(this.button_disagree_accept);
-            this.Controls.Add(this.button_disagree_cancel);
-            this.Controls.Add(this.label_advice_com);
-            this.Controls.Add(this.button_com_acept);
-            this.Controls.Add(this.button_com_cancel);
-            this.Controls.Add(this.comboBox_val);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.textBox_mark);
-            this.Controls.Add(this.textBox_file);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panel_opt);
             this.Controls.Add(this.textBox_comm);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button_opt);
-            this.Controls.Add(this.button_open_stngs);
-            this.Controls.Add(this.label5);
-            this.MaximumSize = new System.Drawing.Size(642, 371);
-            this.MinimumSize = new System.Drawing.Size(642, 371);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel_footer);
+            this.MinimumSize = new System.Drawing.Size(642, 386);
             this.Name = "Form_Statistic";
             this.Text = "Project statistics";
             this.Load += new System.EventHandler(this.Form_statistic_Load);
@@ -708,6 +828,19 @@ namespace TDPlugin.Forms
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel_footer.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel_right.ResumeLayout(false);
+            this.panel_right.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -762,5 +895,16 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel_footer;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel_right;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel8;
     }
 }

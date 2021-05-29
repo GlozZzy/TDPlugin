@@ -484,6 +484,7 @@ namespace TDPlugin.Forms
         private void button4_Click(object sender, EventArgs e)
         {
             panel_opt.Visible = true;
+            panel_opt.Location = new Point(button_cl.Location.X + 74, button_cl.Location.Y - 78 + panel_footer.Location.Y);
             button_cl.Visible = true;
         }
 
@@ -497,13 +498,16 @@ namespace TDPlugin.Forms
         private void button_open_stngs_Click(object sender, EventArgs e)
         {
             panel_opt_vote.Visible = true;
+            panel_opt_vote.Location = new Point(button_close_stngs.Location.X + 63 + panel_right.Location.X, button_close_stngs.Location.Y + 1);
             button_close_stngs.Visible = true;
+            button_open_stngs.Visible = false;
         }
 
         private void button_close_stngs_Click(object sender, EventArgs e)
         {
             panel_opt_vote.Visible = false;
             button_close_stngs.Visible = false;
+            button_open_stngs.Visible = true;
         }
 
         private void button_agree_Click(object sender, EventArgs e)
@@ -658,9 +662,7 @@ namespace TDPlugin.Forms
                 button_com_acept.Visible = false;
                 button_com_cancel.Visible = false;
 
-                curr_comm = 0;
-                comm = db.get_comment(issue, curr_comm);
-                textBox_comm.Text = comm.author + ": " + comm.text;
+                but_com_next_Click(sender, e);
                 textBox_comm.ReadOnly = true;
                 button_comment.BackColor = Color.Gainsboro;
             }
@@ -669,7 +671,9 @@ namespace TDPlugin.Forms
         private void button_com_cancel_Click(object sender, EventArgs e)
         {
             enable_interface();
-            textBox_comm.Text = comm.author + ": " + comm.text;
+            if (comm != null)
+                textBox_comm.Text = comm.author + ": " + comm.text;
+            else textBox_comm.Text = "";
 
             label_advice_com.Visible = false;
             button_com_acept.Visible = false;
@@ -689,9 +693,7 @@ namespace TDPlugin.Forms
                 button_disagree_accept.Visible = false;
                 button_disagree_cancel.Visible = false;
 
-                curr_comm = 0;
-                comm = db.get_comment(issue, curr_comm);
-                textBox_comm.Text = comm.author + ": " + comm.text;
+                but_com_next_Click(sender, e);
                 textBox_comm.ReadOnly = true;
                 button_disagree.BackColor = Color.Gainsboro;
             }
@@ -700,7 +702,8 @@ namespace TDPlugin.Forms
         private void button_disagree_cancel_Click(object sender, EventArgs e)
         {
             enable_interface();
-            textBox_comm.Text = comm.author + ": " + comm.text;
+            if (comm != null) textBox_comm.Text = comm.author + ": " + comm.text;
+            else textBox_comm.Text = "";
 
             label_advice_disagree.Visible = false;
             button_disagree_accept.Visible = false;
