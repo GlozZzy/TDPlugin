@@ -272,7 +272,29 @@ namespace TDPlugin.Forms
         {
             if (textBox_mark.Text != "")
             {
-                db.edit_record_issue(issue, textBox_mark.Text, comboBox_val.SelectedIndex, int.Parse(textBox_linefrom.Text), int.Parse(textBox_lineto.Text));
+                try 
+                {
+                    var a = int.Parse(textBox_linefrom.Text);
+                    var b = int.Parse(textBox_lineto.Text);
+                    if (a <= b)
+                    {
+                        db.edit_record_issue(issue, textBox_mark.Text, comboBox_val.SelectedIndex, a, b);
+                        issue = db.get_issue(file, cur_issue);
+
+                        textBox_mark.ReadOnly = true;
+                        but_mark_chg.Visible = true;
+                        button_mark_cancel.Visible = false;
+                        button_accept_mark.Visible = false;
+
+                        comboBox_val.Enabled = false;
+                        textBox_linefrom.ReadOnly = true;
+                        textBox_lineto.ReadOnly = true;
+
+                        enable_interface();
+                    }
+                    else MessageBox.Show("Incorrect lines range", "Error");
+                }
+                catch { MessageBox.Show("Incorrect lines range", "Error"); }
             }
             else
             {
@@ -292,20 +314,22 @@ namespace TDPlugin.Forms
                 {
                     textBox_mark.Text = issue.name;
                 }
+
+                issue = db.get_issue(file, cur_issue);
+
+                textBox_mark.ReadOnly = true;
+                but_mark_chg.Visible = true;
+                button_mark_cancel.Visible = false;
+                button_accept_mark.Visible = false;
+
+                comboBox_val.Enabled = false;
+                textBox_linefrom.ReadOnly = true;
+                textBox_lineto.ReadOnly = true;
+
+                enable_interface();
             }
 
-            issue = db.get_issue(file, cur_issue);
-
-            textBox_mark.ReadOnly = true;
-            but_mark_chg.Visible = true;
-            button_mark_cancel.Visible = false;
-            button_accept_mark.Visible = false;
-
-            comboBox_val.Enabled = false;
-            textBox_linefrom.ReadOnly = true;
-            textBox_lineto.ReadOnly = true;
-
-            enable_interface();
+            
         }
 
         private void button_accept_file_Click(object sender, EventArgs e)
@@ -688,7 +712,7 @@ namespace TDPlugin.Forms
 
         private void textBox_linefrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
             {
                 e.Handled = true;
             }
@@ -696,7 +720,7 @@ namespace TDPlugin.Forms
 
         private void textBox_lineto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
             {
                 e.Handled = true;
             }

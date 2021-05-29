@@ -73,9 +73,15 @@ namespace TDPlugin.Forms
             this.textBox_lineto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel_opt.SuspendLayout();
             this.panel_opt_vote.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -92,7 +98,7 @@ namespace TDPlugin.Forms
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label4.Location = new System.Drawing.Point(381, 37);
+            this.label4.Location = new System.Drawing.Point(480, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 24);
             this.label4.TabIndex = 2;
@@ -110,36 +116,36 @@ namespace TDPlugin.Forms
             // 
             // but_mark_pr
             // 
-            this.but_mark_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_mark_pr.Location = new System.Drawing.Point(519, 67);
+            this.but_mark_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.but_mark_pr.Location = new System.Drawing.Point(0, 0);
             this.but_mark_pr.Name = "but_mark_pr";
-            this.but_mark_pr.Size = new System.Drawing.Size(45, 31);
+            this.but_mark_pr.Size = new System.Drawing.Size(45, 27);
             this.but_mark_pr.TabIndex = 6;
             this.but_mark_pr.TabStop = false;
-            this.but_mark_pr.Text = "<--";
+            this.but_mark_pr.Text = "◀";
             this.but_mark_pr.UseVisualStyleBackColor = true;
             this.but_mark_pr.Click += new System.EventHandler(this.but_mark_pr_Click);
             // 
             // but_mark_next
             // 
-            this.but_mark_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_mark_next.Location = new System.Drawing.Point(567, 67);
+            this.but_mark_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.but_mark_next.Location = new System.Drawing.Point(44, 0);
             this.but_mark_next.Name = "but_mark_next";
-            this.but_mark_next.Size = new System.Drawing.Size(45, 31);
+            this.but_mark_next.Size = new System.Drawing.Size(45, 27);
             this.but_mark_next.TabIndex = 7;
             this.but_mark_next.TabStop = false;
-            this.but_mark_next.Text = "-->";
+            this.but_mark_next.Text = "▶";
             this.but_mark_next.UseVisualStyleBackColor = true;
             this.but_mark_next.Click += new System.EventHandler(this.but_mark_next_Click);
             // 
             // textBox_comm
             // 
             this.textBox_comm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBox_comm.Location = new System.Drawing.Point(55, 170);
+            this.textBox_comm.Location = new System.Drawing.Point(54, 170);
             this.textBox_comm.Multiline = true;
             this.textBox_comm.Name = "textBox_comm";
             this.textBox_comm.ReadOnly = true;
-            this.textBox_comm.Size = new System.Drawing.Size(557, 110);
+            this.textBox_comm.Size = new System.Drawing.Size(558, 110);
             this.textBox_comm.TabIndex = 8;
             this.textBox_comm.TabStop = false;
             // 
@@ -158,7 +164,7 @@ namespace TDPlugin.Forms
             // but_com_next
             // 
             this.but_com_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_com_next.Location = new System.Drawing.Point(10, 228);
+            this.but_com_next.Location = new System.Drawing.Point(0, 32);
             this.but_com_next.Name = "but_com_next";
             this.but_com_next.Size = new System.Drawing.Size(40, 33);
             this.but_com_next.TabIndex = 13;
@@ -170,7 +176,7 @@ namespace TDPlugin.Forms
             // but_com_pr
             // 
             this.but_com_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_com_pr.Location = new System.Drawing.Point(10, 190);
+            this.but_com_pr.Location = new System.Drawing.Point(0, 0);
             this.but_com_pr.Name = "but_com_pr";
             this.but_com_pr.Size = new System.Drawing.Size(40, 33);
             this.but_com_pr.TabIndex = 12;
@@ -203,25 +209,25 @@ namespace TDPlugin.Forms
             // 
             // but_file_next
             // 
-            this.but_file_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_file_next.Location = new System.Drawing.Point(567, 32);
+            this.but_file_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.but_file_next.Location = new System.Drawing.Point(44, 0);
             this.but_file_next.Name = "but_file_next";
-            this.but_file_next.Size = new System.Drawing.Size(45, 30);
+            this.but_file_next.Size = new System.Drawing.Size(45, 27);
             this.but_file_next.TabIndex = 18;
             this.but_file_next.TabStop = false;
-            this.but_file_next.Text = "-->";
+            this.but_file_next.Text = "▶";
             this.but_file_next.UseVisualStyleBackColor = true;
             this.but_file_next.Click += new System.EventHandler(this.but_file_next_Click);
             // 
             // but_file_pr
             // 
-            this.but_file_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_file_pr.Location = new System.Drawing.Point(519, 32);
+            this.but_file_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.but_file_pr.Location = new System.Drawing.Point(0, 0);
             this.but_file_pr.Name = "but_file_pr";
-            this.but_file_pr.Size = new System.Drawing.Size(45, 30);
+            this.but_file_pr.Size = new System.Drawing.Size(45, 27);
             this.but_file_pr.TabIndex = 17;
             this.but_file_pr.TabStop = false;
-            this.but_file_pr.Text = "<--";
+            this.but_file_pr.Text = "◀";
             this.but_file_pr.UseVisualStyleBackColor = true;
             this.but_file_pr.Click += new System.EventHandler(this.but_file_pr_Click);
             // 
@@ -437,7 +443,7 @@ namespace TDPlugin.Forms
             "Low importance",
             "High importance",
             "Critical"});
-            this.comboBox_val.Location = new System.Drawing.Point(343, 64);
+            this.comboBox_val.Location = new System.Drawing.Point(442, 65);
             this.comboBox_val.Name = "comboBox_val";
             this.comboBox_val.Size = new System.Drawing.Size(170, 32);
             this.comboBox_val.TabIndex = 37;
@@ -578,6 +584,7 @@ namespace TDPlugin.Forms
             // 
             this.textBox_linefrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_linefrom.Location = new System.Drawing.Point(185, 102);
+            this.textBox_linefrom.MaxLength = 8;
             this.textBox_linefrom.Name = "textBox_linefrom";
             this.textBox_linefrom.ReadOnly = true;
             this.textBox_linefrom.Size = new System.Drawing.Size(68, 29);
@@ -589,6 +596,7 @@ namespace TDPlugin.Forms
             // 
             this.textBox_lineto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_lineto.Location = new System.Drawing.Point(269, 102);
+            this.textBox_lineto.MaxLength = 8;
             this.textBox_lineto.Name = "textBox_lineto";
             this.textBox_lineto.ReadOnly = true;
             this.textBox_lineto.Size = new System.Drawing.Size(68, 29);
@@ -616,11 +624,47 @@ namespace TDPlugin.Forms
             this.label5.TabIndex = 50;
             this.label5.Text = ":";
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.but_com_pr);
+            this.panel3.Controls.Add(this.but_com_next);
+            this.panel3.Location = new System.Drawing.Point(6, 182);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(42, 67);
+            this.panel3.TabIndex = 52;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.but_file_next);
+            this.panel2.Controls.Add(this.but_file_pr);
+            this.panel2.Location = new System.Drawing.Point(343, 32);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(91, 29);
+            this.panel2.TabIndex = 53;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.but_mark_pr);
+            this.panel4.Controls.Add(this.but_mark_next);
+            this.panel4.Location = new System.Drawing.Point(343, 67);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(91, 29);
+            this.panel4.TabIndex = 54;
+            // 
             // Form_Statistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 332);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel_opt);
             this.Controls.Add(this.button_accept_file);
             this.Controls.Add(this.button_accept_mark);
@@ -644,14 +688,8 @@ namespace TDPlugin.Forms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox_mark);
             this.Controls.Add(this.textBox_file);
-            this.Controls.Add(this.but_file_next);
-            this.Controls.Add(this.but_file_pr);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.but_com_next);
-            this.Controls.Add(this.but_com_pr);
             this.Controls.Add(this.textBox_comm);
-            this.Controls.Add(this.but_mark_next);
-            this.Controls.Add(this.but_mark_pr);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
@@ -667,6 +705,9 @@ namespace TDPlugin.Forms
             this.panel1.PerformLayout();
             this.panel_opt.ResumeLayout(false);
             this.panel_opt_vote.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -718,5 +759,8 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.TextBox textBox_lineto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
     }
 }
