@@ -66,7 +66,7 @@ namespace TDPlugin.Forms
                         bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
                     }
                     comment.Text = "";
-                    MessageBox.Show("Everything went well", "Successfully");
+                    MessageBox.Show("For ease of use of the plugin, create comments between the marked lines", "The problem is noted.");
                 }
                 else
                 {
