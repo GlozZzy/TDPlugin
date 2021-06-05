@@ -22,17 +22,9 @@ namespace TDPlugin.Forms
             "High importance",
             "Critical" };
 
-        IDBManager db;
-
         string username;
 
-        Filename file;
-        Issue issue;
-        Comment comm;
-
-        int curr_file;
-        int cur_issue;
-        int curr_comm;
+        HandlerClass Hclass;
 
         public Form_Statistic()
         {
@@ -43,24 +35,24 @@ namespace TDPlugin.Forms
 
         private void but_com_pr_Click(object sender, EventArgs e)
         {
-            if (issue != null)
+            if (textBox_mark.Text != "")
             {
-                curr_comm--;
-                if (curr_comm < 0) curr_comm = 0;
-                comm = db.get_comment(issue, curr_comm);
-                if (comm == null) textBox_comm.Text = "";
-                else textBox_comm.Text = comm.author + ": " + comm.text;
+                Hclass.curr_comm--;
+                if (Hclass.curr_comm < 0) Hclass.curr_comm = 0;
+                Hclass.update_cur_com();
+                if (Hclass.comm == null) textBox_comm.Text = "";
+                else textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
             }
         }
 
         private void but_com_next_Click(object sender, EventArgs e)
         {
-            if (issue != null)
+            if (textBox_mark.Text != "")
             {
-                if (textBox_comm.Text != "") curr_comm++;
-                comm = db.get_comment(issue, curr_comm);
-                if (comm == null) textBox_comm.Text = "";
-                else textBox_comm.Text = comm.author + ": " + comm.text;
+                if (Hclass.comm != null) Hclass.curr_comm++;
+                Hclass.update_cur_com();
+                if (Hclass.comm == null) textBox_comm.Text = "";
+                else textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
             }
         }
 
@@ -69,24 +61,24 @@ namespace TDPlugin.Forms
 
         private void but_mark_pr_Click(object sender, EventArgs e)
         {
-            if (file != null)
+            if (textBox_file.Text != "")
             {
-                cur_issue--;
-                if (cur_issue < 0) cur_issue = 0;
-                issue = db.get_issue(file, cur_issue);
+                Hclass.cur_issue--;
+                if (Hclass.cur_issue < 0) Hclass.cur_issue = 0;
+                Hclass.update_cur_issue();
 
-                if (issue != null)
+                if (Hclass.issue != null)
                 {
-                    textBox_mark.Text = issue.name;
-                    comboBox_val.Text = severity[issue.severity];
-                    textBox_linefrom.Text = "" + issue.linefrom;
-                    textBox_lineto.Text = "" + issue.lineto;
-                    curr_comm = 0;
+                    textBox_mark.Text = Hclass.issue.name;
+                    comboBox_val.Text = severity[Hclass.issue.severity];
+                    textBox_linefrom.Text = "" + Hclass.issue.linefrom;
+                    textBox_lineto.Text = "" + Hclass.issue.lineto;
+                    Hclass.curr_comm = 0;
                     but_com_pr_Click(sender, e);
                 }
                 else
                 {
-                    comm = null;
+                    Hclass.comm = null;
                     textBox_mark.Text = "";
                     comboBox_val.SelectedIndex = -1;
                     textBox_comm.Text = "";
@@ -98,23 +90,23 @@ namespace TDPlugin.Forms
 
         private void but_mark_next_Click(object sender, EventArgs e)
         {
-            if (file != null)
+            if (textBox_file.Text != "")
             {
-                if (issue != null) cur_issue++;
-                issue = db.get_issue(file, cur_issue);
+                if (Hclass.issue != null) Hclass.cur_issue++;
+                Hclass.update_cur_issue();
 
-                if (issue != null)
+                if (Hclass.issue != null)
                 {
-                    textBox_mark.Text = issue.name;
-                    comboBox_val.Text = severity[issue.severity];
-                    textBox_linefrom.Text = "" + issue.linefrom;
-                    textBox_lineto.Text = "" + issue.lineto;
-                    curr_comm = 0;
+                    textBox_mark.Text = Hclass.issue.name;
+                    comboBox_val.Text = severity[Hclass.issue.severity];
+                    textBox_linefrom.Text = "" + Hclass.issue.linefrom;
+                    textBox_lineto.Text = "" + Hclass.issue.lineto;
+                    Hclass.curr_comm = 0;
                     but_com_pr_Click(sender, e);
                 }
                 else
                 {
-                    comm = null;
+                    Hclass.comm = null;
                     textBox_mark.Text = "";
                     comboBox_val.SelectedIndex = -1;
                     textBox_linefrom.Text = "";
@@ -129,20 +121,20 @@ namespace TDPlugin.Forms
 
         private void but_file_pr_Click(object sender, EventArgs e)
         {
-            curr_file--;
-            if (curr_file < 0) curr_file = 0;
-            file = db.get_file(curr_file);
+            Hclass.curr_file--;
+            if (Hclass.curr_file < 0) Hclass.curr_file = 0;
+            Hclass.update_cur_file();
 
-            if (file != null)
+            if (Hclass.file != null)
             {
-                textBox_file.Text = file.name;
-                cur_issue = 0;
+                textBox_file.Text = Hclass.file.name;
+                Hclass.cur_issue = 0;
                 but_mark_pr_Click(sender, e);
             }
             else
             {
-                issue = null;
-                comm = null;
+                Hclass.issue = null;
+                Hclass.comm = null;
                 textBox_file.Text = "";
                 textBox_mark.Text = "";
                 comboBox_val.SelectedIndex = -1;
@@ -153,19 +145,19 @@ namespace TDPlugin.Forms
 
         private void but_file_next_Click(object sender, EventArgs e)
         {
-            if (file != null) curr_file++;
-            file = db.get_file(curr_file);
+            if (Hclass.file != null) Hclass.curr_file++;
+            Hclass.update_cur_file();
 
-            if (file != null)
+            if (Hclass.file != null)
             {
-                textBox_file.Text = file.name;
-                cur_issue = 0;
+                textBox_file.Text = Hclass.file.name;
+                Hclass.cur_issue = 0;
                 but_mark_pr_Click(sender, e);
             }
             else
             {
-                issue = null;
-                comm = null;
+                Hclass.issue = null;
+                Hclass.comm = null;
                 textBox_file.Text = "";
                 textBox_mark.Text = "";
                 comboBox_val.SelectedIndex = -1;
@@ -178,7 +170,7 @@ namespace TDPlugin.Forms
 
         private void but_com_del_Click(object sender, EventArgs e)
         {
-            if (comm != null)
+            if (Hclass.comm != null)
             {
                 string message = "Are you sure you want to delete the comment?";
                 string caption = "Confirmation of action";
@@ -189,7 +181,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    db.delete_record_comment(comm);
+                    Hclass.del_record("comment");
                     but_com_pr_Click(sender, e);
                 }
             }
@@ -198,7 +190,7 @@ namespace TDPlugin.Forms
 
         private void but_mark_del_Click(object sender, EventArgs e)
         {
-            if (issue != null)
+            if (Hclass.issue != null)
             {
                 string message = "Are you sure you want to delete the " + textBox_mark.Text + "?";
                 string caption = "Confirmation of action";
@@ -209,7 +201,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    db.delete_record_issue(issue);
+                    Hclass.del_record("issue");
                     but_mark_pr_Click(sender, e);
                 }
             }
@@ -218,7 +210,7 @@ namespace TDPlugin.Forms
 
         private void but_file_del_Click(object sender, EventArgs e)
         {
-            if (file != null)
+            if (Hclass.file != null)
             {
                 string message = "Are you sure you want to delete the note " + textBox_file.Text + "?";
                 string caption = "Confirmation of action";
@@ -229,7 +221,7 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    db.delete_record_file(file);
+                    Hclass.del_record("file");
                     but_file_pr_Click(sender, e);
                 }
             }
@@ -238,7 +230,7 @@ namespace TDPlugin.Forms
 
         private void but_mark_chg_Click(object sender, EventArgs e)
         {
-            if (issue != null)
+            if (Hclass.issue != null)
             {
                 disable_interface();
 
@@ -256,7 +248,7 @@ namespace TDPlugin.Forms
 
         private void but_file_chg_Click(object sender, EventArgs e)
         {
-            if (file != null)
+            if (Hclass.file != null)
             {
                 textBox_file.ReadOnly = false;
                 but_file_chg.Visible = false;
@@ -278,8 +270,7 @@ namespace TDPlugin.Forms
                     var b = int.Parse(textBox_lineto.Text);
                     if (a <= b)
                     {
-                        db.edit_record_issue(issue, textBox_mark.Text, comboBox_val.SelectedIndex, a, b);
-                        issue = db.get_issue(file, cur_issue);
+                        Hclass.edit_record_issue(textBox_mark.Text, comboBox_val.SelectedIndex, a, b);
 
                         textBox_mark.ReadOnly = true;
                         but_mark_chg.Visible = true;
@@ -298,7 +289,7 @@ namespace TDPlugin.Forms
             }
             else
             {
-                string message = "Are you sure you want to delete the " + issue.name + "?";
+                string message = "Are you sure you want to delete the " + Hclass.issue.name + "?";
                 string caption = "Confirmation of action";
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                 DialogResult result;
@@ -307,15 +298,14 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    db.delete_record_issue(issue);
+                    Hclass.del_record("issue");
                     but_mark_pr_Click(sender, e);
                 }
                 else
                 {
-                    textBox_mark.Text = issue.name;
+                    textBox_mark.Text = Hclass.issue.name;
                 }
-
-                issue = db.get_issue(file, cur_issue);
+                Hclass.update_cur_issue();
 
                 textBox_mark.ReadOnly = true;
                 but_mark_chg.Visible = true;
@@ -336,11 +326,11 @@ namespace TDPlugin.Forms
         {
             if (textBox_file.Text != "")
             {
-                db.edit_record_file(file, textBox_file.Text);
+                Hclass.edit_record_file(textBox_file.Text);
             }
             else
             {
-                string message = "Are you sure you want to delete the note " + file.name + "?";
+                string message = "Are you sure you want to delete the note " + Hclass.file.name + "?";
                 string caption = "Confirmation of action";
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                 DialogResult result;
@@ -349,16 +339,15 @@ namespace TDPlugin.Forms
                 result = MessageBox.Show(message, caption, buttons);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    db.delete_record_file(file);
+                    Hclass.del_record("file");
                     but_file_pr_Click(sender, e);
                 }
                 else
                 {
-                    textBox_file.Text = file.name;
+                    textBox_file.Text = Hclass.file.name;
                 }
             }
-
-            file = db.get_file(curr_file);
+            Hclass.update_cur_file();
 
             textBox_file.ReadOnly = true;
             but_file_chg.Visible = true;
@@ -370,7 +359,7 @@ namespace TDPlugin.Forms
 
         private void button_file_cancel_Click(object sender, EventArgs e)
         {
-            textBox_file.Text = file.name;
+            textBox_file.Text = Hclass.file.name;
             textBox_file.ReadOnly = true;
             but_file_chg.Visible = true;
             button_file_cancel.Visible = false;
@@ -381,19 +370,19 @@ namespace TDPlugin.Forms
 
         private void button_mark_cancel_Click(object sender, EventArgs e)
         {
-            textBox_mark.Text = issue.name;
+            textBox_mark.Text = Hclass.issue.name;
             textBox_mark.ReadOnly = true;
             but_mark_chg.Visible = true;
             button_mark_cancel.Visible = false;
             button_accept_mark.Visible = false;
 
             comboBox_val.Enabled = false;
-            comboBox_val.Text = severity[issue.severity];
+            comboBox_val.Text = severity[Hclass.issue.severity];
 
             textBox_linefrom.ReadOnly = true;
-            textBox_linefrom.Text = "" + issue.linefrom;
+            textBox_linefrom.Text = "" + Hclass.issue.linefrom;
             textBox_lineto.ReadOnly = true;
-            textBox_lineto.Text = "" + issue.lineto;
+            textBox_lineto.Text = "" + Hclass.issue.lineto;
 
             enable_interface();
         }
@@ -404,42 +393,30 @@ namespace TDPlugin.Forms
 
         private void Form_statistic_Load(object sender, EventArgs e)
         {
-            string[] BDinfo = new string[5];
-            using (StreamReader sr = new StreamReader(@"..\..\Resources\CurDBInfo.txt", Encoding.Default))
+            Hclass = new HandlerClass();
+            var DBinfo = Hclass.get_dbinfo();
+
+            username = DBinfo[2];
+
+            if (Hclass.db.check_connection())
             {
-                string line;
-                int i = 0;
-                while ((line = sr.ReadLine()) != null)
+                Hclass.get_first_info();
+                lab_db_connection.Text = DBinfo[4];
+
+                Hclass.file = Hclass.db.get_file(Hclass.curr_file);
+
+                if (Hclass.file != null)
                 {
-                    BDinfo[i] = line;
-                    i++;
-                }
-            }
-
-            username = BDinfo[2];
-            db = new DB_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
-
-            if (db.check_connection())
-            {
-                lab_db_connection.Text = BDinfo[4];
-                curr_file = 0;
-                cur_issue = 0;
-                curr_comm = 0;
-
-                file = db.get_file(curr_file);
-
-                if (file != null)
-                {
-                    textBox_file.Text = file.name;
-                    issue = db.get_issue(file, cur_issue);
-                    if (issue != null)
+                    textBox_file.Text = Hclass.file.name;
+                    Hclass.issue = Hclass.db.get_issue(Hclass.file, Hclass.cur_issue);
+                    if (Hclass.issue != null)
                     {
-                        textBox_mark.Text = issue.name;
-                        comboBox_val.Text = severity[issue.severity];
-                        textBox_linefrom.Text = "" + issue.linefrom;
-                        textBox_lineto.Text = "" + issue.lineto;
-                        comm = db.get_comment(issue, curr_comm);
-                        if (comm != null) textBox_comm.Text = comm.author + ": " + comm.text;
+                        textBox_mark.Text = Hclass.issue.name;
+                        comboBox_val.Text = severity[Hclass.issue.severity];
+                        textBox_linefrom.Text = "" + Hclass.issue.linefrom;
+                        textBox_lineto.Text = "" + Hclass.issue.lineto;
+                        Hclass.comm = Hclass.db.get_comment(Hclass.issue, Hclass.curr_comm);
+                        if (Hclass.comm != null) textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
                         else textBox_comm.Text = "";
                     }
                     else
@@ -476,11 +453,6 @@ namespace TDPlugin.Forms
             }
         }
 
-        private void button_refresh_Click(object sender, EventArgs e)
-        {
-            Form_statistic_Load(sender, e);
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             panel_opt.Visible = true;
@@ -512,13 +484,13 @@ namespace TDPlugin.Forms
 
         private void button_agree_Click(object sender, EventArgs e)
         {
-            if (issue != null)
+            if (Hclass.issue != null)
             {
-                if (db.search_exist_author_comment(issue, username, 1) != null)
+                if (Hclass.db.search_exist_author_comment(Hclass.issue, username, 1) != null)
                     MessageBox.Show("You have already agreed with this problem", "No changes");
                 else 
                 { 
-                    var a = db.search_exist_author_comment(issue, username, -1);
+                    var a = Hclass.db.search_exist_author_comment(Hclass.issue, username, -1);
                     if (a != null)
                     {
                         string message = "Do you want to replace your 'disagree' comment?";
@@ -530,14 +502,14 @@ namespace TDPlugin.Forms
                         result = MessageBox.Show(message, caption, buttons);
                         if (result == System.Windows.Forms.DialogResult.Yes)
                         {
-                            db.delete_record_comment(a);
-                            db.add_new_record_comment(file.name, issue.name, "", username, 1);
+                            Hclass.db.delete_record_comment(a);
+                            Hclass.db.add_new_record_comment(Hclass.file.name, Hclass.issue.name, "", username, 1);
                         }
                     }
                     else 
                     {
                         button_close_stngs_Click(sender, e);
-                        db.add_new_record_comment(file.name, issue.name, "", username, 1);
+                        Hclass.db.add_new_record_comment(Hclass.file.name, Hclass.issue.name, "", username, 1);
                         MessageBox.Show("Your opinion was taken into account", "Successfully");
                     }
                 }
@@ -546,13 +518,13 @@ namespace TDPlugin.Forms
 
         private void button_disagree_Click(object sender, EventArgs e)
         {
-            if (issue != null)
+            if (Hclass.issue != null)
             {
-                if (db.search_exist_author_comment(issue, username, -1) != null)
+                if (Hclass.db.search_exist_author_comment(Hclass.issue, username, -1) != null)
                     MessageBox.Show("You have already disagreed with this problem", "No changes");
                 else
                 {
-                    var a = db.search_exist_author_comment(issue, username, 1);
+                    var a = Hclass.db.search_exist_author_comment(Hclass.issue, username, 1);
                     if (a != null)
                     {
                         string message = "Do you want to replace your 'agree' comment?";
@@ -565,7 +537,7 @@ namespace TDPlugin.Forms
                         if (result == System.Windows.Forms.DialogResult.Yes)
                         {
                             button_close_stngs_Click(sender, e);
-                            db.delete_record_comment(a);
+                            Hclass.db.delete_record_comment(a);
                             button_disagree.BackColor = Color.LightSkyBlue;
                             disable_interface();
                             textBox_comm.Text = "";
@@ -594,7 +566,7 @@ namespace TDPlugin.Forms
 
         private void button_comment_Click(object sender, EventArgs e)
         {
-            if (issue != null)
+            if (Hclass.issue != null)
             {
                 button_close_stngs_Click(sender, e);
                 button_comment.BackColor = Color.LightSkyBlue;
@@ -655,7 +627,7 @@ namespace TDPlugin.Forms
         {
             if (textBox_comm.Text != "")
             {
-                db.add_new_record_comment(file.name, issue.name, textBox_comm.Text, username, 0);
+                Hclass.db.add_new_record_comment(Hclass.file.name, Hclass.issue.name, textBox_comm.Text, username, 0);
                 enable_interface();
 
                 label_advice_com.Visible = false;
@@ -671,8 +643,8 @@ namespace TDPlugin.Forms
         private void button_com_cancel_Click(object sender, EventArgs e)
         {
             enable_interface();
-            if (comm != null)
-                textBox_comm.Text = comm.author + ": " + comm.text;
+            if (Hclass.comm != null)
+                textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
             else textBox_comm.Text = "";
 
             label_advice_com.Visible = false;
@@ -686,7 +658,7 @@ namespace TDPlugin.Forms
         {
             if (textBox_comm.Text != "")
             {
-                db.add_new_record_comment(file.name, issue.name, textBox_comm.Text, username, -1);
+                Hclass.db.add_new_record_comment(Hclass.file.name, Hclass.issue.name, textBox_comm.Text, username, -1);
                 enable_interface();
 
                 label_advice_disagree.Visible = false;
@@ -702,7 +674,7 @@ namespace TDPlugin.Forms
         private void button_disagree_cancel_Click(object sender, EventArgs e)
         {
             enable_interface();
-            if (comm != null) textBox_comm.Text = comm.author + ": " + comm.text;
+            if (Hclass.comm != null) textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
             else textBox_comm.Text = "";
 
             label_advice_disagree.Visible = false;

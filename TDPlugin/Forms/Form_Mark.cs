@@ -14,27 +14,14 @@ namespace TDPlugin.Forms
 {
     public partial class Form_Mark : Form
     {
-        IDBManager bd;
-        string[] BDinfo;
-
-        public int linefrom;
-        public int lineto;
+        HandlerClass Hclass;
 
         public Form_Mark()
         {
             InitializeComponent();
+            Hclass = new HandlerClass();
 
-            BDinfo = new string[5];
-            using (StreamReader sr = new StreamReader(@"..\..\Resources\CurDBInfo.txt", Encoding.Default))
-            {
-                string line;
-                int i = 0;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    BDinfo[i] = line;
-                    i++;
-                }
-            }
+            var BDinfo = Hclass.get_dbinfo();
             lab_db_connection.Text = BDinfo[4];
         }
 
@@ -47,34 +34,15 @@ namespace TDPlugin.Forms
             else if (numericUpDownFrom.Value > numericUpDownTo.Value) MessageBox.Show("Incorrect lines range", "Error");
             else
             {
-                bd = new DB_manager(BDinfo[0], BDinfo[1], BDinfo[2], BDinfo[3], BDinfo[4]);
-
-                if (bd.check_connection())
+                var result = Hclass.mark_bad_code(filename.Text, markname.Text, comment.Text, (int)numericUpDownFrom.Value, (int)numericUpDownTo.Value);
+                if (result)
                 {
-                    if (bd.search_exist_file(filename.Text))
-                        if (bd.search_exist_issue(filename.Text, markname.Text))
-                            bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
-                        else
-                        {
-                            bd.add_new_record_issue(filename.Text, markname.Text, 0, (int)numericUpDownFrom.Value, (int)numericUpDownTo.Value);
-                            bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
-                        }
-                    else
-                    {
-                        bd.add_new_record_file(filename.Text);
-                        bd.add_new_record_issue(filename.Text, markname.Text, 0, (int)numericUpDownFrom.Value, (int)numericUpDownTo.Value);
-                        bd.add_new_record_comment(filename.Text, markname.Text, comment.Text, BDinfo[2], 0);
-                    }
                     comment.Text = "";
-                    MessageBox.Show("For ease of use of the plugin, create comments between the marked lines", "The problem is noted.");
+                    MessageBox.Show("For the convenience of using this plugin, add comments like \n{// start name_issue ...bad code... //end name_issue} " +
+                        "to the corresponding code", "Successfully added");
                 }
-                else
-                {
-                    MessageBox.Show("Some problems with db connection", "Error");
-                }
-                linefrom = (int)numericUpDownFrom.Value;
-                lineto = (int)numericUpDownTo.Value;
+                else MessageBox.Show("Some problems with db connection", "Error");
             }
-        }
+        }       
     }
 }

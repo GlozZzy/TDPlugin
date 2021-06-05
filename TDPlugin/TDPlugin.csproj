@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Change_DB_info.cs" />
+    <Compile Include="HandlerClass.cs" />
     <Compile Include="ClassTables\comments_table.cs" />
     <Compile Include="ClassTables\files_table.cs" />
     <Compile Include="ClassTables\issues_table.cs" />

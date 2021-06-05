@@ -78,15 +78,15 @@ namespace TDPlugin.Forms
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel_footer = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel_right = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.panel_right = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel_opt.SuspendLayout();
             this.panel_opt_vote.SuspendLayout();
@@ -95,12 +95,12 @@ namespace TDPlugin.Forms
             this.panel4.SuspendLayout();
             this.panel_footer.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel8.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel_right.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
-            this.panel_right.SuspendLayout();
-            this.panel14.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -711,41 +711,40 @@ namespace TDPlugin.Forms
             this.panel6.Size = new System.Drawing.Size(626, 163);
             this.panel6.TabIndex = 56;
             // 
-            // panel5
+            // panel14
             // 
-            this.panel5.Controls.Add(this.panel3);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 163);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(53, 131);
-            this.panel5.TabIndex = 57;
+            this.panel14.Controls.Add(this.label2);
+            this.panel14.Controls.Add(this.textBox_linefrom);
+            this.panel14.Controls.Add(this.textBox_lineto);
+            this.panel14.Controls.Add(this.label5);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel14.Location = new System.Drawing.Point(123, 88);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(217, 40);
+            this.panel14.TabIndex = 60;
             // 
-            // panel7
+            // panel13
             // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(616, 163);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(10, 131);
-            this.panel7.TabIndex = 58;
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(123, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(217, 25);
+            this.panel13.TabIndex = 59;
             // 
-            // panel8
+            // panel_right
             // 
-            this.panel8.Controls.Add(this.label3);
-            this.panel8.Controls.Add(this.label1);
-            this.panel8.Controls.Add(this.label6);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(0, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(123, 163);
-            this.panel8.TabIndex = 55;
-            // 
-            // panel9
-            // 
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(616, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(10, 163);
-            this.panel9.TabIndex = 56;
+            this.panel_right.Controls.Add(this.panel1);
+            this.panel_right.Controls.Add(this.panel2);
+            this.panel_right.Controls.Add(this.button_close_stngs);
+            this.panel_right.Controls.Add(this.button_open_stngs);
+            this.panel_right.Controls.Add(this.comboBox_val);
+            this.panel_right.Controls.Add(this.label4);
+            this.panel_right.Controls.Add(this.panel4);
+            this.panel_right.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel_right.Location = new System.Drawing.Point(340, 0);
+            this.panel_right.Name = "panel_right";
+            this.panel_right.Size = new System.Drawing.Size(276, 128);
+            this.panel_right.TabIndex = 58;
             // 
             // panel10
             // 
@@ -770,40 +769,41 @@ namespace TDPlugin.Forms
             this.panel11.Size = new System.Drawing.Size(467, 35);
             this.panel11.TabIndex = 0;
             // 
-            // panel_right
+            // panel9
             // 
-            this.panel_right.Controls.Add(this.panel1);
-            this.panel_right.Controls.Add(this.panel2);
-            this.panel_right.Controls.Add(this.button_close_stngs);
-            this.panel_right.Controls.Add(this.button_open_stngs);
-            this.panel_right.Controls.Add(this.comboBox_val);
-            this.panel_right.Controls.Add(this.label4);
-            this.panel_right.Controls.Add(this.panel4);
-            this.panel_right.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel_right.Location = new System.Drawing.Point(340, 0);
-            this.panel_right.Name = "panel_right";
-            this.panel_right.Size = new System.Drawing.Size(276, 128);
-            this.panel_right.TabIndex = 58;
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(616, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(10, 163);
+            this.panel9.TabIndex = 56;
             // 
-            // panel13
+            // panel8
             // 
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(123, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(217, 25);
-            this.panel13.TabIndex = 59;
+            this.panel8.Controls.Add(this.label3);
+            this.panel8.Controls.Add(this.label1);
+            this.panel8.Controls.Add(this.label6);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(123, 163);
+            this.panel8.TabIndex = 55;
             // 
-            // panel14
+            // panel5
             // 
-            this.panel14.Controls.Add(this.label2);
-            this.panel14.Controls.Add(this.textBox_linefrom);
-            this.panel14.Controls.Add(this.textBox_lineto);
-            this.panel14.Controls.Add(this.label5);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel14.Location = new System.Drawing.Point(123, 88);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(217, 40);
-            this.panel14.TabIndex = 60;
+            this.panel5.Controls.Add(this.panel3);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 163);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(53, 131);
+            this.panel5.TabIndex = 57;
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel7.Location = new System.Drawing.Point(616, 163);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(10, 131);
+            this.panel7.TabIndex = 58;
             // 
             // Form_Statistic
             // 
@@ -831,16 +831,16 @@ namespace TDPlugin.Forms
             this.panel_footer.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.panel_right.ResumeLayout(false);
+            this.panel_right.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
-            this.panel_right.ResumeLayout(false);
-            this.panel_right.PerformLayout();
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
