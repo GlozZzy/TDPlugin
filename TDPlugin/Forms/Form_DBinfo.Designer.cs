@@ -37,8 +37,8 @@ namespace TDPlugin.Forms
             this.label3 = new System.Windows.Forms.Label();
             this.tb_ps = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button_change_current_connection_from_textfile = new System.Windows.Forms.Button();
-            this.button_get_current_connection_from_textfile = new System.Windows.Forms.Button();
+            this.button_change_current_connection = new System.Windows.Forms.Button();
+            this.button_get_current_connection = new System.Windows.Forms.Button();
             this.tb_namebd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -115,27 +115,27 @@ namespace TDPlugin.Forms
             this.label4.TabIndex = 6;
             this.label4.Text = "Password";
             // 
-            // button_change_current_connection_from_textfile
+            // button_change_current_connection
             // 
-            this.button_change_current_connection_from_textfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_change_current_connection_from_textfile.Location = new System.Drawing.Point(55, 240);
-            this.button_change_current_connection_from_textfile.Name = "button_change_current_connection_from_textfile";
-            this.button_change_current_connection_from_textfile.Size = new System.Drawing.Size(206, 39);
-            this.button_change_current_connection_from_textfile.TabIndex = 7;
-            this.button_change_current_connection_from_textfile.Text = "Change connection";
-            this.button_change_current_connection_from_textfile.UseVisualStyleBackColor = true;
-            this.button_change_current_connection_from_textfile.Click += new System.EventHandler(this.change_current_connection_from_textfile);
+            this.button_change_current_connection.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_change_current_connection.Location = new System.Drawing.Point(55, 240);
+            this.button_change_current_connection.Name = "button_change_current_connection";
+            this.button_change_current_connection.Size = new System.Drawing.Size(206, 39);
+            this.button_change_current_connection.TabIndex = 7;
+            this.button_change_current_connection.Text = "Change connection";
+            this.button_change_current_connection.UseVisualStyleBackColor = true;
+            this.button_change_current_connection.Click += new System.EventHandler(this.button_change_current_connection_Click);
             // 
-            // button_get_current_connection_from_textfile
+            // button_get_current_connection
             // 
-            this.button_get_current_connection_from_textfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_get_current_connection_from_textfile.Location = new System.Drawing.Point(55, 195);
-            this.button_get_current_connection_from_textfile.Name = "button_get_current_connection_from_textfile";
-            this.button_get_current_connection_from_textfile.Size = new System.Drawing.Size(206, 39);
-            this.button_get_current_connection_from_textfile.TabIndex = 6;
-            this.button_get_current_connection_from_textfile.Text = "Current connection";
-            this.button_get_current_connection_from_textfile.UseVisualStyleBackColor = true;
-            this.button_get_current_connection_from_textfile.Click += new System.EventHandler(this.get_current_connection_from_textfile);
+            this.button_get_current_connection.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_get_current_connection.Location = new System.Drawing.Point(55, 195);
+            this.button_get_current_connection.Name = "button_get_current_connection";
+            this.button_get_current_connection.Size = new System.Drawing.Size(206, 39);
+            this.button_get_current_connection.TabIndex = 6;
+            this.button_get_current_connection.Text = "Current connection";
+            this.button_get_current_connection.UseVisualStyleBackColor = true;
+            this.button_get_current_connection.Click += new System.EventHandler(this.button_get_current_connection_Click);
             // 
             // tb_namebd
             // 
@@ -162,8 +162,8 @@ namespace TDPlugin.Forms
             this.ClientSize = new System.Drawing.Size(299, 296);
             this.Controls.Add(this.tb_namebd);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button_get_current_connection_from_textfile);
-            this.Controls.Add(this.button_change_current_connection_from_textfile);
+            this.Controls.Add(this.button_get_current_connection);
+            this.Controls.Add(this.button_change_current_connection);
             this.Controls.Add(this.tb_ps);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tb_un);
@@ -191,8 +191,8 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_ps;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button_change_current_connection_from_textfile;
-        private System.Windows.Forms.Button button_get_current_connection_from_textfile;
+        private System.Windows.Forms.Button button_change_current_connection;
+        private System.Windows.Forms.Button button_get_current_connection;
         private System.Windows.Forms.TextBox tb_namebd;
         private System.Windows.Forms.Label label5;
     }

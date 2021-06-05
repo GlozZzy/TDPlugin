@@ -19,8 +19,18 @@ namespace TDPlugin.Forms
             InitializeComponent();
             Hclass = new HandlerClass();
         }
+        private void button_get_current_connection_Click(object sender, EventArgs e)
+        {
+            var DBinfo = Hclass.get_dbinfo();
 
-        private void change_current_connection_from_textfile(object sender, EventArgs e)
+            tb_host.Text = DBinfo[0];
+            tb_port.Text = DBinfo[1];
+            tb_un.Text = DBinfo[2];
+            tb_ps.Text = DBinfo[3];
+            tb_namebd.Text = DBinfo[4];
+        }
+
+        private void button_change_current_connection_Click(object sender, EventArgs e)
         {
             if (tb_host.Text == "" || tb_port.Text == "" || tb_un.Text == "" || tb_ps.Text == "" || tb_namebd.Text == "")
             {
@@ -31,17 +41,6 @@ namespace TDPlugin.Forms
                 Hclass.set_dbinfo(tb_host.Text, tb_port.Text, tb_un.Text, tb_ps.Text, tb_namebd.Text);
                 Close();
             }
-        }
-
-        private void get_current_connection_from_textfile(object sender, EventArgs e)
-        {
-            var DBinfo = Hclass.get_dbinfo();
-
-            tb_host.Text = DBinfo[0];
-            tb_port.Text = DBinfo[1];
-            tb_un.Text = DBinfo[2];
-            tb_ps.Text = DBinfo[3];
-            tb_namebd.Text = DBinfo[4];
         }
     }
 }
