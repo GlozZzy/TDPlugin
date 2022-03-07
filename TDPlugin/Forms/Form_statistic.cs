@@ -31,31 +31,19 @@ namespace TDPlugin.Forms
             InitializeComponent();
         }
 
-        
 
-        private void but_com_pr_Click(object sender, EventArgs e)
+        public void get_comments()
         {
-            if (textBox_mark.Text != "")
+            dataGridView1.Rows.Clear();
+            int k = 0;
+            Hclass.comm = Hclass.db.get_comment(Hclass.issue, k);
+            while (Hclass.comm != null)
             {
-                Hclass.curr_comm--;
-                if (Hclass.curr_comm < 0) Hclass.curr_comm = 0;
-                Hclass.update_cur_com();
-                if (Hclass.comm == null) textBox_comm.Text = "";
-                else textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
+                dataGridView1.Rows.Add(Hclass.comm.author, Hclass.comm.text);
+                k++;
+                Hclass.comm = Hclass.db.get_comment(Hclass.issue, k);
             }
         }
-
-        private void but_com_next_Click(object sender, EventArgs e)
-        {
-            if (textBox_mark.Text != "")
-            {
-                if (Hclass.comm != null) Hclass.curr_comm++;
-                Hclass.update_cur_com();
-                if (Hclass.comm == null) textBox_comm.Text = "";
-                else textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
-            }
-        }
-
 
 
 
@@ -74,14 +62,14 @@ namespace TDPlugin.Forms
                     textBox_linefrom.Text = "" + Hclass.issue.linefrom;
                     textBox_lineto.Text = "" + Hclass.issue.lineto;
                     Hclass.curr_comm = 0;
-                    but_com_pr_Click(sender, e);
+                    get_comments();
                 }
                 else
                 {
                     Hclass.comm = null;
                     textBox_mark.Text = "";
                     comboBox_val.SelectedIndex = -1;
-                    textBox_comm.Text = "";
+                    dataGridView1.Rows.Clear();
                     textBox_linefrom.Text = "";
                     textBox_lineto.Text = "";
                 }
@@ -102,7 +90,7 @@ namespace TDPlugin.Forms
                     textBox_linefrom.Text = "" + Hclass.issue.linefrom;
                     textBox_lineto.Text = "" + Hclass.issue.lineto;
                     Hclass.curr_comm = 0;
-                    but_com_pr_Click(sender, e);
+                    get_comments();
                 }
                 else
                 {
@@ -111,7 +99,7 @@ namespace TDPlugin.Forms
                     comboBox_val.SelectedIndex = -1;
                     textBox_linefrom.Text = "";
                     textBox_lineto.Text = "";
-                    textBox_comm.Text = "";
+                    dataGridView1.Rows.Clear();
                 }
             }
         }
@@ -138,7 +126,7 @@ namespace TDPlugin.Forms
                 textBox_file.Text = "";
                 textBox_mark.Text = "";
                 comboBox_val.SelectedIndex = -1;
-                textBox_comm.Text = "";
+                dataGridView1.Rows.Clear();
             }
         }
 
@@ -161,7 +149,7 @@ namespace TDPlugin.Forms
                 textBox_file.Text = "";
                 textBox_mark.Text = "";
                 comboBox_val.SelectedIndex = -1;
-                textBox_comm.Text = "";
+                dataGridView1.Rows.Clear();
             }
         }
 
@@ -182,7 +170,7 @@ namespace TDPlugin.Forms
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
                     Hclass.del_record("comment");
-                    but_com_pr_Click(sender, e);
+                    get_comments();
                 }
             }
         }
@@ -415,9 +403,7 @@ namespace TDPlugin.Forms
                         comboBox_val.Text = severity[Hclass.issue.severity];
                         textBox_linefrom.Text = "" + Hclass.issue.linefrom;
                         textBox_lineto.Text = "" + Hclass.issue.lineto;
-                        Hclass.comm = Hclass.db.get_comment(Hclass.issue, Hclass.curr_comm);
-                        if (Hclass.comm != null) textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
-                        else textBox_comm.Text = "";
+                        get_comments();
                     }
                     else
                     {
@@ -425,7 +411,7 @@ namespace TDPlugin.Forms
                         textBox_linefrom.Text = "";
                         textBox_lineto.Text = "";
                         comboBox_val.SelectedIndex = -1;
-                        textBox_comm.Text = "";
+                        dataGridView1.Rows.Clear();
                     }
                 }
                 else
@@ -436,7 +422,7 @@ namespace TDPlugin.Forms
                     textBox_linefrom.Text = "";
                     textBox_lineto.Text = "";
                     textBox_mark.Text = "";
-                    textBox_comm.Text = "";
+                    dataGridView1.Rows.Clear();
                 }
             }
             else
@@ -470,7 +456,7 @@ namespace TDPlugin.Forms
         private void button_open_stngs_Click(object sender, EventArgs e)
         {
             panel_opt_vote.Visible = true;
-            panel_opt_vote.Location = new Point(button_close_stngs.Location.X + 63 + panel_right.Location.X, button_close_stngs.Location.Y + 1);
+            panel_opt_vote.Location = new Point(button_close_stngs.Location.X + 63+45 + panel_right.Location.X, button_close_stngs.Location.Y + 1);
             button_close_stngs.Visible = true;
             button_open_stngs.Visible = false;
         }
@@ -540,8 +526,7 @@ namespace TDPlugin.Forms
                             Hclass.db.delete_record_comment(a);
                             button_disagree.BackColor = Color.LightSkyBlue;
                             disable_interface();
-                            textBox_comm.Text = "";
-                            textBox_comm.ReadOnly = false;
+                            textBox_comm.Visible = true;
 
                             label_advice_disagree.Visible = true;
                             button_disagree_accept.Visible = true;
@@ -553,8 +538,7 @@ namespace TDPlugin.Forms
                         button_close_stngs_Click(sender, e);
                         button_disagree.BackColor = Color.LightSkyBlue;
                         disable_interface();
-                        textBox_comm.Text = "";
-                        textBox_comm.ReadOnly = false;
+                        textBox_comm.Visible = true;
 
                         label_advice_disagree.Visible = true;
                         button_disagree_accept.Visible = true;
@@ -571,8 +555,7 @@ namespace TDPlugin.Forms
                 button_close_stngs_Click(sender, e);
                 button_comment.BackColor = Color.LightSkyBlue;
                 disable_interface();
-                textBox_comm.Text = "";
-                textBox_comm.ReadOnly = false;
+                textBox_comm.Visible = true;
 
                 label_advice_com.Visible = true;
                 button_com_acept.Visible = true;
@@ -591,8 +574,6 @@ namespace TDPlugin.Forms
             but_file_next.Enabled = false;
             but_file_pr.Enabled = false;
             but_com_del.Enabled = false;
-            but_com_next.Enabled = false;
-            but_com_pr.Enabled = false;
 
             button_agree.Enabled = false;
             button_comment.Enabled = false;
@@ -611,8 +592,6 @@ namespace TDPlugin.Forms
             but_file_next.Enabled = true;
             but_file_pr.Enabled = true;
             but_com_del.Enabled = true;
-            but_com_next.Enabled = true;
-            but_com_pr.Enabled = true;
 
             button_agree.Enabled = true;
             button_comment.Enabled = true;
@@ -634,8 +613,9 @@ namespace TDPlugin.Forms
                 button_com_acept.Visible = false;
                 button_com_cancel.Visible = false;
 
-                but_com_next_Click(sender, e);
-                textBox_comm.ReadOnly = true;
+                get_comments();
+                textBox_comm.Visible = false;
+                textBox_comm.Text = "";
                 button_comment.BackColor = Color.Gainsboro;
             }
         }
@@ -643,14 +623,12 @@ namespace TDPlugin.Forms
         private void button_com_cancel_Click(object sender, EventArgs e)
         {
             enable_interface();
-            if (Hclass.comm != null)
-                textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
-            else textBox_comm.Text = "";
 
             label_advice_com.Visible = false;
             button_com_acept.Visible = false;
             button_com_cancel.Visible = false;
-            textBox_comm.ReadOnly = true;
+            textBox_comm.Visible = false;
+            textBox_comm.Text = "";
             button_comment.BackColor = Color.Gainsboro;
         }
 
@@ -665,8 +643,9 @@ namespace TDPlugin.Forms
                 button_disagree_accept.Visible = false;
                 button_disagree_cancel.Visible = false;
 
-                but_com_next_Click(sender, e);
-                textBox_comm.ReadOnly = true;
+                get_comments();
+                textBox_comm.Visible = false;
+                textBox_comm.Text = "";
                 button_disagree.BackColor = Color.Gainsboro;
             }
         }
@@ -674,14 +653,13 @@ namespace TDPlugin.Forms
         private void button_disagree_cancel_Click(object sender, EventArgs e)
         {
             enable_interface();
-            if (Hclass.comm != null) textBox_comm.Text = Hclass.comm.author + ": " + Hclass.comm.text;
-            else textBox_comm.Text = "";
 
             label_advice_disagree.Visible = false;
             button_disagree_accept.Visible = false;
             button_disagree_cancel.Visible = false;
 
-            textBox_comm.ReadOnly = true;
+            textBox_comm.Visible = false;
+            textBox_comm.Text = "";
             button_disagree.BackColor = Color.Gainsboro;
         }
 

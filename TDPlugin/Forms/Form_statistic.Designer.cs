@@ -29,15 +29,16 @@ namespace TDPlugin.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.but_mark_pr = new System.Windows.Forms.Button();
             this.but_mark_next = new System.Windows.Forms.Button();
-            this.textBox_comm = new System.Windows.Forms.TextBox();
             this.but_file_del = new System.Windows.Forms.Button();
-            this.but_com_next = new System.Windows.Forms.Button();
-            this.but_com_pr = new System.Windows.Forms.Button();
             this.but_com_del = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.but_file_next = new System.Windows.Forms.Button();
@@ -73,24 +74,30 @@ namespace TDPlugin.Forms
             this.textBox_lineto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel_footer = new System.Windows.Forms.Panel();
+            this.textBox_comm = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel_right = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lab_priority = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TextT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel_opt.SuspendLayout();
             this.panel_opt_vote.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel_footer.SuspendLayout();
@@ -100,7 +107,7 @@ namespace TDPlugin.Forms
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -157,18 +164,6 @@ namespace TDPlugin.Forms
             this.but_mark_next.UseVisualStyleBackColor = true;
             this.but_mark_next.Click += new System.EventHandler(this.but_mark_next_Click);
             // 
-            // textBox_comm
-            // 
-            this.textBox_comm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_comm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBox_comm.Location = new System.Drawing.Point(53, 163);
-            this.textBox_comm.Multiline = true;
-            this.textBox_comm.Name = "textBox_comm";
-            this.textBox_comm.ReadOnly = true;
-            this.textBox_comm.Size = new System.Drawing.Size(563, 131);
-            this.textBox_comm.TabIndex = 8;
-            this.textBox_comm.TabStop = false;
-            // 
             // but_file_del
             // 
             this.but_file_del.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
@@ -180,30 +175,6 @@ namespace TDPlugin.Forms
             this.but_file_del.Text = "Delete File";
             this.but_file_del.UseVisualStyleBackColor = true;
             this.but_file_del.Click += new System.EventHandler(this.but_file_del_Click);
-            // 
-            // but_com_next
-            // 
-            this.but_com_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_com_next.Location = new System.Drawing.Point(0, 32);
-            this.but_com_next.Name = "but_com_next";
-            this.but_com_next.Size = new System.Drawing.Size(40, 33);
-            this.but_com_next.TabIndex = 13;
-            this.but_com_next.TabStop = false;
-            this.but_com_next.Text = "▼";
-            this.but_com_next.UseVisualStyleBackColor = true;
-            this.but_com_next.Click += new System.EventHandler(this.but_com_next_Click);
-            // 
-            // but_com_pr
-            // 
-            this.but_com_pr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.but_com_pr.Location = new System.Drawing.Point(0, 0);
-            this.but_com_pr.Name = "but_com_pr";
-            this.but_com_pr.Size = new System.Drawing.Size(40, 33);
-            this.but_com_pr.TabIndex = 12;
-            this.but_com_pr.TabStop = false;
-            this.but_com_pr.Text = "▲";
-            this.but_com_pr.UseVisualStyleBackColor = true;
-            this.but_com_pr.Click += new System.EventHandler(this.but_com_pr_Click);
             // 
             // but_com_del
             // 
@@ -501,9 +472,9 @@ namespace TDPlugin.Forms
             // 
             this.button_close_stngs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_close_stngs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_close_stngs.Location = new System.Drawing.Point(8, 91);
+            this.button_close_stngs.Location = new System.Drawing.Point(3, 91);
             this.button_close_stngs.Name = "button_close_stngs";
-            this.button_close_stngs.Size = new System.Drawing.Size(60, 31);
+            this.button_close_stngs.Size = new System.Drawing.Size(105, 31);
             this.button_close_stngs.TabIndex = 40;
             this.button_close_stngs.TabStop = false;
             this.button_close_stngs.Text = "<<";
@@ -515,12 +486,12 @@ namespace TDPlugin.Forms
             // 
             this.button_open_stngs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.button_open_stngs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_open_stngs.Location = new System.Drawing.Point(8, 91);
+            this.button_open_stngs.Location = new System.Drawing.Point(3, 91);
             this.button_open_stngs.Name = "button_open_stngs";
-            this.button_open_stngs.Size = new System.Drawing.Size(60, 31);
+            this.button_open_stngs.Size = new System.Drawing.Size(105, 31);
             this.button_open_stngs.TabIndex = 41;
             this.button_open_stngs.TabStop = false;
-            this.button_open_stngs.Text = ">>";
+            this.button_open_stngs.Text = "Feedback";
             this.button_open_stngs.UseVisualStyleBackColor = true;
             this.button_open_stngs.Click += new System.EventHandler(this.button_open_stngs_Click);
             // 
@@ -597,9 +568,9 @@ namespace TDPlugin.Forms
             this.label_advice_disagree.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.label_advice_disagree.Location = new System.Drawing.Point(3, 3);
             this.label_advice_disagree.Name = "label_advice_disagree";
-            this.label_advice_disagree.Size = new System.Drawing.Size(384, 24);
+            this.label_advice_disagree.Size = new System.Drawing.Size(382, 24);
             this.label_advice_disagree.TabIndex = 46;
-            this.label_advice_disagree.Text = "Write below why you disagree with this isuue";
+            this.label_advice_disagree.Text = "Write below why you disagree with this issue";
             this.label_advice_disagree.Visible = false;
             // 
             // textBox_linefrom
@@ -646,17 +617,6 @@ namespace TDPlugin.Forms
             this.label5.TabIndex = 50;
             this.label5.Text = ":";
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.but_com_pr);
-            this.panel3.Controls.Add(this.but_com_next);
-            this.panel3.Location = new System.Drawing.Point(6, 13);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(42, 67);
-            this.panel3.TabIndex = 52;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -694,6 +654,17 @@ namespace TDPlugin.Forms
             this.panel_footer.Name = "panel_footer";
             this.panel_footer.Size = new System.Drawing.Size(626, 53);
             this.panel_footer.TabIndex = 55;
+            // 
+            // textBox_comm
+            // 
+            this.textBox_comm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_comm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_comm.Location = new System.Drawing.Point(10, 163);
+            this.textBox_comm.Multiline = true;
+            this.textBox_comm.Name = "textBox_comm";
+            this.textBox_comm.Size = new System.Drawing.Size(606, 131);
+            this.textBox_comm.TabIndex = 39;
+            this.textBox_comm.Visible = false;
             // 
             // panel6
             // 
@@ -733,6 +704,8 @@ namespace TDPlugin.Forms
             // 
             // panel_right
             // 
+            this.panel_right.Controls.Add(this.label9);
+            this.panel_right.Controls.Add(this.label8);
             this.panel_right.Controls.Add(this.panel1);
             this.panel_right.Controls.Add(this.panel2);
             this.panel_right.Controls.Add(this.button_close_stngs);
@@ -745,6 +718,26 @@ namespace TDPlugin.Forms
             this.panel_right.Name = "panel_right";
             this.panel_right.Size = new System.Drawing.Size(276, 128);
             this.panel_right.TabIndex = 58;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label9.Location = new System.Drawing.Point(114, 95);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(71, 24);
+            this.label9.TabIndex = 58;
+            this.label9.Text = "Author:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label8.Location = new System.Drawing.Point(180, 95);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 24);
+            this.label8.TabIndex = 57;
+            this.label8.Text = "root";
             // 
             // panel10
             // 
@@ -779,6 +772,8 @@ namespace TDPlugin.Forms
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.label7);
+            this.panel8.Controls.Add(this.lab_priority);
             this.panel8.Controls.Add(this.label3);
             this.panel8.Controls.Add(this.label1);
             this.panel8.Controls.Add(this.label6);
@@ -788,13 +783,32 @@ namespace TDPlugin.Forms
             this.panel8.Size = new System.Drawing.Size(123, 163);
             this.panel8.TabIndex = 55;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label7.Location = new System.Drawing.Point(36, 95);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 24);
+            this.label7.TabIndex = 56;
+            this.label7.Text = "value";
+            // 
+            // lab_priority
+            // 
+            this.lab_priority.AutoSize = true;
+            this.lab_priority.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.lab_priority.Location = new System.Drawing.Point(97, 95);
+            this.lab_priority.Name = "lab_priority";
+            this.lab_priority.Size = new System.Drawing.Size(20, 24);
+            this.lab_priority.TabIndex = 55;
+            this.lab_priority.Text = "3";
+            // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.panel3);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 163);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(53, 131);
+            this.panel5.Size = new System.Drawing.Size(10, 131);
             this.panel5.TabIndex = 57;
             // 
             // panel7
@@ -805,14 +819,66 @@ namespace TDPlugin.Forms
             this.panel7.Size = new System.Drawing.Size(10, 131);
             this.panel7.TabIndex = 58;
             // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Author,
+            this.TextT});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 163);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(606, 131);
+            this.dataGridView1.TabIndex = 59;
+            this.dataGridView1.TabStop = false;
+            // 
+            // Author
+            // 
+            this.Author.FillWeight = 66.33499F;
+            this.Author.HeaderText = "Author";
+            this.Author.Name = "Author";
+            this.Author.ReadOnly = true;
+            this.Author.Width = 200;
+            // 
+            // TextT
+            // 
+            this.TextT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TextT.DefaultCellStyle = dataGridViewCellStyle3;
+            this.TextT.FillWeight = 133.665F;
+            this.TextT.HeaderText = "Text";
+            this.TextT.Name = "TextT";
+            this.TextT.ReadOnly = true;
+            // 
             // Form_Statistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 347);
-            this.Controls.Add(this.panel_opt_vote);
-            this.Controls.Add(this.panel_opt);
             this.Controls.Add(this.textBox_comm);
+            this.Controls.Add(this.panel_opt);
+            this.Controls.Add(this.panel_opt_vote);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel6);
@@ -825,7 +891,6 @@ namespace TDPlugin.Forms
             this.panel1.PerformLayout();
             this.panel_opt.ResumeLayout(false);
             this.panel_opt_vote.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel_footer.ResumeLayout(false);
@@ -840,7 +905,7 @@ namespace TDPlugin.Forms
             this.panel11.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -853,10 +918,7 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button but_mark_pr;
         private System.Windows.Forms.Button but_mark_next;
-        private System.Windows.Forms.TextBox textBox_comm;
         private System.Windows.Forms.Button but_file_del;
-        private System.Windows.Forms.Button but_com_next;
-        private System.Windows.Forms.Button but_com_pr;
         private System.Windows.Forms.Button but_com_del;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button but_file_next;
@@ -892,7 +954,6 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.TextBox textBox_lineto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel_footer;
@@ -906,5 +967,13 @@ namespace TDPlugin.Forms
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label lab_priority;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBox_comm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Author;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TextT;
     }
 }
