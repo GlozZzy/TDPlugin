@@ -76,6 +76,7 @@
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidTDPluginPackageCmdSet1" id="MarkBadCodeId" priority="0x0100" type="Button">
         <Parent guid="guidTDPluginPackageCmdSet1" id="EditorContextMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Mark bad code</ButtonText>
         </Strings>
@@ -105,9 +106,9 @@
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidImages" href="Resources\MarkBadCode.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
-      <Bitmap guid="guidImages1" href="Resources\Command2.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
-      <Bitmap guid="guidImages3" href="Resources\Change_BD_info.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages" href="Resources\yellow_notepad.png" usedList="bmpPic1" />
+      <Bitmap guid="guidImages1" href="Resources\statistic.png" usedList="bmpPic1" />
+      <Bitmap guid="guidImages3" href="Resources\database.png" usedList="bmpPic1" />
     </Bitmaps>
   </Commands>
 

@@ -97,6 +97,12 @@ namespace TDPlugin
 
         private void run()
         {
+            /*ConnectionSettings.Default.host = "";
+            ConnectionSettings.Default.port = "";
+            ConnectionSettings.Default.username = "";
+            ConnectionSettings.Default.password = "";
+            ConnectionSettings.Default.namedb = "";
+            ConnectionSettings.Default.Save();*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form_DBinfo());

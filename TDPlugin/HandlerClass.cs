@@ -38,30 +38,21 @@ namespace TDPlugin
 
         public string[] get_dbinfo()
         {
-            string[] DBinfo = new string[5];
-            using (StreamReader sr = new StreamReader(@"..\..\Resources\CurDBInfo.txt", Encoding.Default))
-            {
-                string line;
-                int i = 0;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    DBinfo[i] = line;
-                    i++;
-                }
-            }
-            return DBinfo;
+            return new string[] { ConnectionSettings.Default.host,
+                                    ConnectionSettings.Default.port,
+                                    ConnectionSettings.Default.username,
+                                    ConnectionSettings.Default.password,
+                                    ConnectionSettings.Default.namedb};
         }
 
         public void set_dbinfo(string host, string port, string username, string password, string namedb)
         {
-            using (StreamWriter sw = new StreamWriter(@"..\..\Resources\CurDBInfo.txt", false, System.Text.Encoding.Default))
-            {
-                sw.WriteLine(host);
-                sw.WriteLine(port);
-                sw.WriteLine(username);
-                sw.WriteLine(password);
-                sw.WriteLine(namedb);
-            }
+            ConnectionSettings.Default.host = host;
+            ConnectionSettings.Default.port = port;
+            ConnectionSettings.Default.username = username;
+            ConnectionSettings.Default.password = password;
+            ConnectionSettings.Default.namedb = namedb;
+            ConnectionSettings.Default.Save();
         }
 
 
