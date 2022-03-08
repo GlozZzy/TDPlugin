@@ -27,7 +27,7 @@ namespace TDPlugin
         /// <summary>
         /// Command menu group (command set GUID).
         /// </summary>
-        public static readonly Guid CommandSet = new Guid("41456ae2-dfa9-48ac-a6c0-370020b31f5a");
+        public static readonly Guid CommandSet = new Guid("d5d8efc6-dc17-4229-9088-dddf76ac0ae4");
 
         /// <summary>
         /// VS Package that provides this command, not null.
