@@ -27,6 +27,7 @@ namespace TDPlugin
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(TDPluginPackage.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideToolWindow(typeof(TDPlugin.ToolWindows.ToolWindowStat))]
     public sealed class TDPluginPackage : AsyncPackage
     {
         /// <summary>

@@ -9,8 +9,9 @@ using Task = System.Threading.Tasks.Task;
 using System.Diagnostics;
 using System.Windows.Forms;
 using TDPlugin.Forms;
-
-
+using Microsoft.VisualStudio.TextManager.Interop;
+using TDPlugin.Models;
+using EnvDTE;
 
 namespace TDPlugin
 {
@@ -92,9 +93,40 @@ namespace TDPlugin
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event args.</param>
+        /// 
+
+        private TextViewSelection GetSelection(IServiceProvider serviceProvider)
+        {
+            var service = serviceProvider.GetService(typeof(SVsTextManager));
+            var textManager = service as IVsTextManager2;
+            IVsTextView view;
+            int result = textManager.GetActiveView2(1, null, (uint)_VIEWFRAMETYPE.vftCodeWindow, out view);
+
+            view.GetSelection(out int startLine, out int startColumn, out int endLine, out int endColumn);//end could be before beginning
+            var start = new TextViewPosition(startLine, startColumn);
+            var end = new TextViewPosition(endLine, endColumn);
+
+            view.GetSelectedText(out string selectedText);
+
+            TextViewSelection selection = new TextViewSelection(start, end, selectedText);
+            return selection;
+        }
+
+
+        private string GetActiveDocumentFilePath(IServiceProvider serviceProvider)
+        {
+            EnvDTE80.DTE2 applicationObject = serviceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
+            return applicationObject.ActiveDocument.FullName;
+        }
+
+
         private void Execute(object sender, EventArgs e)
         {
-            Thread myThread = new Thread(new ThreadStart(run));
+            TextViewSelection selection = GetSelection((IServiceProvider)ServiceProvider);
+            string activeDocumentPath = GetActiveDocumentFilePath((IServiceProvider)ServiceProvider);
+            //ShowAddDocumentationWindow(activeDocumentPath, selection);
+
+            System.Threading.Thread myThread = new System.Threading.Thread(new ThreadStart(run));
             myThread.Start();
         }
 

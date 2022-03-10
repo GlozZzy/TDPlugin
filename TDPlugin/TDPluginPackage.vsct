@@ -39,8 +39,7 @@
 
     <Menus>
       <Menu guid="guidTDPluginPackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
-        <Parent guid="guidSHLMainMenu"
-                id="IDG_VS_MM_TOOLSADDINS" />
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
           <ButtonText>TestMenu</ButtonText>
           <CommandName>TDPlugin</CommandName>
