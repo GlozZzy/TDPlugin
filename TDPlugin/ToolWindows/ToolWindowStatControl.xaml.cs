@@ -12,12 +12,12 @@ namespace TDPlugin.ToolWindows
     /// <summary>
     /// Interaction logic for ToolWindowMarkControl.
     /// </summary>
-    public partial class ToolWindowMarkControl : UserControl
+    public partial class ToolWindowStatControl : UserControl
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolWindowMarkControl"/> class.
         /// </summary>
-        public ToolWindowMarkControl()
+        public ToolWindowStatControl()
         {
             this.InitializeComponent();
         }
