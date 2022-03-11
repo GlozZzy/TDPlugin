@@ -119,15 +119,21 @@ namespace TDPlugin
             return applicationObject.ActiveDocument.FullName;
         }
 
+        private void ShowAddDocumentationWindow(string activeDocumentPath, TextViewSelection selection)
+        {
+            var documentationControl = new AddDocumentationWindow();
+            documentationControl.tst = selection;
+            documentationControl.abc = activeDocumentPath;
+            documentationControl.ShowDialog();
+        }
 
         private void Execute(object sender, EventArgs e)
         {
             TextViewSelection selection = GetSelection((IServiceProvider)ServiceProvider);
             string activeDocumentPath = GetActiveDocumentFilePath((IServiceProvider)ServiceProvider);
-            //ShowAddDocumentationWindow(activeDocumentPath, selection);
-
-            System.Threading.Thread myThread = new System.Threading.Thread(new ThreadStart(run));
-            myThread.Start();
+            ShowAddDocumentationWindow(activeDocumentPath, selection);
+            //System.Threading.Thread myThread = new System.Threading.Thread(new ThreadStart(run));
+            //myThread.Start();
         }
 
         private void run() 

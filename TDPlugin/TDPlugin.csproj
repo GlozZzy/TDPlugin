@@ -51,6 +51,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ConnectionSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\AddDocumentationWindow.xaml.cs">
+      <DependentUpon>AddDocumentationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\BaseDialogWindow.cs" />
     <Compile Include="HandlerClass.cs" />
     <Compile Include="ClassTables\comments_table.cs" />
     <Compile Include="ClassTables\files_table.cs" />
@@ -150,14 +154,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="DialogWindows\AddDocumentationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ToolWindows\ToolWindowStatControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DialogWindows\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TDPlugin.Models
 {
-    struct TextViewSelection
+    public struct TextViewSelection
     {
         public TextViewPosition StartPosition { get; set; }
         public TextViewPosition EndPosition { get; set; }
