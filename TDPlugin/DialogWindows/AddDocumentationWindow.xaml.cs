@@ -21,11 +21,10 @@ namespace TDPlugin
     /// </summary>
     public partial class AddDocumentationWindow
     {
-        public string abc;
-        public TextViewSelection tst;
-        public AddDocumentationWindow()
+        public AddDocumentationWindow(string filename, TextViewSelection selection)
         {
             InitializeComponent();
+            SelectionTextBox.Text = selection.Text;
         }
     }
 }

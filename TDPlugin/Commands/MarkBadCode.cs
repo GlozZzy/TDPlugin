@@ -121,9 +121,7 @@ namespace TDPlugin
 
         private void ShowAddDocumentationWindow(string activeDocumentPath, TextViewSelection selection)
         {
-            var documentationControl = new AddDocumentationWindow();
-            documentationControl.tst = selection;
-            documentationControl.abc = activeDocumentPath;
+            var documentationControl = new AddDocumentationWindow(activeDocumentPath, selection);
             documentationControl.ShowDialog();
         }
 
