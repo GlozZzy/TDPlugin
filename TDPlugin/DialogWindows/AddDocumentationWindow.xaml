@@ -48,9 +48,7 @@
             <StackPanel >
                 <TextBlock Text="Documentation for: " Margin="5" />
                 <TextBox Grid.Row="1" x:Name="SelectionTextBox" Margin="5" IsReadOnly="True" MaxHeight="100" 
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Text="{Binding SelectionText, Mode=OneWay}"
-                         />
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="2" Background="#F7F7D5" Padding="5">
@@ -58,16 +56,13 @@
                 <TextBlock Margin="5">Documentation:</TextBlock>
                 <TextBox Grid.Row="3" x:Name="DocumentationTextBox"
                          AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="5"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Text="{Binding DocumentationText}"/>
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="3" Background="#FFE1E1E1" Padding="5">
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Margin="5" Padding="5" Command="{Binding SaveCommand}" >Save</Button>
-                <Button Margin="5" Padding="5" Command="{Binding DeleteCommand}" 
-                        Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}">Delete</Button>
-                <Button Margin="5" Padding="5" Command="{Binding CancelCommand}">Cancel</Button>
+                <Button Margin="5" Padding="5" Click="OnSave">Save</Button>
+                <Button Margin="5" Padding="5" Click="OnCancel">Cancel</Button>
             </StackPanel>
         </Border>
     </Grid>

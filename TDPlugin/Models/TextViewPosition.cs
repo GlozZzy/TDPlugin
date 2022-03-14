@@ -44,5 +44,10 @@ namespace TDPlugin.Models
         {
             return a > b ? a : b;
         }
+
+        public bool Equals(TextViewPosition other)
+        {
+            return _column == other._column && _line == other._line;
+        }
     }
 }

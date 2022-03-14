@@ -55,6 +55,9 @@
       <DependentUpon>AddDocumentationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\BaseDialogWindow.cs" />
+    <Compile Include="Services\DocumentationFileHandler.cs" />
+    <Compile Include="Services\DocumentationFileSerializer.cs" />
+    <Compile Include="Models\FileDocumentation.cs" />
     <Compile Include="HandlerClass.cs" />
     <Compile Include="ClassTables\comments_table.cs" />
     <Compile Include="ClassTables\files_table.cs" />
