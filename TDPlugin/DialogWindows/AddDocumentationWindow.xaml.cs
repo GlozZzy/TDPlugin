@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TDPlugin.Models;
 using TDPlugin.Services;
+using TDPlugin.Events;
 
 namespace TDPlugin
 {
@@ -22,18 +23,18 @@ namespace TDPlugin
     /// </summary>
     public partial class AddDocumentationWindow
     {
+        public IEventAggregator EventAggregator { get; set; }
+        private string _documentPath;
+        private TextViewSelection _selectionText;
+
         public AddDocumentationWindow(string documentPath, TextViewSelection selection)
         {
             InitializeComponent();
             this._documentPath = documentPath;
             this._selectionText = selection;
+            EventAggregator = MefServices.ComponentModel.GetService<IEventAggregator>();
             this.Loaded += (s, e) => this.SelectionTextBox.Text = selection.Text;
-            InitializeComponent();
-            SelectionTextBox.Text = selection.Text;
         }
-
-        private string _documentPath;
-        private TextViewSelection _selectionText;
 
         private void OnCancel(object sender, RoutedEventArgs e)
         {
@@ -55,8 +56,12 @@ namespace TDPlugin
             };
             try
             {
-                DocumentationFileHandler.AddDocumentationFragment(newDocFragment, this._documentPath + ".doc");
+                string filepath = this._documentPath + Consts.CODY_DOCS_EXTENSION;
+                DocumentationFileHandler.AddDocumentationFragment(newDocFragment, filepath);
                 MessageBox.Show("Documentation added successfully.");
+                EventAggregator.SendMessage<DocumentationAddedEvent>(
+                    new DocumentationAddedEvent() { Filepath = filepath }
+                    );
                 this.Close();
             }
             catch (Exception ex)

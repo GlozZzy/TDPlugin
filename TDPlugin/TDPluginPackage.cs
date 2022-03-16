@@ -1,7 +1,9 @@
-﻿using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using TDPlugin.Services;
 using Task = System.Threading.Tasks.Task;
 
 
@@ -52,6 +54,7 @@ namespace TDPlugin
             await MarkBadCode.InitializeAsync(this);
             await Show_statistics.InitializeAsync(this);
             await Change_DB_info.InitializeAsync(this);
+            MefServices.ComponentModel = await this.GetServiceAsync(typeof(SComponentModel)) as IComponentModel;
         }
 
         #endregion

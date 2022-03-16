@@ -33,7 +33,7 @@ namespace TDPlugin
         /// <summary>
         /// VS Package that provides this command, not null.
         /// </summary>
-        private readonly AsyncPackage package;
+        private readonly Package package;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkBadCode"/> class.
@@ -41,14 +41,22 @@ namespace TDPlugin
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private MarkBadCode(AsyncPackage package, OleMenuCommandService commandService)
+        private MarkBadCode(Package package)
         {
-            this.package = package ?? throw new ArgumentNullException(nameof(package));
-            commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
+            if (package == null)
+            {
+                throw new ArgumentNullException("package");
+            }
 
-            var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
-            commandService.AddCommand(menuItem);
+            this.package = package;
+
+            OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            if (commandService != null)
+            {
+                var menuCommandID = new CommandID(CommandSet, CommandId);
+                var menuItem = new MenuCommand(this.Execute, menuCommandID);
+                commandService.AddCommand(menuItem);
+            }
         }
 
 
@@ -64,7 +72,7 @@ namespace TDPlugin
         /// <summary>
         /// Gets the service provider from the owner package.
         /// </summary>
-        private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider
+        private IServiceProvider ServiceProvider
         {
             get
             {
@@ -78,12 +86,7 @@ namespace TDPlugin
         /// <param name="package">Owner package, not null.</param>
         public static async Task InitializeAsync(AsyncPackage package)
         {
-            // Switch to the main thread - the call to AddCommand in MarkBadCode's constructor requires
-            // the UI thread.
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
-
-            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-            Instance = new MarkBadCode(package, commandService);
+            Instance = new MarkBadCode(package);
         }
 
         /// <summary>
@@ -103,12 +106,16 @@ namespace TDPlugin
             int result = textManager.GetActiveView2(1, null, (uint)_VIEWFRAMETYPE.vftCodeWindow, out view);
 
             view.GetSelection(out int startLine, out int startColumn, out int endLine, out int endColumn);//end could be before beginning
-            var start = new TextViewPosition(startLine, startColumn);
-            var end = new TextViewPosition(endLine, endColumn);
+
+            int ok = view.GetNearestPosition(startLine, startColumn, out int position1, out int piVirtualSpaces);
+            ok = view.GetNearestPosition(endLine, endColumn, out int position2, out piVirtualSpaces);
+
+            var startPosition = Math.Min(position1, position2);
+            var endPosition = Math.Max(position1, position2);
 
             view.GetSelectedText(out string selectedText);
 
-            TextViewSelection selection = new TextViewSelection(start, end, selectedText);
+            TextViewSelection selection = new TextViewSelection(startPosition, endPosition, selectedText);
             return selection;
         }
 

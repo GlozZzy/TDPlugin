@@ -55,6 +55,10 @@
       <DependentUpon>AddDocumentationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\BaseDialogWindow.cs" />
+    <Compile Include="Events\DocumentationAddedEvent.cs" />
+    <Compile Include="Events\EventAggregator.cs" />
+    <Compile Include="Events\EventAggregatorExport.cs" />
+    <Compile Include="Services\Consts.cs" />
     <Compile Include="Services\DocumentationFileHandler.cs" />
     <Compile Include="Services\DocumentationFileSerializer.cs" />
     <Compile Include="Models\FileDocumentation.cs" />
@@ -90,7 +94,11 @@
     <Compile Include="Models\TextViewPosition.cs" />
     <Compile Include="Models\TextViewSelection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MefServices.cs" />
     <Compile Include="TDPluginPackage.cs" />
+    <Compile Include="TextFormatting\DocumentedCodeHighlighter\DocumentedCodeFormatDefinition.cs" />
+    <Compile Include="TextFormatting\DocumentedCodeHighlighter\DocumentedCodeHighlighterTagger.cs" />
+    <Compile Include="TextFormatting\DocumentedCodeHighlighter\DocumentedCodeHighlighterTaggerProvider.cs" />
     <Compile Include="ToolWindows\ToolWindowStat.cs" />
     <Compile Include="ToolWindows\ToolWindowStatControl.xaml.cs">
       <DependentUpon>ToolWindowStatControl.xaml</DependentUpon>
