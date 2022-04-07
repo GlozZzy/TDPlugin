@@ -1,11 +1,16 @@
-﻿using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.Shell;
-using System;
+﻿using System;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Runtime.InteropServices;
-using System.Threading;
 using TDPlugin.Services;
-using Task = System.Threading.Tasks.Task;
-
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.OLE.Interop;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.Win32;
 
 namespace TDPlugin
 {
@@ -26,16 +31,31 @@ namespace TDPlugin
     /// To get loaded into VS, the package must be referred by &lt;Asset Type="Microsoft.VisualStudio.VsPackage" ...&gt; in .vsixmanifest file.
     /// </para>
     /// </remarks>
-    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
+    [PackageRegistration(UseManagedResourcesOnly = true)]
+    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [Guid(TDPluginPackage.PackageGuidString)]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideToolWindow(typeof(TDPlugin.ToolWindows.ToolWindowStat))]
-    public sealed class TDPluginPackage : AsyncPackage
+    [ProvideAutoLoad(VSConstants.UICONTEXT.NoSolution_string)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string)]
+    public sealed class TDPluginPackage : Package
     {
         /// <summary>
         /// TDPluginPackage GUID string.
         /// </summary>
-        public const string PackageGuidString = "24e172b4-7b4d-4d1f-a38c-15598b5f72e4";
+        public const string PackageGuidString = "d7e6db18-6f70-496a-a8c6-09bc7b05d466";
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TDPluginPackage"/> class.
+        /// </summary>
+        public TDPluginPackage()
+        {
+            // Inside this method you can place any initialization code that does not require
+            // any Visual Studio service because at this point the package object is created but
+            // not sited yet inside Visual Studio environment. The place to do all the other
+            // initialization is the Initialize method.
+        }
 
         #region Package Members
 
@@ -43,18 +63,16 @@ namespace TDPlugin
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
         /// </summary>
-        /// <param name="cancellationToken">A cancellation token to monitor for initialization cancellation, which can occur when VS is shutting down.</param>
-        /// <param name="progress">A provider for progress updates.</param>
-        /// <returns>A task representing the async work of package initialization, or an already completed task if there is none. Do not return null from this method.</returns>
-        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override void Initialize()
         {
-            // When initialized asynchronously, the current thread may be a background thread at this point.
-            // Do any initialization that requires the UI thread after switching to the UI thread.
-            await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            await MarkBadCode.InitializeAsync(this);
-            await Show_statistics.InitializeAsync(this);
-            await Change_DB_info.InitializeAsync(this);
-            MefServices.ComponentModel = await this.GetServiceAsync(typeof(SComponentModel)) as IComponentModel;
+            base.Initialize();
+            DocumentLifetimeManager.Initialize(this);
+            ShowProjectStatistics.Initialize(this);
+            MarkBadCode.Initialize(this);
+            //VisualStudioServices.InitializeAsync(this);
+
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
+                VisualStudioServices.ComponentModel = this.GetService(typeof(SComponentModel)) as IComponentModel);
         }
 
         #endregion

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment.YellowNotepadAdornment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             x:Name="YellowNotepadAdornmentUserControl"
+             Padding="0">
+    <Grid>
+    <Image x:Name="AdornmentImage"
+        Source="../../Resources/yellow_notepad.png" Margin="3 0 1 0"
+           MouseEnter="OnMouseEnterImage"
+           MouseLeave="OnMouseLeaveImage"
+           Cursor="Hand"
+           MouseLeftButtonUp="OnClick"/>
+        <Popup x:Name="HoverPopup"
+            PlacementTarget="{Binding ElementName=AdornmentImage}"
+               Placement="Custom"
+               Focusable="False"
+               MouseLeave="OnMouseLeavePopup"
+               IsOpen="False" 
+               StaysOpen="True"
+               Width="350">
+            <Border Background="LightGray" BorderBrush="#EFEFEF" BorderThickness="1" 
+                    Padding="3 2 3 4" >
+
+                <TextBlock Text="{Binding DocumentationTag.DocumentationFragmentText, ElementName=YellowNotepadAdornmentUserControl}"
+                           TextWrapping="Wrap"
+                           ></TextBlock>
+            </Border>
+            
+        </Popup>
+    </Grid>
+        
+        
+    
+
+</UserControl>

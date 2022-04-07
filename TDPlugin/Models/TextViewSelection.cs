@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TDPlugin.Models
+namespace TDPlugin
 {
     public struct TextViewSelection
     {

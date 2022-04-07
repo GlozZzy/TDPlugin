@@ -1,17 +1,13 @@
-﻿using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using System;
+﻿using System;
 using System.ComponentModel.Design;
 using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using Task = System.Threading.Tasks.Task;
-using System.Diagnostics;
-using System.Windows.Forms;
-using TDPlugin.Forms;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
-using TDPlugin.Models;
 using EnvDTE;
+//using Microsoft.VisualStudio.OLE.Interop;
+using System.Diagnostics;
+using TDPlugin.Dialogs;
 
 namespace TDPlugin
 {
@@ -23,7 +19,7 @@ namespace TDPlugin
         /// <summary>
         /// Command ID.
         /// </summary>
-        public const int CommandId = 0x0100;
+        public const int CommandId = 256;
 
         /// <summary>
         /// Command menu group (command set GUID).
@@ -36,11 +32,10 @@ namespace TDPlugin
         private readonly Package package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MarkBadCode"/> class.
+        /// Initializes a new instance of the <see cref="DocumentCodeSpanCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        /// <param name="commandService">Command service to add command to, not null.</param>
         private MarkBadCode(Package package)
         {
             if (package == null)
@@ -54,11 +49,10 @@ namespace TDPlugin
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.Execute, menuCommandID);
+                var menuItem = new MenuCommand(this.MenuItemCallback, menuCommandID);
                 commandService.AddCommand(menuItem);
             }
         }
-
 
         /// <summary>
         /// Gets the instance of the command.
@@ -84,7 +78,7 @@ namespace TDPlugin
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static void Initialize(Package package)
         {
             Instance = new MarkBadCode(package);
         }
@@ -96,7 +90,26 @@ namespace TDPlugin
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event args.</param>
-        /// 
+        private void MenuItemCallback(object sender, EventArgs e)
+        {
+            TextViewSelection selection = GetSelection(ServiceProvider);
+            string activeDocumentPath = GetActiveDocumentFilePath(ServiceProvider);
+            ShowAddDocumentationWindow(activeDocumentPath, selection);
+        }
+
+        private void ShowAddDocumentationWindow(string activeDocumentPath, TextViewSelection selection)
+        {
+            var documentationControl = new AddDocumentationWindow();
+            documentationControl.DataContext = new EditDocumentationViewModel(activeDocumentPath, selection);
+            documentationControl.ShowDialog();
+        }
+
+        private string GetActiveDocumentFilePath(IServiceProvider serviceProvider)
+        {
+            EnvDTE80.DTE2 applicationObject = serviceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
+            return applicationObject.ActiveDocument.FullName;
+            
+        }
 
         private TextViewSelection GetSelection(IServiceProvider serviceProvider)
         {
@@ -117,35 +130,6 @@ namespace TDPlugin
 
             TextViewSelection selection = new TextViewSelection(startPosition, endPosition, selectedText);
             return selection;
-        }
-
-
-        private string GetActiveDocumentFilePath(IServiceProvider serviceProvider)
-        {
-            EnvDTE80.DTE2 applicationObject = serviceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
-            return applicationObject.ActiveDocument.FullName;
-        }
-
-        private void ShowAddDocumentationWindow(string activeDocumentPath, TextViewSelection selection)
-        {
-            var documentationControl = new AddDocumentationWindow(activeDocumentPath, selection);
-            documentationControl.ShowDialog();
-        }
-
-        private void Execute(object sender, EventArgs e)
-        {
-            TextViewSelection selection = GetSelection((IServiceProvider)ServiceProvider);
-            string activeDocumentPath = GetActiveDocumentFilePath((IServiceProvider)ServiceProvider);
-            ShowAddDocumentationWindow(activeDocumentPath, selection);
-            //System.Threading.Thread myThread = new System.Threading.Thread(new ThreadStart(run));
-            //myThread.Start();
-        }
-
-        private void run() 
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_Mark());
         }
     }
 }

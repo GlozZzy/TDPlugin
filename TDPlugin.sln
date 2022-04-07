@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31005.135
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDPlugin", "TDPlugin\TDPlugin.csproj", "{7B4A09FE-7A5A-4986-8B91-EAAE830EAB85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDPlugin", "TDPlugin\TDPlugin.csproj", "{31008CE0-2AFF-4980-988C-4478DB4270C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7B4A09FE-7A5A-4986-8B91-EAAE830EAB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B4A09FE-7A5A-4986-8B91-EAAE830EAB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B4A09FE-7A5A-4986-8B91-EAAE830EAB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B4A09FE-7A5A-4986-8B91-EAAE830EAB85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31008CE0-2AFF-4980-988C-4478DB4270C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31008CE0-2AFF-4980-988C-4478DB4270C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31008CE0-2AFF-4980-988C-4478DB4270C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31008CE0-2AFF-4980-988C-4478DB4270C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BB9EE125-410A-479D-98C1-BD1A114CB904}
+		SolutionGuid = {53EF0AC0-D355-4B60-9AE0-82EDB25945EB}
 	EndGlobalSection
 EndGlobal

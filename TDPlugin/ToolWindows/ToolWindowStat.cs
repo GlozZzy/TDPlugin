@@ -15,7 +15,7 @@ namespace TDPlugin.ToolWindows
     /// implementation of the IVsUIElementPane interface.
     /// </para>
     /// </remarks>
-    [Guid("d5972dae-37f1-4944-9de0-91e28d806f10")]
+    [Guid("69c0b337-59d8-4591-8cbd-a59603459d56")]
     public class ToolWindowStat : ToolWindowPane
     {
         /// <summary>
