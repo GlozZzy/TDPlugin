@@ -114,7 +114,10 @@ namespace TDPlugin.Dialogs
 
             var newDocFragment = new DocumentationFragment()
             {
-                Documentation = DocumentationText,
+                Documentation = new SelectionDocumentation()
+                {
+                    Description = DocumentationText
+                },
                 Selection = this._selection,
             };
             try

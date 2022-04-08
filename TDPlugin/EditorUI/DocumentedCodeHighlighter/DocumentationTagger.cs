@@ -80,7 +80,7 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
             {
                 Span span = fragment.GetSpan();
                 var trackingSpan = currentSnapshot.CreateTrackingSpan(span, SpanTrackingMode.EdgeExclusive);
-                _trackingSpans.Add(trackingSpan, fragment.Documentation);
+                _trackingSpans.Add(trackingSpan, fragment.Documentation.Description);
             }
         }
 
@@ -146,7 +146,10 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
                         EndPosition = ts.Key.GetEndPoint(currentSnapshot),
                         Text = ts.Key.GetText(currentSnapshot)
                     },
-                    Documentation = ts.Value,
+                    Documentation = new SelectionDocumentation()
+                    {
+                        Description = ts.Value
+                    },
 
                 }).ToList();
             
@@ -162,7 +165,7 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
             {
                 var span = e.DocumentationFragment.GetSpan();
                 var trackingSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(span, SpanTrackingMode.EdgeExclusive);
-                _trackingSpans.Add(trackingSpan, e.DocumentationFragment.Documentation);
+                _trackingSpans.Add(trackingSpan, e.DocumentationFragment.Documentation.Description);
                 TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
                     new SnapshotSpan(_buffer.CurrentSnapshot, span)));
                 MarkDocumentAsUnsaved();

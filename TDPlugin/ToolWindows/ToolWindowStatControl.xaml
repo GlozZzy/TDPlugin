@@ -3,20 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
-             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
-             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"             
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             Name="MyToolWindow">
-    <Grid>
+             Name="MyToolWindow" GotFocus="Update">
+    <Grid Background="#F7F7D5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical">
-            <TextBlock x:Name="ald1" Margin="10" HorizontalAlignment="Center" Text="dfdsfsdfsd"/>
-            <Button Content="Click me!" Click="button1_Click" Height="80" x:Name="button1" Margin="90,0"/>
+            <Button Content="Update" Click="updatebutton_Click" Height="28" x:Name="updatebutton" Margin="10,10"/>
+            <TextBlock Text="Issues:" Margin="10,0" FontWeight="Bold" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="10,0">
+                <TextBlock Margin="0,0,10,0">Open issues by date</TextBlock>
+                <Button Background="#F7F7D5" Cursor="Hand" BorderBrush="#F7F7D5" Click="filter_Click">filter issues</Button>
+            </StackPanel>
+            <TextBlock Text="123" x:Name="issues_textblock" Margin="10" Height="203"/>
         </StackPanel>
     </Grid>
 </UserControl>

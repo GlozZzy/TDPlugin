@@ -29,9 +29,19 @@ namespace TDPlugin.ToolWindows
         /// <param name="e">The event args.</param>
         [SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Sample code")]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void updatebutton_Click(object sender, RoutedEventArgs e)
         {
-            ald1.Text = "123";
+            issues_textblock.Text = "click";
+        }
+
+        private void filter_Click(object sender, RoutedEventArgs e)
+        {
+            issues_textblock.Text = "filter";
+        }
+
+        private void Update(object sender, RoutedEventArgs e)
+        {
+            issues_textblock.Text = "update";
         }
     }
 }
