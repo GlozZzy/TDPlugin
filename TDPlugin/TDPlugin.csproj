@@ -54,6 +54,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\ChangeUsername.cs" />
+    <Compile Include="ClientSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ClientSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ChangeUsernameWindow.xaml.cs">
+      <DependentUpon>ChangeUsernameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\EditDocumentationViewModel.cs" />
     <Compile Include="EditorUI\DocumentedCodeEditIntraTextAdornment\EditDocumentationAdornmentTagger.cs" />
     <Compile Include="EditorUI\DocumentedCodeEditIntraTextAdornment\EditDocumentationAdornmentTaggerProvider.cs" />
@@ -101,6 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ClientSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ClientSettings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Key.snk" />
     <None Include="packages.config" />
     <None Include="source.extension.vsixmanifest">
@@ -112,6 +125,7 @@
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
     </VSCTCompile>
+    <Content Include="Resources\ChangeUsername.png" />
     <Content Include="Resources\statistic.png" />
     <Content Include="Resources\TDPluginPackage.ico" />
     <Content Include="Resources\DocumentCodeSpanCommand.png" />
@@ -160,6 +174,10 @@
       <HintPath>..\packages\Microsoft.VisualStudio.Imaging.15.0.26606\lib\net45\Microsoft.VisualStudio.Imaging.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime.14.3.25408\lib\net20\Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\packages\Microsoft.VisualStudio.OLE.Interop.7.10.6070\lib\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
       <Private>True</Private>
@@ -190,6 +208,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\packages\Microsoft.VisualStudio.Shell.Interop.12.0.12.0.30110\lib\Microsoft.VisualStudio.Shell.Interop.12.0.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.14.0.DesignTime, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.Shell.Interop.14.0.DesignTime.14.3.25407\lib\Microsoft.VisualStudio.Shell.Interop.14.0.DesignTime.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Interop.15.3.DesignTime, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -350,6 +372,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Dialogs\ChangeUsernameWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialogs\AddDocumentationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -366,6 +392,8 @@
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\analyzers\cs\Microsoft.VisualStudio.SDK.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -378,8 +406,12 @@
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.9\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.9\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.targets" Condition="Exists('..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.targets')" />
+  <Import Project="..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets')" />
+  <Import Project="..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

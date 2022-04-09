@@ -1,0 +1,61 @@
+﻿<local:BaseDialogWindow x:Class="TDPlugin.ChangeUsernameWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TDPlugin"
+             mc:Ignorable="d"
+             MaxWidth="333.533"
+             MaxHeight="144.012"
+             MinWidth="333.533"
+             MinHeight="144.012"
+             Background="#FFE1E1E1"
+             x:Name="This"
+             WindowStyle="SingleBorderWindow"
+
+             Title="TDPlugin"
+             
+             >
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="145"/>
+            <Setter Property="FontFamily" Value="Open Sans"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Open Sans"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Open Sans"/>
+            <Setter Property="Padding" Value="2 4"/>
+        </Style>
+    </Window.Resources>
+    <!--Title="Add documentation with TDPlugin"-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--<Border Background="#FF9180a8" Height="40" Padding="5">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <Image Source="../Resources/yellow_notepad.png" Margin="5"/>
+                <TextBlock Text="TDPlugin Documentation" Margin="5" Foreground="White"></TextBlock>
+            </StackPanel>
+        </Border>-->
+        <Border Grid.Row="1" Background="#FFE1E1E1" Padding="5">
+            <StackPanel >
+                <TextBlock Text="Write your name: " Margin="5" />
+                <TextBox Grid.Row="1" x:Name="TextBox" Margin="5"
+                         />
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="3" Background="#FFE1E1E1" Padding="5,0">
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <Button Margin="5,0" Padding="5" Click="Button_Click">Save</Button>
+                <Button Margin="5,0" Padding="5" Click="Button_Click_1">Cancel</Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</local:BaseDialogWindow>

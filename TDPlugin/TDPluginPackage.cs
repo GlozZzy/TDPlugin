@@ -69,6 +69,7 @@ namespace TDPlugin
             DocumentLifetimeManager.Initialize(this);
             ShowProjectStatistics.Initialize(this);
             MarkBadCode.Initialize(this);
+            ChangeUsername.Initialize(this);
             //VisualStudioServices.InitializeAsync(this);
 
             System.Threading.Tasks.Task.Factory.StartNew(() =>
