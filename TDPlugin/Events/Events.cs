@@ -31,9 +31,9 @@ namespace TDPlugin.Events
     public class DocumentationUpdatedEvent
     {
         public ITrackingSpan TrackingSpan { get; private set; }
-        public string NewDocumentation { get; }
+        public SelectionDocumentation NewDocumentation { get; }
 
-        public DocumentationUpdatedEvent(ITrackingSpan trackingSpan, string newDocumentation)
+        public DocumentationUpdatedEvent(ITrackingSpan trackingSpan, SelectionDocumentation newDocumentation)
         {
             TrackingSpan = trackingSpan;
             NewDocumentation = newDocumentation;
@@ -54,7 +54,7 @@ namespace TDPlugin.Events
     {
         public enum HoverMode { Started, Ended };
 
-        public DocumentationTag Tag { get; private set; }
+        public DocumentationTag Tag { get; set; }
         public HoverMode HoverMode1 { get; }
 
         /// <summary>

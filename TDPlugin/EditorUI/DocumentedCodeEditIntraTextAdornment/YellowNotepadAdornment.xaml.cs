@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TDPlugin.Models;
 
 namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
 {
@@ -102,12 +103,19 @@ namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
         private void OnClick(object sender, MouseButtonEventArgs e)
         {
             var documentationControl = new AddDocumentationWindow();
-            var vm = new EditDocumentationViewModel(DocumentationTag.TrackingSpan.GetText(Buffer.CurrentSnapshot), DocumentationTag.DocumentationFragmentText);
+            var vm = new EditDocumentationViewModel(DocumentationTag.TrackingSpan.GetText(Buffer.CurrentSnapshot), DocumentationTag.DocumentationFragment);
             documentationControl.DataContext = vm;
             documentationControl.ShowDialog();
             if (documentationControl.Result == EditDocumentationViewModel.AddDocumentationResult.Save)
             {
-                var newDocumentation = vm.DocumentationText;
+                var newDocumentation = new SelectionDocumentation()
+                {
+                    Title = vm.DocumentationTitle,
+                    Description = vm.DocumentationDescription,
+                    Priority = vm.DocumentationPriority,
+                    Effort = vm.DocumentationEffort,
+                    ClietsUpvotes = vm.DocumentationClientsUpvotes,
+                } ;
                 EventAggregator.SendMessage<DocumentationUpdatedEvent>(new DocumentationUpdatedEvent(DocumentationTag.TrackingSpan, newDocumentation));
             }
             else if (documentationControl.Result == EditDocumentationViewModel.AddDocumentationResult.Delete)

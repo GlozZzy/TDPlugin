@@ -26,7 +26,7 @@ namespace TDPlugin.Models
         public string Description { get; set; }
         public int Priority { get; set; }
         public int Effort { get; set; }
-        public string[] ClietsUpvotes { get; set; }
+        public List<String> ClietsUpvotes { get; set; }
         //public GitHubClient[] ClietsUpvotes { get; set; }
     }
 }

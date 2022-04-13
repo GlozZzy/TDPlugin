@@ -7,13 +7,13 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
 {
     public class DocumentationTag : IGlyphTag
     {
-        public string DocumentationFragmentText { get; private set; }
+        public SelectionDocumentation DocumentationFragment { get; private set; }
         public ITrackingSpan TrackingSpan { get; set; }
         public ITextBuffer TextBuffer { get; set; }
 
-        public DocumentationTag(string fragment, ITrackingSpan trackingSpan, ITextBuffer buffer)
+        public DocumentationTag(SelectionDocumentation fragment, ITrackingSpan trackingSpan, ITextBuffer buffer)
         {
-            DocumentationFragmentText = fragment;
+            DocumentationFragment = fragment;
             TrackingSpan = trackingSpan;
             TextBuffer = buffer;
         }

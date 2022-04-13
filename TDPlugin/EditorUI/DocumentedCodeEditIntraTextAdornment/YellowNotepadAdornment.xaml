@@ -26,7 +26,7 @@
             <Border Background="LightGray" BorderBrush="#EFEFEF" BorderThickness="1" 
                     Padding="3 2 3 4" >
 
-                <TextBlock Text="{Binding DocumentationTag.DocumentationFragmentText, ElementName=YellowNotepadAdornmentUserControl}"
+                <TextBlock Text="{Binding DocumentationTag.DocumentationFragment.Title, ElementName=YellowNotepadAdornmentUserControl}"
                            TextWrapping="Wrap"
                            ></TextBlock>
             </Border>

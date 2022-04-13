@@ -108,7 +108,7 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
             if (tag2 == null || tag1 == null)
                 return false;
             return tag1.TrackingSpan.GetSpan(snapshot).Equals(tag2.TrackingSpan.GetSpan(snapshot))
-                && tag1.DocumentationFragmentText.Equals(tag2.DocumentationFragmentText);
+                && tag1.DocumentationFragment.Equals(tag2.DocumentationFragment);
         }
     }
 }

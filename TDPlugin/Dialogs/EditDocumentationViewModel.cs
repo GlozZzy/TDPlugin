@@ -27,6 +27,7 @@ namespace TDPlugin.Dialogs
         private TextViewSelection _selection;
         bool _existingDocumentation = false;
         private string _selectionText;
+        public SelectionDocumentation Documentation;
 
         public event Action CloseRequest;
 
@@ -41,29 +42,80 @@ namespace TDPlugin.Dialogs
             this._selection= selection;
         }
 
-        public EditDocumentationViewModel(string selectionText, string documentationText) : this()
+        public EditDocumentationViewModel(string selectionText, SelectionDocumentation selectiondocumentation) : this()
         {
             _existingDocumentation = true;
             _selectionText = selectionText;
-            DocumentationText = documentationText;
-            
+            Documentation = selectiondocumentation;
+
+            DocumentationTitle = selectiondocumentation.Title;
+            DocumentationDescription = selectiondocumentation.Description;
+            DocumentationPriority = selectiondocumentation.Priority;
+            DocumentationEffort = selectiondocumentation.Effort;
+            DocumentationClientsUpvotes = selectiondocumentation.ClietsUpvotes;
+
         }
 
         public string SelectionText => _existingDocumentation ? _selectionText : _selection.Text;
 
-        public string _documentationText = "";
-        public string DocumentationText
+        public string _documentationTitle = "";
+        public string DocumentationTitle
         {
-            get { return _documentationText; }
+            get { return _documentationTitle; }
             set
             {
-                if (value != _documentationText)
+                if (value != _documentationTitle)
                 {
-                    _documentationText = value;
+                    _documentationTitle = value;
                     RaisePropertChange();
                 }
             }
         }
+
+        public string _documentationDescription = "";
+        public string DocumentationDescription
+        {
+            get { return _documentationDescription; }
+            set
+            {
+                if (value != _documentationDescription)
+                {
+                    _documentationDescription = value;
+                    RaisePropertChange();
+                }
+            }
+        }
+
+        public int _documentationPriority = 0;
+        public int DocumentationPriority
+        {
+            get { return _documentationPriority; }
+            set
+            {
+                if (value != _documentationPriority)
+                {
+                    _documentationPriority = value;
+                    RaisePropertChange();
+                }
+            }
+        }
+
+        public int _documentationEffort = 0;
+        public int DocumentationEffort
+        {
+            get { return _documentationEffort; }
+            set
+            {
+                if (value != _documentationEffort)
+                {
+                    _documentationEffort = value;
+                    RaisePropertChange();
+                }
+            }
+        }
+
+
+        public List<string> DocumentationClientsUpvotes;
 
         public bool IsExistingDocumentation => _existingDocumentation;
 
@@ -99,7 +151,12 @@ namespace TDPlugin.Dialogs
 
         private void SaveDocumentation(object obj)
         {
-            if (DocumentationText.Trim() == "")
+            if (DocumentationTitle.Trim() == "")
+            {
+                MessageBox.Show("Title can't be empty.");
+                return;
+            }
+            if (DocumentationDescription.Trim() == "")
             {
                 MessageBox.Show("Documentation can't be empty.");
                 return;
@@ -116,7 +173,11 @@ namespace TDPlugin.Dialogs
             {
                 Documentation = new SelectionDocumentation()
                 {
-                    Description = DocumentationText
+                    Title = DocumentationTitle,
+                    Description = DocumentationDescription,
+                    Priority = DocumentationPriority,
+                    Effort = DocumentationEffort,
+                    ClietsUpvotes = new List<string>() { ClientSettings.Default.username }
                 },
                 Selection = this._selection,
             };

@@ -35,8 +35,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            
         </Grid.RowDefinitions>
         <!--<Border Background="#FF9180a8" Height="40" Padding="5">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
@@ -55,14 +60,53 @@
         </Border>
         <Border Grid.Row="2" Background="#F7F7D5" Padding="5">
             <StackPanel >
-                <TextBlock Margin="5">Documentation:</TextBlock>
-                <TextBox Grid.Row="3" x:Name="DocumentationTextBox"
+                <TextBlock Margin="5">Title</TextBlock>
+                <TextBox Grid.Row="3" x:Name="DocumentationTitle"
                          AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="5"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Text="{Binding DocumentationText}"/>
+                         Text="{Binding DocumentationTitle}"/>
             </StackPanel>
         </Border>
-        <Border Grid.Row="3" Background="#FFE1E1E1" Padding="5">
+        <Border Grid.Row="3" Background="#F7F7D5" Padding="5">
+            <StackPanel >
+                <TextBlock Margin="5">Description</TextBlock>
+                <TextBox Grid.Row="3" x:Name="DocumentationDescription"
+                         AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="5"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         Text="{Binding DocumentationDescription}"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="4" Background="#F7F7D5" Padding="5">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="5">Priority</TextBlock>
+                <ComboBox x:Name="DocumentationPriority" SelectedIndex="{Binding DocumentationPriority}"  Width="200">
+                    <ComboBoxItem Content="Very Low"/>
+                    <ComboBoxItem Content="Low"/>
+                    <ComboBoxItem Content="Medium"/>
+                    <ComboBoxItem Content="High"/>
+                    <ComboBoxItem Content="Very High"/>
+                </ComboBox>
+            </StackPanel >
+        </Border>
+        <Border Grid.Row="5" Background="#F7F7D5" Padding="5">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="5">Efford</TextBlock>
+                <ComboBox x:Name="DocumentationEffort" SelectedIndex="{Binding DocumentationEffort}" Width="200">
+                    <ComboBoxItem Content="Very Low"/>
+                    <ComboBoxItem Content="Low"/>
+                    <ComboBoxItem Content="Medium"/>
+                    <ComboBoxItem Content="High"/>
+                    <ComboBoxItem Content="Very High"/>
+                </ComboBox>
+            </StackPanel >
+        </Border>
+        <Border Grid.Row="6" Background="#F7F7D5" Padding="5">
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="5" Padding="5" HorizontalAlignment="Left">like</Button>
+                <TextBlock Margin="5" x:Name="c_like">0</TextBlock>
+            </StackPanel >
+        </Border>
+        <Border Grid.Row="7" Background="#FFE1E1E1" Padding="5">
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="5" Padding="5" Command="{Binding SaveCommand}" >Save</Button>
                 <Button Margin="5" Padding="5" Command="{Binding DeleteCommand}" 

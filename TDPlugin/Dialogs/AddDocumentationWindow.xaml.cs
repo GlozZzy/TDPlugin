@@ -24,7 +24,7 @@ namespace TDPlugin
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            DocumentationTextBox.Focus();
+            DocumentationTitle.Focus();
             RegisterToViewModelEvents();
         }
 
