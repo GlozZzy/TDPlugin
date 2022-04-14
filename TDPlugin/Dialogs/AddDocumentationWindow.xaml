@@ -56,6 +56,12 @@
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          Text="{Binding SelectionText, Mode=OneWay}"
                          />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                            Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}">
+                    <TextBlock Margin="5">Author:</TextBlock>
+                    <TextBlock x:Name="AuthorName" Margin="5" 
+                         Text="{Binding AuthorName}"/>
+                </StackPanel>
             </StackPanel>
         </Border>
         <Border Grid.Row="2" Background="#F7F7D5" Padding="5">
@@ -102,8 +108,10 @@
         </Border>
         <Border Grid.Row="6" Background="#F7F7D5" Padding="5">
             <StackPanel Orientation="Horizontal">
-                <Button Margin="5" Padding="5" HorizontalAlignment="Left">like</Button>
-                <TextBlock Margin="5" x:Name="c_like">0</TextBlock>
+                <Button Margin="5" Padding="5" HorizontalAlignment="Left" Command="{Binding LikeCommand}"
+                        Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}">like</Button>
+                <TextBlock Margin="5" x:Name="Documentationlikes" Text="{Binding Documentationlikes}"
+                           Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}"></TextBlock>
             </StackPanel >
         </Border>
         <Border Grid.Row="7" Background="#FFE1E1E1" Padding="5">

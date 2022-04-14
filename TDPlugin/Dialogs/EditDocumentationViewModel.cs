@@ -53,6 +53,8 @@ namespace TDPlugin.Dialogs
             DocumentationPriority = selectiondocumentation.Priority;
             DocumentationEffort = selectiondocumentation.Effort;
             DocumentationClientsUpvotes = selectiondocumentation.ClietsUpvotes;
+            Documentationlikes = selectiondocumentation.ClietsUpvotes.Count - 1;
+            AuthorName = selectiondocumentation.ClietsUpvotes[0];
 
         }
 
@@ -114,8 +116,35 @@ namespace TDPlugin.Dialogs
             }
         }
 
-
         public List<string> DocumentationClientsUpvotes;
+
+        public int _documentationlikes = 0;
+        public int Documentationlikes
+        {
+            get { return _documentationlikes; }
+            set
+            {
+                if (value != _documentationlikes)
+                {
+                    _documentationlikes = value;
+                    RaisePropertChange();
+                }
+            }
+        }
+
+        public string _authorName = "";
+        public string AuthorName
+        {
+            get { return _authorName; }
+            set
+            {
+                if (value != _authorName)
+                {
+                    _authorName = value;
+                    RaisePropertChange();
+                }
+            }
+        }
 
         public bool IsExistingDocumentation => _existingDocumentation;
 
@@ -200,6 +229,30 @@ namespace TDPlugin.Dialogs
                 MessageBox.Show("Documentation add failed. Exception: " + ex.ToString());
             }
         }
+
+
+        public ICommand _likeCommand;
+        public ICommand LikeCommand
+        {
+            get
+            {
+                if (_likeCommand == null)
+                {
+                    _likeCommand = new RelayCommand(_ => 
+                    {
+                        if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) < 0)
+                            Documentation.ClietsUpvotes.Add(ClientSettings.Default.username);
+                        else if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) > 0)
+                             Documentation.ClietsUpvotes.Remove(ClientSettings.Default.username);
+
+                        Documentationlikes = Documentation.ClietsUpvotes.Count - 1;
+                        Result = AddDocumentationResult.Save;
+                    });
+                }
+                return _likeCommand;
+            }
+        }
+
 
         public ICommand _deleteCommand;
         public ICommand DeleteCommand

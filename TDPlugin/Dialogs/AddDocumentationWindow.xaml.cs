@@ -36,8 +36,5 @@ namespace TDPlugin
                 this.Close();
             };
         }
-        
-        
-
     }
 }
