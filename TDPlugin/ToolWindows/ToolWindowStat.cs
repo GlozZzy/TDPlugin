@@ -18,16 +18,18 @@ namespace TDPlugin.ToolWindows
     [Guid("69c0b337-59d8-4591-8cbd-a59603459d56")]
     public class ToolWindowStat : ToolWindowPane
     {
+        public ToolWindowStatControl toolWin;
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolWindowStat"/> class.
         /// </summary>
         public ToolWindowStat() : base(null)
         {
-            this.Caption = "ToolWindowStat";
+            this.Caption = "ToolWindowStat123";
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable,
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
             // the object returned by the Content property.
-            this.Content = new ToolWindowStatControl();
+            this.toolWin = new ToolWindowStatControl();
+            this.Content = toolWin;
         }
     }
 }

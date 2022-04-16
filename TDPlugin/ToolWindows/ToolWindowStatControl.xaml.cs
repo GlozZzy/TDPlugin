@@ -3,9 +3,12 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TextManager.Interop;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using TDPlugin.Dialogs;
 using TDPlugin.Models;
+using TDPlugin.Utils;
 
 namespace TDPlugin.ToolWindows
 {
@@ -14,6 +17,8 @@ namespace TDPlugin.ToolWindows
     /// </summary>
     public partial class ToolWindowStatControl : UserControl
     {
+        //public string directoryPath;
+        public IServiceProvider serviceProvider;
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolWindowMarkControl"/> class.
         /// </summary>
@@ -31,7 +36,7 @@ namespace TDPlugin.ToolWindows
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
         private void updatebutton_Click(object sender, RoutedEventArgs e)
         {
-            issues_textblock.Text = "click";
+            this.Update(sender, e);
         }
 
         private void filter_Click(object sender, RoutedEventArgs e)
@@ -41,7 +46,33 @@ namespace TDPlugin.ToolWindows
 
         private void Update(object sender, RoutedEventArgs e)
         {
-            issues_textblock.Text = "update";
+            if (serviceProvider == null) return;
+            EnvDTE80.DTE2 applicationObject = serviceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
+            var solutionName = applicationObject.Solution.FullName;
+            if (solutionName == "") return;
+            var directoryPath = solutionName.Substring(0, solutionName.LastIndexOf("\\"));
+            var directoryName = solutionName.Substring(solutionName.LastIndexOf("\\"));
+            directoryName = directoryName.Substring(0, directoryName.LastIndexOf("."));
+            directoryPath += directoryName;
+
+            issues_textblock.Text = "";
+            if (directoryPath != null)
+            {
+                string[] files = Directory.GetFiles(directoryPath, "*.cdoc");
+                var row = 0;
+                foreach (string file in files)
+                {
+                    var documentation = Services.DocumentationFileSerializer.Deserialize(file);
+                    foreach (DocumentationFragment fragment in documentation.Fragments)
+                    {
+                        Button butt = new MyButton(fragment, file, serviceProvider);
+                        issues_grid.RowDefinitions.Add(new RowDefinition());
+                        Grid.SetRow(butt, row);
+                        issues_grid.Children.Add(butt);
+                        row++;
+                    }
+                }
+            }
         }
     }
 }
