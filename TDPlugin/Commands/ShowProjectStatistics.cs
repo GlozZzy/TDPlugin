@@ -96,16 +96,8 @@ namespace TDPlugin
                 throw new NotSupportedException("Cannot create tool window");
             }
 
-            //EnvDTE80.DTE2 applicationObject = ServiceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
-            //var solutionName = applicationObject.Solution.FullName;
-            //var directoryPath = solutionName.Substring(0, solutionName.LastIndexOf("\\"));
-            //var directoryName = solutionName.Substring(solutionName.LastIndexOf("\\"));
-            //directoryName = directoryName.Substring(0, directoryName.LastIndexOf("."));
-            //directoryPath += directoryName;
-
             window.toolWin.serviceProvider = ServiceProvider;
-
-
+            
             IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
         }

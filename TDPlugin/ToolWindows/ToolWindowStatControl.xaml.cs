@@ -25,6 +25,8 @@ namespace TDPlugin.ToolWindows
         public ToolWindowStatControl()
         {
             this.InitializeComponent();
+            this.UpdateFunc();
+
         }
 
         /// <summary>
@@ -46,10 +48,15 @@ namespace TDPlugin.ToolWindows
 
         private void Update(object sender, RoutedEventArgs e)
         {
-            if (serviceProvider == null) return;
+            UpdateFunc();
+        }
+
+        private void UpdateFunc()
+        {
+            if (serviceProvider == null) { issues_textblock.Text = "Open the project to tracking issues"; return; };
             EnvDTE80.DTE2 applicationObject = serviceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
             var solutionName = applicationObject.Solution.FullName;
-            if (solutionName == "") return;
+            if (solutionName == "") { issues_textblock.Text = "Open the project to tracking issues"; return; };
             var directoryPath = solutionName.Substring(0, solutionName.LastIndexOf("\\"));
             var directoryName = solutionName.Substring(solutionName.LastIndexOf("\\"));
             directoryName = directoryName.Substring(0, directoryName.LastIndexOf("."));
@@ -74,5 +81,6 @@ namespace TDPlugin.ToolWindows
                 }
             }
         }
+        
     }
 }
