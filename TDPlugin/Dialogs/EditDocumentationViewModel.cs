@@ -54,9 +54,12 @@ namespace TDPlugin.Dialogs
             DocumentationEffort = selectiondocumentation.Effort;
             DocumentationClientsUpvotes = selectiondocumentation.ClietsUpvotes;
             Documentationlikes = selectiondocumentation.ClietsUpvotes.Count - 1;
+            DocumentationDatatime = selectiondocumentation.CreationDateTime;
             AuthorName = selectiondocumentation.ClietsUpvotes[0];
 
         }
+
+        public DateTime DocumentationDatatime { get; set; }
 
         public string SelectionText => _existingDocumentation ? _selectionText : _selection.Text;
 
@@ -206,7 +209,8 @@ namespace TDPlugin.Dialogs
                     Description = DocumentationDescription,
                     Priority = DocumentationPriority,
                     Effort = DocumentationEffort,
-                    ClietsUpvotes = new List<string>() { ClientSettings.Default.username }
+                    ClietsUpvotes = new List<string>() { ClientSettings.Default.username },
+                    CreationDateTime = DateTime.UtcNow
                 },
                 Selection = this._selection,
             };

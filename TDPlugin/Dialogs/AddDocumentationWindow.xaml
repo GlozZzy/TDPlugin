@@ -4,20 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TDPlugin"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             Width="500"
-             Height="400"
+             mc:Ignorable="d"
+             MinWidth="434.798"
+             MinHeight="463"
              Background="LightYellow"
              x:Name="This"
              WindowStyle="SingleBorderWindow"
 
-             Title="TDPlugin"
+             Title="TDPlugin" d:DesignWidth="434.798" Height="414.539"
              
              >
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
-        
+
         <Style TargetType="Button">
             <Setter Property="Width" Value="130"/>
             <Setter Property="FontFamily" Value="Open Sans"/>
@@ -36,12 +35,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            
+
         </Grid.RowDefinitions>
         <!--<Border Background="#FF9180a8" Height="40" Padding="5">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
@@ -79,7 +78,8 @@
                 <TextBox Grid.Row="3" x:Name="DocumentationDescription"
                          AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="5"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Text="{Binding DocumentationDescription}"/>
+                         Text="{Binding DocumentationDescription, Mode=OneWay}"
+                         MaxHeight="100"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="4" Background="#F7F7D5" Padding="5">

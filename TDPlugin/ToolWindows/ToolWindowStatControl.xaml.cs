@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TextManager.Interop;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows;
@@ -19,14 +20,15 @@ namespace TDPlugin.ToolWindows
     {
         //public string directoryPath;
         public IServiceProvider serviceProvider;
+        private int filterVal;
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolWindowMarkControl"/> class.
         /// </summary>
         public ToolWindowStatControl()
         {
             this.InitializeComponent();
+            filterVal = 0;
             this.UpdateFunc();
-
         }
 
         /// <summary>
@@ -62,25 +64,60 @@ namespace TDPlugin.ToolWindows
             directoryName = directoryName.Substring(0, directoryName.LastIndexOf("."));
             directoryPath += directoryName;
 
-            issues_textblock.Text = "";
             if (directoryPath != null)
             {
+                issues_textblock.Text = "";
+                List<MyButton> bttns = new List<MyButton>();
+
                 string[] files = Directory.GetFiles(directoryPath, "*.cdoc");
-                var row = 0;
                 foreach (string file in files)
                 {
                     var documentation = Services.DocumentationFileSerializer.Deserialize(file);
                     foreach (DocumentationFragment fragment in documentation.Fragments)
                     {
-                        Button butt = new MyButton(fragment, file, serviceProvider);
-                        issues_grid.RowDefinitions.Add(new RowDefinition());
-                        Grid.SetRow(butt, row);
-                        issues_grid.Children.Add(butt);
-                        row++;
+                        MyButton butt = new MyButton(fragment, file, serviceProvider);
+                        bttns.Add(butt);
                     }
+                }
+
+                switch (filterVal)
+                {
+                    case 0:
+                        bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.fragment.Documentation.CreationDateTime.CompareTo(x.fragment.Documentation.CreationDateTime);
+                        });
+                        break;
+                    case 1:
+                        bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.fragment.Documentation.Priority.CompareTo(x.fragment.Documentation.Priority);
+                        });
+                        break;
+                    case 2:
+                        bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.fragment.Documentation.Effort.CompareTo(x.fragment.Documentation.Effort);
+                        });
+                        break;
+                    case 3:
+                        bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.fragment.Documentation.ClietsUpvotes.Count.CompareTo(x.fragment.Documentation.ClietsUpvotes.Count);
+                        });
+                        break;
+                }
+
+                int row = 0;
+                foreach (MyButton bttn in bttns)
+                {
+                    issues_grid.RowDefinitions.Add(new RowDefinition());
+                    Grid.SetRow(bttn, row);
+                    issues_grid.Children.Add(bttn);
+                    row++;
                 }
             }
         }
-        
+
+        private void issues_filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterVal = issues_filter.SelectedIndex;
+        }
     }
 }

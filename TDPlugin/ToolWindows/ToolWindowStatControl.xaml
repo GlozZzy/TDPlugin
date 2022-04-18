@@ -12,14 +12,18 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical">
-            <Button Content="Update" Click="updatebutton_Click" Height="28" x:Name="updatebutton" Margin="10,10"/>
+        <StackPanel Orientation="Vertical" Margin="0,10">
             <TextBlock Text="Issues:" Margin="10,0" FontWeight="Bold" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="10,0">
-                <TextBlock Margin="0,0,10,0">Open issues by date</TextBlock>
-                <Button Background="#F7F7D5" Cursor="Hand" BorderBrush="#F7F7D5" Click="filter_Click">filter issues</Button>
+                <TextBlock Margin="0,0,10,0">Open issues by </TextBlock>
+                <ComboBox x:Name="issues_filter" SelectedIndex="0"  Width="80" SelectionChanged="issues_filter_SelectionChanged">
+                    <ComboBoxItem Content="date"/>
+                    <ComboBoxItem Content="priority"/>
+                    <ComboBoxItem Content="efford"/>
+                    <ComboBoxItem Content="upvotes"/>
+                </ComboBox>
             </StackPanel>
-            <TextBlock Text="Open the project to tracking issues" x:Name="issues_textblock" Margin="10" Height="203"/>
+            <TextBlock Text="Open the project to tracking issues" x:Name="issues_textblock" Margin="10"/>
             <Grid x:Name="issues_grid">
             </Grid>
         </StackPanel>

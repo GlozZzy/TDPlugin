@@ -115,6 +115,7 @@ namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
                     Priority = vm.DocumentationPriority,
                     Effort = vm.DocumentationEffort,
                     ClietsUpvotes = vm.DocumentationClientsUpvotes,
+                    CreationDateTime = vm.DocumentationDatatime
                 } ;
                 EventAggregator.SendMessage<DocumentationUpdatedEvent>(new DocumentationUpdatedEvent(DocumentationTag.TrackingSpan, newDocumentation));
             }
