@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace TDPlugin.Dialogs
 {
@@ -57,9 +58,30 @@ namespace TDPlugin.Dialogs
             DocumentationDatatime = selectiondocumentation.CreationDateTime;
             AuthorName = selectiondocumentation.ClietsUpvotes[0];
 
+            if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) >= 0)
+                ColorLike = new SolidColorBrush(Colors.LightBlue);
+            else ColorLike = new SolidColorBrush(Colors.LightYellow);
         }
 
         public DateTime DocumentationDatatime { get; set; }
+
+        private SolidColorBrush _colorLike = new SolidColorBrush(Colors.Red);
+        public SolidColorBrush ColorLike
+        {
+            get
+            {
+                return _colorLike;
+            }
+
+            set
+            {
+                if (value != _colorLike)
+                {
+                    _colorLike = value;
+                    RaisePropertChange();
+                }
+            }
+        }
 
         public string SelectionText => _existingDocumentation ? _selectionText : _selection.Text;
 
@@ -245,9 +267,15 @@ namespace TDPlugin.Dialogs
                     _likeCommand = new RelayCommand(_ => 
                     {
                         if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) < 0)
+                        {
                             Documentation.ClietsUpvotes.Add(ClientSettings.Default.username);
+                            ColorLike = new SolidColorBrush(Colors.LightBlue);
+                        }
                         else if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) > 0)
-                             Documentation.ClietsUpvotes.Remove(ClientSettings.Default.username);
+                        {
+                            Documentation.ClietsUpvotes.Remove(ClientSettings.Default.username);
+                            ColorLike = new SolidColorBrush(Colors.LightYellow);
+                        }
 
                         Documentationlikes = Documentation.ClietsUpvotes.Count - 1;
                         Result = AddDocumentationResult.Save;

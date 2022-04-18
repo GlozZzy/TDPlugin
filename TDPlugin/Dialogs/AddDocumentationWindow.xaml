@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TDPlugin"
              mc:Ignorable="d"
-             MinWidth="434.798"
-             MinHeight="463"
+             MinWidth="445"
+             MinHeight="496"
              Background="LightYellow"
              x:Name="This"
              WindowStyle="SingleBorderWindow"
 
-             Title="TDPlugin" d:DesignWidth="434.798" Height="414.539"
+             Title="Mark bad code" Width="445" Height="576"
              
              >
     <Window.Resources>
@@ -31,6 +31,10 @@
     </Window.Resources>
     <!--Title="Add documentation with TDPlugin"-->
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="360*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -48,7 +52,7 @@
                 <TextBlock Text="TDPlugin Documentation" Margin="5" Foreground="White"></TextBlock>
             </StackPanel>
         </Border>-->
-        <Border Grid.Row="1" Background="#FFE1E1E1" Padding="5">
+        <Border Grid.Row="1" Background="#FFE1E1E1" Padding="5" Grid.ColumnSpan="2">
             <StackPanel >
                 <TextBlock Text="Documentation for: " Margin="5" />
                 <TextBox Grid.Row="1" x:Name="SelectionTextBox" Margin="5" IsReadOnly="True" MaxHeight="100" 
@@ -63,7 +67,7 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Border Grid.Row="2" Background="#F7F7D5" Padding="5">
+        <Border Grid.Row="2" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel >
                 <TextBlock Margin="5">Title</TextBlock>
                 <TextBox Grid.Row="3" x:Name="DocumentationTitle"
@@ -72,17 +76,17 @@
                          Text="{Binding DocumentationTitle}"/>
             </StackPanel>
         </Border>
-        <Border Grid.Row="3" Background="#F7F7D5" Padding="5">
+        <Border Grid.Row="3" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel >
                 <TextBlock Margin="5">Description</TextBlock>
                 <TextBox Grid.Row="3" x:Name="DocumentationDescription"
                          AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="5"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Text="{Binding DocumentationDescription, Mode=OneWay}"
+                         Text="{Binding DocumentationDescription}"
                          MaxHeight="100"/>
             </StackPanel>
         </Border>
-        <Border Grid.Row="4" Background="#F7F7D5" Padding="5">
+        <Border Grid.Row="4" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="5">Priority</TextBlock>
                 <ComboBox x:Name="DocumentationPriority" SelectedIndex="{Binding DocumentationPriority}"  Width="200">
@@ -94,10 +98,10 @@
                 </ComboBox>
             </StackPanel >
         </Border>
-        <Border Grid.Row="5" Background="#F7F7D5" Padding="5">
+        <Border Grid.Row="5" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="5">Efford</TextBlock>
-                <ComboBox x:Name="DocumentationEffort" SelectedIndex="{Binding DocumentationEffort}" Width="200">
+                <ComboBox x:Name="DocumentationEffort" SelectedIndex="{Binding DocumentationEffort}" Width="200" Margin="6 0 0 0">
                     <ComboBoxItem Content="Very Low"/>
                     <ComboBoxItem Content="Low"/>
                     <ComboBoxItem Content="Medium"/>
@@ -106,15 +110,15 @@
                 </ComboBox>
             </StackPanel >
         </Border>
-        <Border Grid.Row="6" Background="#F7F7D5" Padding="5">
+        <Border Grid.Row="6" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
-                <Button Margin="5" Padding="5" HorizontalAlignment="Left" Command="{Binding LikeCommand}"
-                        Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}">like</Button>
-                <TextBlock Margin="5" x:Name="Documentationlikes" Text="{Binding Documentationlikes}"
+                <Button Margin="50 5 5 5" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding LikeCommand}" Width="30" Background="{Binding ColorLike}" 
+                        Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}">👍</Button>
+                <TextBlock Margin="5" x:Name="Documentationlikes" VerticalAlignment="Center" Text="{Binding Documentationlikes}"
                            Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}"></TextBlock>
             </StackPanel >
         </Border>
-        <Border Grid.Row="7" Background="#FFE1E1E1" Padding="5">
+        <Border Grid.Row="7" Background="#FFE1E1E1" Padding="5" Grid.ColumnSpan="2">
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="5" Padding="5" Command="{Binding SaveCommand}" >Save</Button>
                 <Button Margin="5" Padding="5" Command="{Binding DeleteCommand}" 
