@@ -55,12 +55,15 @@
         <Border Grid.Row="1" Background="#FFE1E1E1" Padding="5" Grid.ColumnSpan="2">
             <StackPanel >
                 <TextBlock Text="Documentation for: " Margin="5" />
-                <TextBox Grid.Row="1" x:Name="SelectionTextBox" Margin="5" IsReadOnly="True" MaxHeight="100" 
+                <TextBox Grid.Row="1" x:Name="SelectionTextBox" 
+                         Margin="5" IsReadOnly="True" MaxHeight="100" 
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          Text="{Binding SelectionText, Mode=OneWay}"
                          />
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
-                            Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}">
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Left"
+                            Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}"
+                            >
                     <TextBlock Margin="5">Author:</TextBlock>
                     <TextBlock x:Name="AuthorName" Margin="5" 
                          Text="{Binding AuthorName}"/>
@@ -73,7 +76,8 @@
                 <TextBox Grid.Row="3" x:Name="DocumentationTitle"
                          AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="5"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Text="{Binding DocumentationTitle}"/>
+                         Text="{Binding DocumentationTitle}"
+                         IsReadOnly="{Binding IsNotAuthor}"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="3" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
@@ -83,13 +87,17 @@
                          AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="5"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          Text="{Binding DocumentationDescription}"
-                         MaxHeight="100"/>
+                         MaxHeight="100"
+                         IsReadOnly="{Binding IsNotAuthor}"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="4" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="5">Priority</TextBlock>
-                <ComboBox x:Name="DocumentationPriority" SelectedIndex="{Binding DocumentationPriority}"  Width="200">
+                <ComboBox x:Name="DocumentationPriority" 
+                          SelectedIndex="{Binding DocumentationPriority}"  
+                          Width="100" IsHitTestVisible="{Binding IsAuthor}"
+                          >
                     <ComboBoxItem Content="Very Low"/>
                     <ComboBoxItem Content="Low"/>
                     <ComboBoxItem Content="Medium"/>
@@ -101,7 +109,11 @@
         <Border Grid.Row="5" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="5">Efford</TextBlock>
-                <ComboBox x:Name="DocumentationEffort" SelectedIndex="{Binding DocumentationEffort}" Width="200" Margin="6 0 0 0">
+                <ComboBox x:Name="DocumentationEffort" 
+                          SelectedIndex="{Binding DocumentationEffort}" 
+                          Width="100" Margin="6 0 0 0" 
+                          IsHitTestVisible="{Binding IsAuthor}"
+                          >
                     <ComboBoxItem Content="Very Low"/>
                     <ComboBoxItem Content="Low"/>
                     <ComboBoxItem Content="Medium"/>
@@ -112,13 +124,22 @@
         </Border>
         <Border Grid.Row="6" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
-                <Button Margin="50 5 5 5" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding LikeCommand}" Width="30" Background="{Binding ColorLike}" 
-                        Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}">👍</Button>
-                <TextBlock Margin="5" x:Name="Documentationlikes" VerticalAlignment="Center" Text="{Binding Documentationlikes}"
-                           Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}"></TextBlock>
+                <Button Margin="50 5 5 5" Padding="5" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left" 
+                        Command="{Binding LikeCommand}" 
+                        Width="30" 
+                        Background="{Binding ColorLike}" 
+                        Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}"
+                        >👍</Button>
+                <TextBlock Margin="5" x:Name="Documentationlikes" 
+                           VerticalAlignment="Center" 
+                           Text="{Binding Documentationlikes}"
+                           Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}"
+                           />
             </StackPanel >
         </Border>
-        <Border Grid.Row="7" Background="#FFE1E1E1" Padding="5" Grid.ColumnSpan="2">
+        <Border Grid.Row="7" Background="#FFE1E1E1" Padding="5" Grid.ColumnSpan="2" IsEnabled="{Binding IsAuthor}">
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="5" Padding="5" Command="{Binding SaveCommand}" >Save</Button>
                 <Button Margin="5" Padding="5" Command="{Binding DeleteCommand}" 

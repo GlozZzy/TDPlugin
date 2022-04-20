@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using TDPlugin.Dialogs;
 using TDPlugin.EditorUI.DocumentedCodeHighlighter;
 using TDPlugin.Events;
@@ -28,6 +29,12 @@ namespace TDPlugin.ToolWindows
             this.filename = filename;
 
             Content = fragment.Documentation.Title;
+            Background = new SolidColorBrush(Colors.LightGoldenrodYellow);
+            this.FontSize = 14;
+            this.Height = 25;
+            this.BorderThickness = new Thickness(0);
+            Padding = new Thickness(5,0,5,0);
+            this.HorizontalContentAlignment = HorizontalAlignment.Left;
             Click += MyCustomClick;
         }
 

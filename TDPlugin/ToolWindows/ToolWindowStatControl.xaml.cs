@@ -67,6 +67,7 @@ namespace TDPlugin.ToolWindows
             if (directoryPath != null)
             {
                 issues_textblock.Text = "";
+                issues_info_grid.Children.Clear();
                 List<MyButton> bttns = new List<MyButton>();
 
                 string[] files = Directory.GetFiles(directoryPath, "*.cdoc");
@@ -107,12 +108,43 @@ namespace TDPlugin.ToolWindows
                 int row = 0;
                 foreach (MyButton bttn in bttns)
                 {
+                    TextBlock txt = new TextBlock();
+                    txt.VerticalAlignment = VerticalAlignment.Center;
+                    txt.FontSize = 14;
+                    txt.Height = 25;
+                    txt.Padding = new Thickness(0, 1.5, 0, 0);
+                    txt.Text = get_filterval(bttn);
+
+                    issues_info_grid.RowDefinitions.Add(new RowDefinition());
+                    Grid.SetRow(txt, row);
+                    issues_info_grid.Children.Add(txt);
+
                     issues_grid.RowDefinitions.Add(new RowDefinition());
                     Grid.SetRow(bttn, row);
                     issues_grid.Children.Add(bttn);
                     row++;
                 }
             }
+        }
+
+        private string get_filterval(MyButton bttn)
+        {
+            switch (filterVal)
+            {
+                case 0:
+                    var shortyear = "" + bttn.fragment.Documentation.CreationDateTime.Year;
+                    shortyear = shortyear.Remove(0, 2);
+                    return "" + bttn.fragment.Documentation.CreationDateTime.Day +
+                        "." + bttn.fragment.Documentation.CreationDateTime.Month +
+                        "." + shortyear;
+                case 1:
+                    return "val: " + bttn.fragment.Documentation.Priority;
+                case 2:
+                    return "val: " + bttn.fragment.Documentation.Effort;
+                case 3:
+                    return "val: " + bttn.fragment.Documentation.ClietsUpvotes.Count;
+            }
+            return "";
         }
 
         private void issues_filter_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -58,12 +58,51 @@ namespace TDPlugin.Dialogs
             DocumentationDatatime = selectiondocumentation.CreationDateTime;
             AuthorName = selectiondocumentation.ClietsUpvotes[0];
 
+            if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) == 0)
+            {
+                IsNotAuthor = false;
+                IsAuthor = true;
+            }
+            else
+            {
+                IsNotAuthor = true;
+                IsAuthor = false;
+            }
+
             if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) >= 0)
                 ColorLike = new SolidColorBrush(Colors.LightBlue);
             else ColorLike = new SolidColorBrush(Colors.LightYellow);
         }
 
         public DateTime DocumentationDatatime { get; set; }
+
+        private bool _isNotAuthor = false; 
+        public bool IsNotAuthor
+        {
+            get { return _isNotAuthor; }
+            set
+            {
+                if (value != _isNotAuthor)
+                {
+                    _isNotAuthor = value;
+                    RaisePropertChange();
+                }
+            }
+        }
+
+        private bool _isAuthor = true;
+        public bool IsAuthor
+        {
+            get { return _isAuthor; }
+            set
+            {
+                if (value != _isAuthor)
+                {
+                    _isAuthor = value;
+                    RaisePropertChange();
+                }
+            }
+        }
 
         private SolidColorBrush _colorLike = new SolidColorBrush(Colors.Red);
         public SolidColorBrush ColorLike
