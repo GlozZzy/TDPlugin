@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:TDPlugin"
              mc:Ignorable="d"
              MinWidth="445"
-             MinHeight="496"
-             Background="LightYellow"
+             MinHeight="600"
+             Background="LightGoldenrodYellow"
              x:Name="This"
              WindowStyle="SingleBorderWindow"
 
-             Title="Mark bad code" Width="445" Height="576"
+             Title="Bookmark bad code" Width="445" Height="600"
              
              >
     <Window.Resources>
@@ -40,6 +40,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -139,7 +140,73 @@
                            />
             </StackPanel >
         </Border>
-        <Border Grid.Row="7" Background="#FFE1E1E1" Padding="5" Grid.ColumnSpan="2" IsEnabled="{Binding IsAuthor}">
+
+        <Border Margin="5" Grid.Row="7" Grid.ColumnSpan="2" 
+                Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}">
+            <StackPanel  Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" 
+                                   Text="{Binding CurentUser}"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Right"
+                                   TextWrapping="Wrap"
+                                   Padding="0,5,10,0"/>
+                        <TextBox  AcceptsReturn="True" TextWrapping="Wrap" 
+                                  HorizontalAlignment="Stretch"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                  Grid.Column="1" VerticalAlignment="Center" 
+                                  x:Name="CurComment" 
+                                  Height="54" 
+                                  FontSize="12"
+                                  Text="{Binding CommentText}"/>
+                        <TextBlock Grid.Column="1" 
+                                   FontSize="12"
+                                   Padding="5,4,0,0"
+                                   IsHitTestVisible="False" 
+                                   Text="Write a comment" 
+                                   VerticalAlignment="Center"
+                                   Foreground="DarkGray"
+                                   Height="54">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=CurComment}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                    <Button Grid.Column="1" 
+                    VerticalAlignment="Bottom" 
+                    Width="40"
+                    Content=">"
+                    Height="27"
+                    Margin="0,0,0,0"
+                    Command="{Binding DocumentationAddComment}"/>
+                </Grid>
+                <Button  x:Name="DocumentationComments" 
+                        VerticalAlignment="Center" 
+                        Content="View comments"
+                        Height="27"
+                        HorizontalAlignment="Left"
+                        Margin="80,5"
+                        Command="{Binding ShowCommentsCommand}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="8" Background="#FFE1E1E1" Padding="5" Grid.ColumnSpan="2" IsEnabled="{Binding IsAuthor}">
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="5" Padding="5" Command="{Binding SaveCommand}" >Save</Button>
                 <Button Margin="5" Padding="5" Command="{Binding DeleteCommand}" 

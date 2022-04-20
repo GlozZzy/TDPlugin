@@ -9,8 +9,8 @@
              Name="MyToolWindow" GotFocus="Update">
 
 
-
-    <Grid Background="LightYellow">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="LightYellow">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
@@ -27,17 +27,20 @@
                 </ComboBox>
             </StackPanel>
             <TextBlock Text="Open the project to tracking issues" x:Name="issues_textblock" Margin="10 2" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14"/>
-            <Grid Margin="10,0" Background="LightGoldenrodYellow">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" x:Name="issues_info_grid" HorizontalAlignment="Center">
+            
+                <Grid Margin="10,0,10,0" Background="LightGoldenrodYellow">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" x:Name="issues_info_grid" HorizontalAlignment="Center">
+                    </Grid>
+                    <Grid Grid.Column="1" x:Name="issues_grid" Width="auto">
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="1" x:Name="issues_grid" Width="auto">
-                </Grid>
-            </Grid>
+            
         </StackPanel>
         
     </Grid>
+        </ScrollViewer>
 </UserControl>

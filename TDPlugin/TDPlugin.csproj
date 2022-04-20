@@ -60,6 +60,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ClientSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\CommentsDialog.xaml.cs">
+      <DependentUpon>CommentsDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ChangeUsernameWindow.xaml.cs">
       <DependentUpon>ChangeUsernameWindow.xaml</DependentUpon>
     </Compile>
@@ -373,6 +376,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Dialogs\CommentsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialogs\ChangeUsernameWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

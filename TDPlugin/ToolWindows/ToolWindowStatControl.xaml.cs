@@ -66,7 +66,7 @@ namespace TDPlugin.ToolWindows
 
             if (directoryPath != null)
             {
-                issues_textblock.Text = "";
+                issues_textblock.Text = "To add an issue, highlight and right-click on the bad code";
                 issues_info_grid.Children.Clear();
                 List<MyButton> bttns = new List<MyButton>();
 
@@ -112,7 +112,7 @@ namespace TDPlugin.ToolWindows
                     txt.VerticalAlignment = VerticalAlignment.Center;
                     txt.FontSize = 14;
                     txt.Height = 25;
-                    txt.Padding = new Thickness(0, 1.5, 0, 0);
+                    txt.Padding = new Thickness(0, 2, 0, 0);
                     txt.Text = get_filterval(bttn);
 
                     issues_info_grid.RowDefinitions.Add(new RowDefinition());

@@ -56,7 +56,9 @@ namespace TDPlugin.Dialogs
             DocumentationClientsUpvotes = selectiondocumentation.ClietsUpvotes;
             Documentationlikes = selectiondocumentation.ClietsUpvotes.Count - 1;
             DocumentationDatatime = selectiondocumentation.CreationDateTime;
+            DocumentationComments = selectiondocumentation.Comments;
             AuthorName = selectiondocumentation.ClietsUpvotes[0];
+            CurentUser = ClientSettings.Default.username;
 
             if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) == 0)
             {
@@ -75,6 +77,21 @@ namespace TDPlugin.Dialogs
         }
 
         public DateTime DocumentationDatatime { get; set; }
+
+        private string _curentUser = "";
+        public string CurentUser
+        {
+            get { return _curentUser; }
+            set
+            {
+                if (value != _curentUser)
+                {
+                    _curentUser = value;
+                    RaisePropertChange();
+                }
+            }
+        }
+
 
         private bool _isNotAuthor = false; 
         public bool IsNotAuthor
@@ -180,7 +197,8 @@ namespace TDPlugin.Dialogs
             }
         }
 
-        public List<string> DocumentationClientsUpvotes;
+        public List<string> DocumentationClientsUpvotes { get; set; }
+        public List<Comment> DocumentationComments { get; set; }
 
         public int _documentationlikes = 0;
         public int Documentationlikes
@@ -271,7 +289,8 @@ namespace TDPlugin.Dialogs
                     Priority = DocumentationPriority,
                     Effort = DocumentationEffort,
                     ClietsUpvotes = new List<string>() { ClientSettings.Default.username },
-                    CreationDateTime = DateTime.UtcNow
+                    CreationDateTime = DateTime.UtcNow,
+                    Comments = new List<Comment>(),
                 },
                 Selection = this._selection,
             };
@@ -321,6 +340,64 @@ namespace TDPlugin.Dialogs
                     });
                 }
                 return _likeCommand;
+            }
+        }
+
+        public string _commentText = "";
+        public string CommentText
+        {
+            get { return _commentText; }
+            set
+            {
+                if (value != _commentText)
+                {
+                    _commentText = value;
+                    RaisePropertChange();
+                }
+            }
+        }
+
+        public ICommand _documentationAddComment;
+        public ICommand DocumentationAddComment
+        {
+            get
+            {
+                if (_documentationAddComment == null)
+                {
+                    _documentationAddComment = new RelayCommand(_ =>
+                    {
+                        if (CommentText != "")
+                        {
+                            Documentation.Comments.Add(new Comment()
+                            {
+                                author = CurentUser,
+                                text = CommentText,
+                            });
+                            Result = AddDocumentationResult.Save;
+                            MessageBox.Show("Comment added successfully.");
+                            CommentText = "";
+                        }
+                        else MessageBox.Show("Comment can't be empty.");
+                    });
+                }
+                return _documentationAddComment;
+            }
+        }
+
+        public ICommand _showcommentsCommand;
+        public ICommand ShowCommentsCommand
+        {
+            get
+            {
+                if (_showcommentsCommand == null)
+                {
+                    _showcommentsCommand = new RelayCommand(_ =>
+                    {
+                        var cmtDialog = new CommentsDialog(DocumentationComments);
+                        cmtDialog.Show();
+                    });
+                }
+                return _showcommentsCommand;
             }
         }
 
