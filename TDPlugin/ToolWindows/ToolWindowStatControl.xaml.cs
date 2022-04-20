@@ -112,7 +112,7 @@ namespace TDPlugin.ToolWindows
                     txt.VerticalAlignment = VerticalAlignment.Center;
                     txt.FontSize = 14;
                     txt.Height = 25;
-                    txt.Padding = new Thickness(0, 2, 0, 0);
+                    txt.Padding = new Thickness(0, 2.25, 0, 0);
                     txt.Text = get_filterval(bttn);
 
                     issues_info_grid.RowDefinitions.Add(new RowDefinition());
