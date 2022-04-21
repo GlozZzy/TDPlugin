@@ -137,6 +137,7 @@
                 <TextBlock Margin="5" x:Name="Documentationlikes" 
                            VerticalAlignment="Center" 
                            Text="{Binding Documentationlikes}"
+                           FontSize="14"
                            Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}"
                            />
             </StackPanel >
