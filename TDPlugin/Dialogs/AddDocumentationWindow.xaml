@@ -97,13 +97,13 @@
                 <TextBlock Margin="5">Priority</TextBlock>
                 <ComboBox x:Name="DocumentationPriority" 
                           SelectedIndex="{Binding DocumentationPriority}"  
-                          Width="100" IsHitTestVisible="{Binding IsAuthor}"
+                          Width="140" IsHitTestVisible="{Binding IsAuthor}"
                           >
-                    <ComboBoxItem Content="Very Low"/>
-                    <ComboBoxItem Content="Low"/>
-                    <ComboBoxItem Content="Medium"/>
-                    <ComboBoxItem Content="High"/>
-                    <ComboBoxItem Content="Very High"/>
+                    <ComboBoxItem Content="◉○○○○ Very Low"/>
+                    <ComboBoxItem Content="◉◉○○○ Low"/>
+                    <ComboBoxItem Content="◉◉◉○○ Medium"/>
+                    <ComboBoxItem Content="◉◉◉◉○ High"/>
+                    <ComboBoxItem Content="◉◉◉◉◉ Very High"/>
                 </ComboBox>
             </StackPanel >
         </Border>
@@ -112,14 +112,14 @@
                 <TextBlock Margin="5">Efford</TextBlock>
                 <ComboBox x:Name="DocumentationEffort" 
                           SelectedIndex="{Binding DocumentationEffort}" 
-                          Width="100" Margin="6 0 0 0" 
+                          Width="140" Margin="6 0 0 0" 
                           IsHitTestVisible="{Binding IsAuthor}"
                           >
-                    <ComboBoxItem Content="Very Low"/>
-                    <ComboBoxItem Content="Low"/>
-                    <ComboBoxItem Content="Medium"/>
-                    <ComboBoxItem Content="High"/>
-                    <ComboBoxItem Content="Very High"/>
+                    <ComboBoxItem Content="◉○○○○ Very Low"/>
+                    <ComboBoxItem Content="◉◉○○○ Low"/>
+                    <ComboBoxItem Content="◉◉◉○○ Medium"/>
+                    <ComboBoxItem Content="◉◉◉◉○ High"/>
+                    <ComboBoxItem Content="◉◉◉◉◉ Very High"/>
                 </ComboBox>
             </StackPanel >
         </Border>
@@ -130,6 +130,7 @@
                         HorizontalAlignment="Left" 
                         Command="{Binding LikeCommand}" 
                         Width="30" 
+                        FontSize="14"
                         Background="{Binding ColorLike}" 
                         Visibility="{Binding IsExistingDocumentation, Converter={StaticResource BoolToVis}}"
                         >👍</Button>

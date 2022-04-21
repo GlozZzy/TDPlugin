@@ -186,15 +186,15 @@ namespace TDPlugin.ToolWindows
             switch (val)
             {
                 case 0:
-                    return "▌[][][][]";
+                    return "◉○○○○";
                 case 1:
-                    return "▌▌[][][]";
+                    return "◉◉○○○";
                 case 2:
-                    return "▌▌▌[][]";
+                    return "◉◉◉○○";
                 case 3:
-                    return "▌▌▌▌[]";
+                    return "◉◉◉◉○";
                 case 4:
-                    return "▌▌▌▌▌";
+                    return "◉◉◉◉◉";
             }
             return "";
         }
