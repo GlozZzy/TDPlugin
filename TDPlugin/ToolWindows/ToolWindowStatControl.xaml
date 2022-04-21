@@ -30,7 +30,7 @@
             
                 <Grid Margin="10,0,10,0" Background="LightGoldenrodYellow">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="70"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" x:Name="issues_info_grid" HorizontalAlignment="Center">

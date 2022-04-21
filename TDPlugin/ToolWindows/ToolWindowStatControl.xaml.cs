@@ -68,18 +68,20 @@ namespace TDPlugin.ToolWindows
             {
                 issues_textblock.Text = "To add an issue, highlight and right-click on the bad code";
                 issues_info_grid.Children.Clear();
-                List<MyButton> bttns = new List<MyButton>();
+                List<MyButton> bttns = recursiveGetallbttns(directoryPath);
 
-                string[] files = Directory.GetFiles(directoryPath, "*.cdoc");
-                foreach (string file in files)
-                {
-                    var documentation = Services.DocumentationFileSerializer.Deserialize(file);
-                    foreach (DocumentationFragment fragment in documentation.Fragments)
-                    {
-                        MyButton butt = new MyButton(fragment, file, serviceProvider);
-                        bttns.Add(butt);
-                    }
-                }
+                
+                //string[] files = Directory.GetFiles(directoryPath, "*.cdoc");
+                //foreach (string file in files)
+                //{
+                //    var documentation = Services.DocumentationFileSerializer.Deserialize(file);
+                //    foreach (DocumentationFragment fragment in documentation.Fragments)
+                //    {
+                //        MyButton butt = new MyButton(fragment, file, serviceProvider);
+                //        bttns.Add(butt);
+                //    }
+                //}
+
 
                 switch (filterVal)
                 {
@@ -110,6 +112,7 @@ namespace TDPlugin.ToolWindows
                 {
                     TextBlock txt = new TextBlock();
                     txt.VerticalAlignment = VerticalAlignment.Center;
+                    txt.HorizontalAlignment = HorizontalAlignment.Center;
                     txt.FontSize = 14;
                     txt.Height = 25;
                     txt.Padding = new Thickness(0, 2.25, 0, 0);
@@ -127,6 +130,37 @@ namespace TDPlugin.ToolWindows
             }
         }
 
+
+        private List<MyButton> recursiveGetallbttns(string directoryPath)
+        {
+            List<MyButton> resbttn = new List<MyButton>();
+
+            string[] direct = Directory.GetDirectories(directoryPath);
+            if (direct.Length > 0)
+            {
+                foreach (string dir in direct)
+                {
+                    var bb = recursiveGetallbttns(dir);
+                    foreach (MyButton b in bb)
+                        resbttn.Add(b);
+                }
+            }
+
+            string[] files = Directory.GetFiles(directoryPath, "*.cdoc");
+            foreach (string file in files)
+            {
+                var documentation = Services.DocumentationFileSerializer.Deserialize(file);
+                foreach (DocumentationFragment fragment in documentation.Fragments)
+                {
+                    MyButton butt = new MyButton(fragment, file, serviceProvider);
+                    resbttn.Add(butt);
+                }
+            }
+
+            return resbttn;
+        }
+
+
         private string get_filterval(MyButton bttn)
         {
             switch (filterVal)
@@ -138,11 +172,29 @@ namespace TDPlugin.ToolWindows
                         "." + bttn.fragment.Documentation.CreationDateTime.Month +
                         "." + shortyear;
                 case 1:
-                    return "val: " + bttn.fragment.Documentation.Priority;
+                    return Gettxt(bttn.fragment.Documentation.Priority);
                 case 2:
-                    return "val: " + bttn.fragment.Documentation.Effort;
+                    return Gettxt(bttn.fragment.Documentation.Effort);
                 case 3:
-                    return "val: " + bttn.fragment.Documentation.ClietsUpvotes.Count;
+                    return "👍 " + bttn.fragment.Documentation.ClietsUpvotes.Count;
+            }
+            return "";
+        }
+
+        private string Gettxt(int val)
+        {
+            switch (val)
+            {
+                case 0:
+                    return "▌[][][][]";
+                case 1:
+                    return "▌▌[][][]";
+                case 2:
+                    return "▌▌▌[][]";
+                case 3:
+                    return "▌▌▌▌[]";
+                case 4:
+                    return "▌▌▌▌▌";
             }
             return "";
         }
