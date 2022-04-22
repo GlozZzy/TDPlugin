@@ -5,6 +5,7 @@ using System.Windows.Media;
 
 namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
 {
+    // Класс определяет формат выделения текста
     [Export(typeof(EditorFormatDefinition))]
     [Name("MarkerFormatDefinition/DocumentedCodeFormatDefinition")]
     [UserVisible(true)]

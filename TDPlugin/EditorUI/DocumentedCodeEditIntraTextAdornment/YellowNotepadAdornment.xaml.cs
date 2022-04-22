@@ -49,18 +49,6 @@ namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
         public static readonly DependencyProperty BufferProperty =
             DependencyProperty.Register("Buffer", typeof(ITextBuffer), typeof(YellowNotepadAdornment), new PropertyMetadata(null));
 
-
-
-        //public string DocumentationText
-        //{
-        //    get { return (string)GetValue(DocumentationTextProperty); }
-        //    set { SetValue(DocumentationTextProperty, value); }
-        //}
-        //public static readonly DependencyProperty DocumentationTextProperty =
-        //    DependencyProperty.Register("DocumentationText", typeof(string), typeof(YellowNotepadAdornment), new PropertyMetadata(string.Empty));
-
-
-
         public YellowNotepadAdornment()
         {
             InitializeComponent();

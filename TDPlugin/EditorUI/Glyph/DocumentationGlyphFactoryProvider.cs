@@ -7,6 +7,7 @@ using TDPlugin.Events;
 
 namespace TDPlugin.EditorUI.Glyph
 {
+    // Это создает GlyphFactory для каждого текстового представления в Visual Studio.
     [Export(typeof(IGlyphFactoryProvider))]
     [Name("DocumentationGlyph")]
     [Order(Before = "VsTextMarker")]

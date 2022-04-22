@@ -25,13 +25,12 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
         private readonly DelegateListener<DocumentationDeletedEvent> _documentationDeletedListener;
 
         private string TDPluginFilename { get {  return _filename + Consts.CODY_DOCS_EXTENSION; } }
-
-        /// <summary>
-        /// Key is the tracking span. Value is the documentation for that span.
-        /// </summary>
         Dictionary<ITrackingSpan, SelectionDocumentation> _trackingSpans;
-        
 
+        // ITextView представляет собой визуальный элемент текстового представления в документе.
+        // ITextBuffer — это данные текстового представления.
+        // Свойство CurrentSnapshot представляет текущий текст в буфере.
+        // Каждый раз, при изменении текста, создается новый экземпляр Snapshot.
         public DocumentationTagger(ITextView textView, ITextBuffer buffer, IEventAggregator eventAggregator)
         {
             _textView = textView;
@@ -50,12 +49,7 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
             _documentationDeletedListener = new DelegateListener<DocumentationDeletedEvent>(OnDocumentationDeleted);
             _eventAggregator.AddListener<DocumentationDeletedEvent>(_documentationDeletedListener);
 
-
-            //TODO: Add event aggregator listener to documentation changed on tracking Span X
-            //TODO: Add event aggregator listener to documentation deleted on tracking Span X
-
             CreateTrackingSpans();
-
         }
 
         
@@ -79,11 +73,13 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
             foreach (var fragment in documentation.Fragments)
             {
                 Span span = fragment.GetSpan();
+                // CreateTrackingSpan необходим для того, чтобы следить за спаном (диапазоном) кода
                 var trackingSpan = currentSnapshot.CreateTrackingSpan(span, SpanTrackingMode.EdgeExclusive);
                 _trackingSpans.Add(trackingSpan, fragment.Documentation);
             }
         }
 
+        // OnDocumentSaved — обработчик события, который вызывается, когда пользователь сохраняет документ
         private void OnDocumentSaved(DocumentSavedEvent documentSavedEvent)
         {
             if (documentSavedEvent.DocumentFullName == _filename)
@@ -134,6 +130,9 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
             }
         }
 
+        // CreateFileDocumentationFromTrackingSpans — основной метод.
+        // Просматривает все диапазоны отслеживания (Tracking Spans) и используем GetStartPoint, GetEndPoint и GetText,
+        // чтобы узнать диапазон для текущего снимка и текущий текст диапазона.
         private FileDocumentation CreateFileDocumentationFromTrackingSpans()
         {
             var currentSnapshot = _buffer.CurrentSnapshot;
@@ -154,6 +153,9 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
             return fileDocumentation;
         }
 
+        // OnDocumentationAdded — когда документация добавляется, нам нужно обновить теги.
+        // Для этого мы вызываем событие TagsChanged (которое является частью интерфейса ITagger).
+        // Параметр представляет собой SnapshotSpan, который представляет текстовый диапазон (диапазон текста) в снимке.
         private void OnDocumentationAdded(DocumentationAddedEvent e)
         {
 
@@ -169,16 +171,22 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
             }
         }
 
-        
+        // TagsChanged — этот вызов уведомляет Visual Studio о том,
+        // что теги должны быть обновлены в заданном диапазоне.
+        // GetTags будет вызываться для получения обновленных тегов.
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
+        // GetTags — основной метод ITagger. Указывает, какие части кода необходимо выделить.
+        // Вызывается GetTags при первом открытии документа и каждый раз, когда требуется обновление
+        // (например, если пользователь редактирует код или при прокрутке).
+        // Мы используем наши диапазоны отслеживания, чтобы узнать текущие диапазоны с помощью метода GetSpan
         public IEnumerable<ITagSpan<DocumentationTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
             List<ITagSpan<DocumentationTag>> tags = new List<ITagSpan<DocumentationTag>>();
             if (spans.Count == 0)
                 return tags;
 
-            var relevantSnapshot = spans.First().Snapshot;//_buffer.CurrentSnapshot;
+            var relevantSnapshot = spans.First().Snapshot;
             foreach (var trackingSpan in _trackingSpans.Keys)
             {
                 var spanInCurrentSnapshot = trackingSpan.GetSpan(relevantSnapshot);

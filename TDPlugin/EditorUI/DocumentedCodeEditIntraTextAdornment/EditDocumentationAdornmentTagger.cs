@@ -10,9 +10,11 @@ using Microsoft.VisualStudio.Text.Tagging;
 
 namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
 {
-    
+    // Наследование от базового класса Microsoft IntraTextAdornmentTagger необходимо
+    // для решения проблем с производительностью.
     internal sealed class EditDocumentationAdornmentTagger : IntraTextAdornmentTagger<DocumentationTag, YellowNotepadAdornment>
     {
+        // Агрегатор тегов необходим для поиска тегов выделения текста
         private ITagAggregator<DocumentationTag> _tagAggregator;
         private ITextBuffer _buffer;
         private string _TDPluginFilename;
@@ -41,9 +43,9 @@ namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
             view.Properties.RemoveProperty(typeof(EditDocumentationAdornmentTagger));
         }
 
-        // To produce adornments that don't obscure the text, the adornment tags
-        // should have zero length spans. Overriding this method allows control
-        // over the tag spans.
+        // Агрегатор тегов нужен для сбора тегов выделения (DocumentedCodeHighlighterTag).
+        // Для каждого тега выделения мы создаем собственный тег, начиная с конца диапазона тегов выделения
+        // и с длиной 0. Длина 0 важна для того, чтобы украшение не занимало места и не скрывало код.
         protected override IEnumerable<Tuple<SnapshotSpan, PositionAffinity?, DocumentationTag>> GetAdornmentData(NormalizedSnapshotSpanCollection spans)
         {
             if (spans.Count == 0)
@@ -58,14 +60,12 @@ namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
                 NormalizedSnapshotSpanCollection colorTagSpans = commentTag.Span.GetSpans(snapshot);
 
                 // Ignore data tags that are split by projection.
-                // This is theoretically possible but unlikely in current scenarios.
                 if (colorTagSpans.Count != 1)
                     continue;
                 if (commentTag.Span.GetSpan().Length == 0)
                     continue;
 
                 SnapshotSpan adornmentSpan = new SnapshotSpan(colorTagSpans[0].End, 0);
-                
 
                 yield return Tuple.Create(adornmentSpan, (PositionAffinity?)PositionAffinity.Successor, commentTag.Tag);
             }

@@ -97,9 +97,6 @@ namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
                     continue;
 
                 yield return new TagSpan<HighlightTag>(new SnapshotSpan(snapshot, documentationTagMapping.Span.GetSpan()), new HighlightTag());
-
-                //SnapshotSpan adornmentSpan = new SnapshotSpan(spanCollection[0].End, 0);
-                //yield return Tuple.Create(adornmentSpan, (PositionAffinity?)PositionAffinity.Successor, documentationTag.Tag);
             }
         }
 

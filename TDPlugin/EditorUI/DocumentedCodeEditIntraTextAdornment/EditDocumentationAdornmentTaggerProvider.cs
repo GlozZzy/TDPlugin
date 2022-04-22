@@ -11,13 +11,19 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
 {
+    // Этот класс служит фабрикой классов ITagger.
+    // Метод CreateTagger вызывается каждый раз, когда открывается новый документ
+    // IntraTextAdornmentTag — это специальный тег, созданный для украшений,
+    // которые вставляются между текстовыми символами.
     [Export(typeof(IViewTaggerProvider))]
     [ContentType("code")]
     [TagType(typeof(IntraTextAdornmentTag))]
     internal sealed class EditDocumentationAdornmentTaggerProvider : IViewTaggerProvider
     {
-            
+
 #pragma warning disable 649 // "field never assigned to" -- field is set by MEF.
+        // Импортируем  ViewTagAggregatorFactoryService, который  является фабрикой для создания TagAggregator,
+        // Который нужен для поиска тегов выделения.
         [Import]
         internal IViewTagAggregatorFactoryService ViewTagAggregatorFactoryService;
 #pragma warning restore 649

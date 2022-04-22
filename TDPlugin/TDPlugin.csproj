@@ -104,7 +104,6 @@
     <Compile Include="Utils\Consts.cs" />
     <Compile Include="Services\DocumentationFileHandler.cs" />
     <Compile Include="Services\DocumentationFileSerializer.cs" />
-    <Compile Include="Models\TextViewPosition.cs" />
     <Compile Include="Models\TextViewSelection.cs" />
     <Compile Include="Services\VisualStudioServices.cs" />
     <Compile Include="Utils\Extensions\BufferExtensions.cs" />

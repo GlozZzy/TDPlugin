@@ -176,7 +176,7 @@ namespace TDPlugin.ToolWindows
                 case 2:
                     return Gettxt(bttn.fragment.Documentation.Effort);
                 case 3:
-                    return "👍 " + bttn.fragment.Documentation.ClietsUpvotes.Count;
+                    return "👍 " + (bttn.fragment.Documentation.ClietsUpvotes.Count-1);
             }
             return "";
         }

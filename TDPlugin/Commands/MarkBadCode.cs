@@ -119,7 +119,7 @@ namespace TDPlugin
             IVsTextView view;
             int result = textManager.GetActiveView2(1, null, (uint)_VIEWFRAMETYPE.vftCodeWindow, out view);
 
-            view.GetSelection(out int startLine, out int startColumn, out int endLine, out int endColumn);//end could be before beginning
+            view.GetSelection(out int startLine, out int startColumn, out int endLine, out int endColumn);
 
             int ok = view.GetNearestPosition(startLine, startColumn, out int position1, out int piVirtualSpaces);
             ok = view.GetNearestPosition(endLine, endColumn, out int position2, out piVirtualSpaces);

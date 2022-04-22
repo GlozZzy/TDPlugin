@@ -8,6 +8,8 @@ using System.ComponentModel.Composition;
 
 namespace TDPlugin.EditorUI.DocumentedCodeHighlighter
 {
+    // Этот класс служит фабрикой классов ITagger.
+    // Метод CreateTagger вызывается каждый раз, когда открывается новый документ
     [Export]
     [Export(typeof(IViewTaggerProvider))]
     [ContentType("code")]
