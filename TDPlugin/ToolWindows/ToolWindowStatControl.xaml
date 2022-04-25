@@ -6,41 +6,40 @@
              xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"             
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             Name="MyToolWindow" GotFocus="Update">
+             Name="MyToolWindow">
 
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Background="LightYellow">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Margin="0,10">
-            <TextBlock Text="Project issues:" Margin="10,0" FontWeight="Bold" FontSize="16" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="10,0"  Background="LightYellow">
-                <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" FontSize="14">Show issues by </TextBlock>
-                <ComboBox x:Name="issues_filter" SelectedIndex="0"  Width="80" SelectionChanged="issues_filter_SelectionChanged" FontSize="14">
-                    <ComboBoxItem Content="date"/>
-                    <ComboBoxItem Content="priority"/>
-                    <ComboBoxItem Content="efford"/>
-                    <ComboBoxItem Content="upvotes"/>
-                </ComboBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Margin="0,10">
+                <TextBlock Text="Project issues:" Margin="10,0" FontWeight="Bold" FontSize="16" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="10,0"  Background="LightYellow">
+                    <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" FontSize="14">Show issues by </TextBlock>
+                    <ComboBox x:Name="issues_filter" SelectedIndex="0"  Width="80" SelectionChanged="issues_filter_SelectionChanged" FontSize="14">
+                        <ComboBoxItem Content="date"/>
+                        <ComboBoxItem Content="priority"/>
+                        <ComboBoxItem Content="efford"/>
+                        <ComboBoxItem Content="upvotes"/>
+                    </ComboBox>
+                </StackPanel>
+                <TextBlock Text="Open the project to tracking issues" x:Name="issues_textblock" Margin="10 2" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap"/>
             </StackPanel>
-            <TextBlock Text="Open the project to tracking issues" x:Name="issues_textblock" Margin="10 2" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14"/>
-            
-                <Grid Margin="10,0,10,0" Background="LightGoldenrodYellow">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" x:Name="issues_info_grid" HorizontalAlignment="Center">
+
+            <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="10,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid  Background="LightGoldenrodYellow" x:Name="mainGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                     </Grid>
-                    <Grid Grid.Column="1" x:Name="issues_grid" Width="auto">
-                    </Grid>
-                </Grid>
-            
-        </StackPanel>
+                </ScrollViewer>
+            </Border>
+            <Button Grid.Row="2" Margin="10" FontSize="14" Click="UpdateBttn_Click">Update</Button>
+        </Grid>
         
-    </Grid>
-        </ScrollViewer>
 </UserControl>

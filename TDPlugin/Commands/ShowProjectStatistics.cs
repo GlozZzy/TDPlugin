@@ -97,6 +97,7 @@ namespace TDPlugin
             }
 
             window.toolWin.serviceProvider = ServiceProvider;
+            window.toolWin.UpdateFunc();
             
             IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());

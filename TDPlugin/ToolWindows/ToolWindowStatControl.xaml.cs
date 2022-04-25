@@ -38,27 +38,20 @@ namespace TDPlugin.ToolWindows
         /// <param name="e">The event args.</param>
         [SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Sample code")]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
-        private void updatebutton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Update(sender, e);
-        }
 
-        private void filter_Click(object sender, RoutedEventArgs e)
+        private void UpdateBttn_Click(object sender, RoutedEventArgs e)
         {
-            issues_textblock.Text = "filter";
-        }
-
-        private void Update(object sender, RoutedEventArgs e)
-        {
+            mainGrid.Children.Clear();
+            mainGrid.RowDefinitions.Clear();
             UpdateFunc();
         }
 
-        private void UpdateFunc()
+        public void UpdateFunc()
         {
-            if (serviceProvider == null) { issues_textblock.Text = "Open the project to tracking issues"; return; };
+            if (serviceProvider == null) { issues_textblock.Text = "Open the project to tracking issues and reopen this toolwindow"; return; };
             EnvDTE80.DTE2 applicationObject = serviceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
             var solutionName = applicationObject.Solution.FullName;
-            if (solutionName == "") { issues_textblock.Text = "Open the project to tracking issues"; return; };
+            if (solutionName == "") { issues_textblock.Text = "Open the project to tracking issues and reopen this toolwindow"; return; };
             var directoryPath = solutionName.Substring(0, solutionName.LastIndexOf("\\"));
             var directoryName = solutionName.Substring(solutionName.LastIndexOf("\\"));
             directoryName = directoryName.Substring(0, directoryName.LastIndexOf("."));
@@ -67,10 +60,9 @@ namespace TDPlugin.ToolWindows
             if (directoryPath != null)
             {
                 issues_textblock.Text = "To add an issue, highlight and right-click on the bad code";
-                issues_info_grid.Children.Clear();
                 List<MyButton> bttns = recursiveGetallbttns(directoryPath);
 
-                
+
                 //string[] files = Directory.GetFiles(directoryPath, "*.cdoc");
                 //foreach (string file in files)
                 //{
@@ -110,23 +102,27 @@ namespace TDPlugin.ToolWindows
                 int row = 0;
                 foreach (MyButton bttn in bttns)
                 {
-                    TextBlock txt = new TextBlock();
-                    txt.VerticalAlignment = VerticalAlignment.Center;
-                    txt.HorizontalAlignment = HorizontalAlignment.Center;
-                    txt.FontSize = 14;
-                    txt.Height = 25;
-                    txt.Padding = new Thickness(0, 2.4, 0, 0);
-                    txt.Text = get_filterval(bttn);
+                    TextBlock txt = new TextBlock()
+                    {
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        FontSize = 14,
+                        Height = 25,
+                        Padding = new Thickness(0, 2.4, 0, 0),
+                        Text = get_filterval(bttn),
+                    };
 
-                    issues_info_grid.RowDefinitions.Add(new RowDefinition());
+                    mainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(25)});
                     Grid.SetRow(txt, row);
-                    issues_info_grid.Children.Add(txt);
+                    Grid.SetColumn(txt, 0);
+                    mainGrid.Children.Add(txt);
 
-                    issues_grid.RowDefinitions.Add(new RowDefinition());
                     Grid.SetRow(bttn, row);
-                    issues_grid.Children.Add(bttn);
+                    Grid.SetColumn(bttn, 1);
+                    mainGrid.Children.Add(bttn);
                     row++;
                 }
+               
             }
         }
 
@@ -156,7 +152,6 @@ namespace TDPlugin.ToolWindows
                     resbttn.Add(butt);
                 }
             }
-
             return resbttn;
         }
 
@@ -202,6 +197,7 @@ namespace TDPlugin.ToolWindows
         private void issues_filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             filterVal = issues_filter.SelectedIndex;
+            if (mainGrid != null) UpdateBttn_Click(sender, e);
         }
     }
 }
