@@ -30,7 +30,7 @@ namespace TDPlugin.Services
             }
             else
             {
-                string serialized = JsonConvert.SerializeObject(data);
+                string serialized = JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);
                 File.WriteAllText(filepath, serialized);
             }
         }

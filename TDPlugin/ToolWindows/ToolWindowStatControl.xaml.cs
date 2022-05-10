@@ -21,13 +21,22 @@ namespace TDPlugin.ToolWindows
         //public string directoryPath;
         public IServiceProvider serviceProvider;
         private int filterVal;
+        private bool reverse;
+
+        private const int date = 0;
+        private const int priority = 1;
+        private const int effort = 2;
+        private const int upvotes = 3;
+        private const int filename = 4;
+        private const int title = 5;
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolWindowMarkControl"/> class.
         /// </summary>
         public ToolWindowStatControl()
         {
             this.InitializeComponent();
-            filterVal = 0;
+            filterVal = date;
+            reverse = false;
             this.UpdateFunc();
         }
 
@@ -41,8 +50,8 @@ namespace TDPlugin.ToolWindows
 
         private void UpdateBttn_Click(object sender, RoutedEventArgs e)
         {
-            mainGrid.Children.Clear();
-            mainGrid.RowDefinitions.Clear();
+            mainGrid.Children.RemoveRange(6, mainGrid.Children.Count - 1);
+            if (mainGrid.RowDefinitions.Count > 1) mainGrid.RowDefinitions.RemoveRange(1, mainGrid.RowDefinitions.Count - 1);
             UpdateFunc();
         }
 
@@ -62,63 +71,66 @@ namespace TDPlugin.ToolWindows
                 issues_textblock.Text = "To add an issue, highlight and right-click on the bad code";
                 List<MyButton> bttns = recursiveGetallbttns(directoryPath);
 
-
-                //string[] files = Directory.GetFiles(directoryPath, "*.cdoc");
-                //foreach (string file in files)
-                //{
-                //    var documentation = Services.DocumentationFileSerializer.Deserialize(file);
-                //    foreach (DocumentationFragment fragment in documentation.Fragments)
-                //    {
-                //        MyButton butt = new MyButton(fragment, file, serviceProvider);
-                //        bttns.Add(butt);
-                //    }
-                //}
-
-
                 switch (filterVal)
                 {
-                    case 0:
-                        bttns.Sort(delegate (MyButton x, MyButton y) {
+                    case date:
+                        if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.fragment.Documentation.CreationDateTime.CompareTo(x.fragment.Documentation.CreationDateTime);
+                        });
+                        else bttns.Sort(delegate (MyButton y, MyButton x) {
                             return y.fragment.Documentation.CreationDateTime.CompareTo(x.fragment.Documentation.CreationDateTime);
                         });
                         break;
-                    case 1:
-                        bttns.Sort(delegate (MyButton x, MyButton y) {
+                    case priority:
+                        if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.fragment.Documentation.Priority.CompareTo(x.fragment.Documentation.Priority);
+                        });
+                        else bttns.Sort(delegate (MyButton y, MyButton x) {
                             return y.fragment.Documentation.Priority.CompareTo(x.fragment.Documentation.Priority);
                         });
                         break;
-                    case 2:
-                        bttns.Sort(delegate (MyButton x, MyButton y) {
+                    case effort:
+                        if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.fragment.Documentation.Effort.CompareTo(x.fragment.Documentation.Effort);
+                        });
+                        else bttns.Sort(delegate (MyButton y, MyButton x) {
                             return y.fragment.Documentation.Effort.CompareTo(x.fragment.Documentation.Effort);
                         });
                         break;
-                    case 3:
-                        bttns.Sort(delegate (MyButton x, MyButton y) {
+                    case upvotes:
+                        if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
                             return y.fragment.Documentation.ClietsUpvotes.Count.CompareTo(x.fragment.Documentation.ClietsUpvotes.Count);
+                        });
+                        else bttns.Sort(delegate (MyButton y, MyButton x) {
+                            return y.fragment.Documentation.ClietsUpvotes.Count.CompareTo(x.fragment.Documentation.ClietsUpvotes.Count);
+                        });
+                        break;
+                    case filename:
+                        if (!reverse) bttns.Sort(delegate (MyButton y, MyButton x) {
+                            return y.filename.CompareTo(x.filename);
+                        });
+                        else bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.filename.CompareTo(x.filename);
+                        });
+                        break;
+                    case title:
+                        if (!reverse) bttns.Sort(delegate (MyButton y, MyButton x) {
+                            return y.fragment.Documentation.Title.CompareTo(x.fragment.Documentation.Title);
+                        });
+                        else bttns.Sort(delegate (MyButton x, MyButton y) {
+                            return y.fragment.Documentation.Title.CompareTo(x.fragment.Documentation.Title);
                         });
                         break;
                 }
 
-                int row = 0;
+                int row = 1;
                 foreach (MyButton bttn in bttns)
                 {
-                    TextBlock txt = new TextBlock()
-                    {
-                        VerticalAlignment = VerticalAlignment.Center,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        FontSize = 14,
-                        Height = 25,
-                        Padding = new Thickness(0, 2.4, 0, 0),
-                        Text = get_filterval(bttn),
-                    };
-
                     mainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(25)});
-                    Grid.SetRow(txt, row);
-                    Grid.SetColumn(txt, 0);
-                    mainGrid.Children.Add(txt);
 
                     Grid.SetRow(bttn, row);
-                    Grid.SetColumn(bttn, 1);
+                    Grid.SetColumn(bttn, 0);
+                    Grid.SetColumnSpan(bttn, 6);
                     mainGrid.Children.Add(bttn);
                     row++;
                 }
@@ -156,48 +168,159 @@ namespace TDPlugin.ToolWindows
         }
 
 
-        private string get_filterval(MyButton bttn)
+        private void Datebutt_Click(object sender, RoutedEventArgs e)
         {
-            switch (filterVal)
+            if (filterVal == date)
             {
-                case 0:
-                    var shortyear = "" + bttn.fragment.Documentation.CreationDateTime.Year;
-                    shortyear = shortyear.Remove(0, 2);
-                    return "" + bttn.fragment.Documentation.CreationDateTime.Day +
-                        "." + bttn.fragment.Documentation.CreationDateTime.Month +
-                        "." + shortyear;
-                case 1:
-                    return Gettxt(bttn.fragment.Documentation.Priority);
-                case 2:
-                    return Gettxt(bttn.fragment.Documentation.Effort);
-                case 3:
-                    return "👍 " + (bttn.fragment.Documentation.ClietsUpvotes.Count-1);
+                if (reverse == true)
+                {
+                    reverse = false;
+                    datebutt.Content = "Date ᐯ";
+                }
+                else
+                {
+                    datebutt.Content = "Date ᐱ";
+                    reverse = true;
+                }
             }
-            return "";
+            else
+            {
+                clearbuttonstext();
+                datebutt.Content = "Date ᐯ";
+                filterVal = date;
+            }
+            UpdateBttn_Click(sender, e);
         }
 
-        private string Gettxt(int val)
+        private void Priorbutt_Click(object sender, RoutedEventArgs e)
         {
-            switch (val)
+            if (filterVal == priority)
             {
-                case 0:
-                    return "◉○○○○";
-                case 1:
-                    return "◉◉○○○";
-                case 2:
-                    return "◉◉◉○○";
-                case 3:
-                    return "◉◉◉◉○";
-                case 4:
-                    return "◉◉◉◉◉";
+                if (reverse == true)
+                {
+                    reverse = false;
+                    priorbutt.Content = "Priority ᐯ";
+                }
+                else
+                {
+                    priorbutt.Content = "Priority ᐱ";
+                    reverse = true;
+                }
             }
-            return "";
+            else
+            {
+                clearbuttonstext();
+                priorbutt.Content = "Priority ᐯ";
+                filterVal = priority;
+            }
+            UpdateBttn_Click(sender, e);
         }
 
-        private void issues_filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Effortbutt_Click(object sender, RoutedEventArgs e)
         {
-            filterVal = issues_filter.SelectedIndex;
-            if (mainGrid != null) UpdateBttn_Click(sender, e);
+            if (filterVal == effort)
+            {
+                if (reverse == true)
+                {
+                    reverse = false;
+                    effortbutt.Content = "Effort ᐯ";
+                }
+                else
+                {
+                    effortbutt.Content = "Effort ᐱ";
+                    reverse = true;
+                }
+            }
+            else
+            {
+                clearbuttonstext();
+                effortbutt.Content = "Effort ᐯ";
+                filterVal = effort;
+            }
+            UpdateBttn_Click(sender, e);
+        }
+
+        private void Upbutt_Click(object sender, RoutedEventArgs e)
+        {
+            if (filterVal == upvotes)
+            {
+                if (reverse == true)
+                {
+                    reverse = false;
+                    upbutt.Content = "👍ᐯ";
+                }
+                else
+                {
+                    upbutt.Content = "👍ᐱ";
+                    reverse = true;
+                }
+            }
+            else
+            {
+                clearbuttonstext();
+                upbutt.Content = "👍ᐯ";
+                filterVal = upvotes;
+            }
+            UpdateBttn_Click(sender, e);
+        }
+
+        private void Filebutt_Click(object sender, RoutedEventArgs e)
+        {
+            if (filterVal == filename)
+            {
+                if (reverse == true)
+                {
+                    reverse = false;
+                    filebutt.Content = "Filename ᐯ";
+                }
+                else
+                {
+                    filebutt.Content = "Filename ᐱ";
+                    reverse = true;
+                }
+            }
+            else
+            {
+                clearbuttonstext();
+                filebutt.Content = "Filename ᐯ";
+                filterVal = filename;
+            }
+            UpdateBttn_Click(sender, e);
+        }
+
+        private void Titlebutt_Click(object sender, RoutedEventArgs e)
+        {
+            if (filterVal == title)
+            {
+                if (reverse == true)
+                {
+                    reverse = false;
+                    titlebutt.Content = "Title ᐯ";
+                }
+                else
+                {
+                    titlebutt.Content = "Title ᐱ";
+                    reverse = true;
+                }
+            }
+            else
+            {
+                clearbuttonstext();
+                titlebutt.Content = "Title ᐯ";
+                filterVal = title;
+            }
+            UpdateBttn_Click(sender, e);
+        }
+
+        private void clearbuttonstext()
+        {
+            datebutt.Content = "Date";
+            priorbutt.Content = "Priority";
+            effortbutt.Content = "Effort";
+            upbutt.Content = "👍";
+            filebutt.Content = "Filename";
+            titlebutt.Content = "Title";
+            reverse = false;
         }
     }
 }

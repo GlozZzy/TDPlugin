@@ -267,11 +267,6 @@ namespace TDPlugin.Dialogs
                 MessageBox.Show("Title can't be empty.");
                 return;
             }
-            if (DocumentationDescription.Trim() == "")
-            {
-                MessageBox.Show("Documentation can't be empty.");
-                return;
-            }
 
             if (_existingDocumentation)
             {

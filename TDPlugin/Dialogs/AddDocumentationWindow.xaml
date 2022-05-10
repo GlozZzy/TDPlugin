@@ -109,10 +109,10 @@
         </Border>
         <Border Grid.Row="5" Background="#F7F7D5" Padding="5" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="5">Efford</TextBlock>
+                <TextBlock Margin="5">Effort</TextBlock>
                 <ComboBox x:Name="DocumentationEffort" 
                           SelectedIndex="{Binding DocumentationEffort}" 
-                          Width="140" Margin="6 0 0 0" 
+                          Width="140" Margin="9 0 0 0" 
                           IsHitTestVisible="{Binding IsAuthor}"
                           >
                     <ComboBoxItem Content="◉○○○○ Very Low"/>

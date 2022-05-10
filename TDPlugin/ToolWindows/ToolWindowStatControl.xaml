@@ -5,41 +5,47 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"             
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="400" d:DesignWidth="600"
              Name="MyToolWindow">
 
 
-        <Grid Background="LightYellow">
+    <Grid Background="LightYellow" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
-            <StackPanel Orientation="Vertical" Margin="0,10">
-                <TextBlock Text="Project issues:" Margin="10,0" FontWeight="Bold" FontSize="16" />
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="10,0"  Background="LightYellow">
-                    <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" FontSize="14">Show issues by </TextBlock>
-                    <ComboBox x:Name="issues_filter" SelectedIndex="0"  Width="80" SelectionChanged="issues_filter_SelectionChanged" FontSize="14">
-                        <ComboBoxItem Content="date"/>
-                        <ComboBoxItem Content="priority"/>
-                        <ComboBoxItem Content="efford"/>
-                        <ComboBoxItem Content="upvotes"/>
-                    </ComboBox>
-                </StackPanel>
-                <TextBlock Text="Open the project to tracking issues" x:Name="issues_textblock" Margin="10 2" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap"/>
-            </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="0,10">
+            <TextBlock Text="Open the project to tracking issues" x:Name="issues_textblock" Margin="10 2" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap"/>
+            <TextBlock Text="Project issues:" Margin="12,0" FontWeight="Bold" FontSize="16" />
+        </StackPanel>
 
-            <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="10,0">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid  Background="LightGoldenrodYellow" x:Name="mainGrid">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                </ScrollViewer>
-            </Border>
-            <Button Grid.Row="2" Margin="10" FontSize="14" Click="UpdateBttn_Click">Update</Button>
-        </Grid>
-        
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="10,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Background="LightGoldenrodYellow" x:Name="mainGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="62" MaxWidth="62"></ColumnDefinition>
+                        <ColumnDefinition Width="72" MaxWidth="72"></ColumnDefinition>
+                        <ColumnDefinition Width="72" MaxWidth="72"></ColumnDefinition>
+                        <ColumnDefinition Width="40" MaxWidth="40"></ColumnDefinition>
+                        <ColumnDefinition Width="120" MaxWidth="120"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="200" Width="1*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button FontSize="14" x:Name="datebutt" Grid.Row="0" Grid.Column="0" Click="Datebutt_Click" HorizontalContentAlignment="Left" Padding="5,0,0,0">Date ᐯ</Button>
+                    <Button FontSize="14" x:Name="priorbutt" Grid.Row="0" Grid.Column="1" Click="Priorbutt_Click" HorizontalContentAlignment="Left" Padding="5,0,0,0">Priority</Button>
+                    <Button FontSize="14" x:Name="effortbutt" Grid.Row="0" Grid.Column="2" Click="Effortbutt_Click" HorizontalContentAlignment="Left" Padding="5,0,0,0">Effort</Button>
+                    <Button FontSize="14" x:Name="upbutt" Grid.Row="0" Grid.Column="3" Click="Upbutt_Click" HorizontalContentAlignment="Left" Padding="5,0,0,0">👍</Button>
+                    <Button FontSize="14" x:Name="filebutt" Grid.Row="0" Grid.Column="4" Click="Filebutt_Click" HorizontalContentAlignment="Left" Padding="5,0,0,0">Filename</Button>
+                    <Button FontSize="14" x:Name="titlebutt" Grid.Row="0" Grid.Column="5" Click="Titlebutt_Click" HorizontalContentAlignment="Left" Padding="5,0,0,0">Title</Button>
+
+                </Grid>
+            </ScrollViewer>
+        </Border>
+        <Button Grid.Row="2" Margin="10,10" FontSize="14" Click="UpdateBttn_Click">Update</Button>
+    </Grid>
+
 </UserControl>
