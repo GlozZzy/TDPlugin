@@ -103,7 +103,7 @@ namespace TDPlugin.ToolWindows
                 HorizontalAlignment = HorizontalAlignment.Center,
                 FontSize = 14,
                 Height = 25,
-                Text = "" + (fragment.Documentation.ClietsUpvotes.Count - 1),
+                Text = "" + (fragment.Documentation.ClientsUpvotes.Count - 1),
             };
             Grid.SetColumn(upvotestxt, 3);
             //filename

@@ -53,14 +53,14 @@ namespace TDPlugin.Dialogs
             DocumentationDescription = selectiondocumentation.Description;
             DocumentationPriority = selectiondocumentation.Priority;
             DocumentationEffort = selectiondocumentation.Effort;
-            DocumentationClientsUpvotes = selectiondocumentation.ClietsUpvotes;
-            Documentationlikes = selectiondocumentation.ClietsUpvotes.Count - 1;
+            DocumentationClientsUpvotes = selectiondocumentation.ClientsUpvotes;
+            Documentationlikes = selectiondocumentation.ClientsUpvotes.Count - 1;
             DocumentationDatatime = selectiondocumentation.CreationDateTime;
             DocumentationComments = selectiondocumentation.Comments;
-            AuthorName = selectiondocumentation.ClietsUpvotes[0];
+            AuthorName = selectiondocumentation.ClientsUpvotes[0];
             CurentUser = ClientSettings.Default.username;
 
-            if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) == 0)
+            if (Documentation.ClientsUpvotes.FindIndex(x => x == ClientSettings.Default.username) == 0)
             {
                 IsNotAuthor = false;
                 IsAuthor = true;
@@ -71,7 +71,7 @@ namespace TDPlugin.Dialogs
                 IsAuthor = false;
             }
 
-            if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) >= 0)
+            if (Documentation.ClientsUpvotes.FindIndex(x => x == ClientSettings.Default.username) >= 0)
                 ColorLike = new SolidColorBrush(Colors.LightBlue);
             else ColorLike = new SolidColorBrush(Colors.LightYellow);
         }
@@ -283,7 +283,7 @@ namespace TDPlugin.Dialogs
                     Description = DocumentationDescription,
                     Priority = DocumentationPriority,
                     Effort = DocumentationEffort,
-                    ClietsUpvotes = new List<string>() { ClientSettings.Default.username },
+                    ClientsUpvotes = new List<string>() { ClientSettings.Default.username },
                     CreationDateTime = DateTime.UtcNow,
                     Comments = new List<Comment>(),
                 },
@@ -319,18 +319,18 @@ namespace TDPlugin.Dialogs
                 {
                     _likeCommand = new RelayCommand(_ => 
                     {
-                        if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) < 0)
+                        if (Documentation.ClientsUpvotes.FindIndex(x => x == ClientSettings.Default.username) < 0)
                         {
-                            Documentation.ClietsUpvotes.Add(ClientSettings.Default.username);
+                            Documentation.ClientsUpvotes.Add(ClientSettings.Default.username);
                             ColorLike = new SolidColorBrush(Colors.LightBlue);
                         }
-                        else if (Documentation.ClietsUpvotes.FindIndex(x => x == ClientSettings.Default.username) > 0)
+                        else if (Documentation.ClientsUpvotes.FindIndex(x => x == ClientSettings.Default.username) > 0)
                         {
-                            Documentation.ClietsUpvotes.Remove(ClientSettings.Default.username);
+                            Documentation.ClientsUpvotes.Remove(ClientSettings.Default.username);
                             ColorLike = new SolidColorBrush(Colors.LightYellow);
                         }
 
-                        Documentationlikes = Documentation.ClietsUpvotes.Count - 1;
+                        Documentationlikes = Documentation.ClientsUpvotes.Count - 1;
                         Result = AddDocumentationResult.Save;
                     });
                 }

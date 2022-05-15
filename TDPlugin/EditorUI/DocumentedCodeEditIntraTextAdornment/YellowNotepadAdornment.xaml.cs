@@ -102,7 +102,7 @@ namespace TDPlugin.EditorUI.DocumentedCodeEditIntraTextAdornment
                     Description = vm.DocumentationDescription,
                     Priority = vm.DocumentationPriority,
                     Effort = vm.DocumentationEffort,
-                    ClietsUpvotes = vm.DocumentationClientsUpvotes,
+                    ClientsUpvotes = vm.DocumentationClientsUpvotes,
                     CreationDateTime = vm.DocumentationDatatime,
                     Comments = vm.DocumentationComments,
                 } ;

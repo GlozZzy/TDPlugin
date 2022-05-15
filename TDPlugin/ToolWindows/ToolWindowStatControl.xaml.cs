@@ -99,10 +99,10 @@ namespace TDPlugin.ToolWindows
                         break;
                     case upvotes:
                         if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
-                            return y.fragment.Documentation.ClietsUpvotes.Count.CompareTo(x.fragment.Documentation.ClietsUpvotes.Count);
+                            return y.fragment.Documentation.ClientsUpvotes.Count.CompareTo(x.fragment.Documentation.ClientsUpvotes.Count);
                         });
                         else bttns.Sort(delegate (MyButton y, MyButton x) {
-                            return y.fragment.Documentation.ClietsUpvotes.Count.CompareTo(x.fragment.Documentation.ClietsUpvotes.Count);
+                            return y.fragment.Documentation.ClientsUpvotes.Count.CompareTo(x.fragment.Documentation.ClientsUpvotes.Count);
                         });
                         break;
                     case filename:

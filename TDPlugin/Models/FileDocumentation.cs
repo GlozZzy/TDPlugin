@@ -26,10 +26,10 @@ namespace TDPlugin.Models
         public string Description { get; set; }
         public int Priority { get; set; }
         public int Effort { get; set; }
-        public List<String> ClietsUpvotes { get; set; }
+        public List<String> ClientsUpvotes { get; set; }
         public DateTime CreationDateTime { get; set; }
         public List<Comment> Comments { get; set; }
-        //public GitHubClient[] ClietsUpvotes { get; set; }
+        //public GitHubClient[] ClientsUpvotes { get; set; }
     }
 
     public class Comment
