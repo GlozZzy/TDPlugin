@@ -30,43 +30,35 @@
     called "command set" and is used to group different command inside a logically related
     group; your package should define its own command set in order to avoid collisions
     with command ids defined by other packages. -->
+    
     <Menus>
+      
       <Menu guid="guidTDPluginPackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
-          <ButtonText>TestMenu</ButtonText>
+          <ButtonText>TDPlugin</ButtonText>
           <CommandName>TDPlugin</CommandName>
         </Strings>
       </Menu>
+      
     </Menus>
 
-    <!-- In this section you can define new menu groups. A menu group is a container for
-         other menus or buttons (commands); from a visual point of view you can see the
-         group as the part of a menu contained between two lines. The parent of a group
-         must be a menu. -->
+    
     <Groups>
-      <!--<Group guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
-      </Group>-->
+      
       <Group guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidTDPluginPackageCmdSet" id="TopLevelMenu" />
       </Group>
+      
       <Group guid="guidTDPluginPackageCmdSet1" id="EditorContextMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
       </Group>
+      
     </Groups>
 
-    <!--Buttons section. -->
-    <!--This section defines the elements the user can interact with, like a menu command or a button
-        or combo box in a toolbar. -->
+    
     <Buttons>
-      <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
-          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
-          the CommandFlag node.
-          You can add more than one CommandFlag node e.g.:
-              <CommandFlag>DefaultInvisible</CommandFlag>
-              <CommandFlag>DynamicVisibility</CommandFlag>
-          If you do not want an image next to your command, remove the Icon node /> -->
+      
       <Button guid="guidTDPluginPackageCmdSet" id="EnableDisableTDPluginCommandId" priority="0x0100" type="Button">
         <Parent guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages1" id="bmpPic1" />
@@ -74,6 +66,7 @@
           <ButtonText>Project stats</ButtonText>
         </Strings>
       </Button>
+      
       <Button guid="guidTDPluginPackageCmdSet1" id="cmdidDocumentCodeSpanCommand" priority="0x0100" type="Button">
         <Parent guid="guidTDPluginPackageCmdSet1" id="EditorContextMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
@@ -81,6 +74,7 @@
           <ButtonText>Bookmark bad code</ButtonText>
         </Strings>
       </Button>
+      
       <Button guid="guidTDPluginPackageCmdSet" id="cmdidChangeUsername" priority="0x0100" type="Button">
         <Parent guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages2" id="bmpPic1" />
@@ -88,19 +82,18 @@
           <ButtonText>Authorization</ButtonText>
         </Strings>
       </Button>
+      
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
     <Bitmaps>
-      <!--  The bitmap id is defined in a way that is a little bit different from the others:
-            the declaration starts with a guid for the bitmap strip, then there is the resource id of the
-            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
-            inside a button definition. An important aspect of this declaration is that the element id
-            must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
+     
       <Bitmap guid="guidImages" href="Resources\yellow_notepad.png" usedList="bmpPic1" />
       <Bitmap guid="guidImages1" href="Resources\statistic.png" usedList="bmpPic1" />
       <Bitmap guid="guidImages2" href="Resources\ChangeUsername.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+    
     </Bitmaps>
+    
   </Commands>
 
   <Symbols>

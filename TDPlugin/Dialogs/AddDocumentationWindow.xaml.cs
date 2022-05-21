@@ -30,7 +30,7 @@ namespace TDPlugin
 
         private void RegisterToViewModelEvents()
         {
-            var vm = (DataContext as EditDocumentationViewModel);
+            var vm = DataContext as EditDocumentationViewModel;
             vm.CloseRequest += () =>
             {
                 this.Close();
