@@ -95,7 +95,7 @@
     <Compile Include="Events\EventAggregatorExport.cs" />
     <Compile Include="Models\FileDocumentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolWindows\MyButton.cs" />
+    <Compile Include="ToolWindows\IssueButton.cs" />
     <Compile Include="ToolWindows\ToolWindowStat.cs" />
     <Compile Include="ToolWindows\ToolWindowStatControl.xaml.cs">
       <DependentUpon>ToolWindowStatControl.xaml</DependentUpon>

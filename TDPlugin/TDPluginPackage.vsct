@@ -33,7 +33,7 @@
     
     <Menus>
       
-      <Menu guid="guidTDPluginPackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
+      <Menu guid="guidTDPluginPackageCmdToolLevel" id="ToolLevelMenu" priority="0x700" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
           <ButtonText>TDPlugin</ButtonText>
@@ -46,11 +46,11 @@
     
     <Groups>
       
-      <Group guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidTDPluginPackageCmdSet" id="TopLevelMenu" />
+      <Group guid="guidTDPluginPackageCmdToolLevel" id="ToolLevelMenuGroup" priority="0x0600">
+        <Parent guid="guidTDPluginPackageCmdToolLevel" id="ToolLevelMenu" />
       </Group>
       
-      <Group guid="guidTDPluginPackageCmdSet1" id="EditorContextMenuGroup" priority="0x0600">
+      <Group guid="guidTDPluginPackageCmdSetEditorContext" id="EditorContextMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
       </Group>
       
@@ -59,25 +59,25 @@
     
     <Buttons>
       
-      <Button guid="guidTDPluginPackageCmdSet" id="EnableDisableTDPluginCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages1" id="bmpPic1" />
+      <Button guid="guidTDPluginPackageCmdToolLevel" id="cmdidProjectStats" priority="0x0100" type="Button">
+        <Parent guid="guidTDPluginPackageCmdToolLevel" id="ToolLevelMenuGroup" />
+        <Icon guid="guidImagesStatistic" id="bmpStatisticLensPic" />
         <Strings>
           <ButtonText>Project stats</ButtonText>
         </Strings>
       </Button>
       
-      <Button guid="guidTDPluginPackageCmdSet1" id="cmdidDocumentCodeSpanCommand" priority="0x0100" type="Button">
-        <Parent guid="guidTDPluginPackageCmdSet1" id="EditorContextMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
+      <Button guid="guidTDPluginPackageCmdSetEditorContext" id="cmdidBookmarkCode" priority="0x0100" type="Button">
+        <Parent guid="guidTDPluginPackageCmdSetEditorContext" id="EditorContextMenuGroup" />
+        <Icon guid="guidImageNotepad" id="bmpYellowNotepadPic" />
         <Strings>
           <ButtonText>Bookmark bad code</ButtonText>
         </Strings>
       </Button>
       
-      <Button guid="guidTDPluginPackageCmdSet" id="cmdidChangeUsername" priority="0x0100" type="Button">
-        <Parent guid="guidTDPluginPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages2" id="bmpPic1" />
+      <Button guid="guidTDPluginPackageCmdToolLevel" id="cmdidChangeUsername" priority="0x0100" type="Button">
+        <Parent guid="guidTDPluginPackageCmdToolLevel" id="ToolLevelMenuGroup" />
+        <Icon guid="guidImagesUsername" id="bmpChangePic" />
         <Strings>
           <ButtonText>Authorization</ButtonText>
         </Strings>
@@ -88,9 +88,9 @@
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
     <Bitmaps>
      
-      <Bitmap guid="guidImages" href="Resources\yellow_notepad.png" usedList="bmpPic1" />
-      <Bitmap guid="guidImages1" href="Resources\statistic.png" usedList="bmpPic1" />
-      <Bitmap guid="guidImages2" href="Resources\ChangeUsername.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImageNotepad" href="Resources\yellow_notepad.png" usedList="bmpYellowNotepadPic" />
+      <Bitmap guid="guidImagesStatistic" href="Resources\statistic.png" usedList="bmpStatisticLensPic" />
+      <Bitmap guid="guidImagesUsername" href="Resources\ChangeUsername.png" usedList="bmpChangePic, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
     
     </Bitmaps>
     
@@ -101,39 +101,47 @@
     <GuidSymbol name="guidTDPluginPackage" value="{d7e6db18-6f70-496a-a8c6-09bc7b05d466}" />
 
     <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidTDPluginPackageCmdSet" value="{69c0b337-59d8-4591-8cbd-a59603459d56}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="EnableDisableTDPluginCommandId" value="0x0100" />
-      <IDSymbol value="0x0150" name="cmdidChangeUsername" />
-      <IDSymbol name="TopLevelMenu" value="0x1021" />
+    <GuidSymbol name="guidTDPluginPackageCmdToolLevel" value="{69c0b337-59d8-4591-8cbd-a59603459d56}">
+      <IDSymbol name="ToolLevelMenu" value="0x1021" />
+      <IDSymbol name="ToolLevelMenuGroup" value="0x1020" />
+      <IDSymbol name="cmdidProjectStats" value="0x0100" />
+      <IDSymbol name="cmdidChangeUsername" value="0x0150"/>
     </GuidSymbol>
 
-    <GuidSymbol name="guidImages" value="{5a7898e8-a455-43c2-a0b1-2566c8cf1088}">
-      <IDSymbol name="bmpPic1" value="1" />
-      <IDSymbol name="bmpPic2" value="2" />
-      <IDSymbol name="bmpPicSearch" value="3" />
-      <IDSymbol name="bmpPicX" value="4" />
-      <IDSymbol name="bmpPicArrows" value="5" />
-      <IDSymbol name="bmpPicStrikethrough" value="6" />
-    </GuidSymbol>
 
-    <GuidSymbol value="{6c100f31-cc03-48e5-81b0-480cbaccd2bc}" name="guidImages1">
-      <IDSymbol name="bmpPic1" value="1" />
-      <IDSymbol name="bmpPic2" value="2" />
-      <IDSymbol name="bmpPicSearch" value="3" />
-      <IDSymbol name="bmpPicX" value="4" />
-      <IDSymbol name="bmpPicArrows" value="5" />
-      <IDSymbol name="bmpPicStrikethrough" value="6" />
-    </GuidSymbol>
-  
-    <GuidSymbol value="{d5d8efc6-dc17-4229-9088-dddf76ac0ae4}" name="guidTDPluginPackageCmdSet1">
+
+    <GuidSymbol name="guidTDPluginPackageCmdSetEditorContext" value="{d5d8efc6-dc17-4229-9088-dddf76ac0ae4}" >
       <IDSymbol value="4128" name="EditorContextMenuGroup" />
-      <IDSymbol value="256" name="cmdidDocumentCodeSpanCommand" />
+      <IDSymbol value="256" name="cmdidBookmarkCode" />
     </GuidSymbol>
 
+
+
+    <GuidSymbol name="guidImageNotepad" value="{5a7898e8-a455-43c2-a0b1-2566c8cf1088}">
+      <IDSymbol name="bmpYellowNotepadPic" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+
+
+
+    <GuidSymbol name="guidImagesStatistic" value="{6c100f31-cc03-48e5-81b0-480cbaccd2bc}">
+      <IDSymbol name="bmpStatisticLensPic" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
   
-    <GuidSymbol value="{118389d6-9262-4ecb-94ff-8b6556a7ef1f}" name="guidImages2">
-      <IDSymbol name="bmpPic1" value="1" />
+    
+
+  
+    <GuidSymbol name="guidImagesUsername" value="{118389d6-9262-4ecb-94ff-8b6556a7ef1f}">
+      <IDSymbol name="bmpChangePic" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPicSearch" value="3" />
       <IDSymbol name="bmpPicX" value="4" />

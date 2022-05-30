@@ -16,13 +16,13 @@ using TDPlugin.Models;
 
 namespace TDPlugin.ToolWindows
 {
-    public class MyButton : Button
+    public class IssueButton : Button
     {
         public DocumentationFragment fragment;
         public IServiceProvider service;
         public string filename;
 
-        public MyButton(DocumentationFragment fragment, string filename, IServiceProvider service)
+        public IssueButton(DocumentationFragment fragment, string filename, IServiceProvider service)
         {
             this.fragment = fragment;
             this.service = service;
@@ -32,10 +32,10 @@ namespace TDPlugin.ToolWindows
             Background = new SolidColorBrush(Colors.LightGoldenrodYellow);
             HorizontalContentAlignment = HorizontalAlignment.Stretch;
             this.BorderThickness = new Thickness(0);
-            Click += MyCustomClick;
+            Click += IssueButtonClick;
         }
 
-        private void MyCustomClick(object sender, RoutedEventArgs e)
+        private void IssueButtonClick(object sender, RoutedEventArgs e)
         {
             EnvDTE80.DTE2 applicationObject = service.GetService(typeof(DTE)) as EnvDTE80.DTE2;
             applicationObject.ItemOperations.OpenFile(filename.Substring(0, filename.LastIndexOf(".cdoc"))).Activate();
@@ -47,8 +47,6 @@ namespace TDPlugin.ToolWindows
             int column;
             view.GetLineAndColumn(fragment.Selection.EndPosition, out line, out column);
             view.SetCaretPos(line, column);
-
-
         }
 
         public Grid fillgrid()

@@ -69,62 +69,62 @@ namespace TDPlugin.ToolWindows
             if (directoryPath != null)
             {
                 issues_textblock.Text = "To add an issue, highlight and right-click on the bad code";
-                List<MyButton> bttns = recursiveGetallbttns(directoryPath);
+                List<IssueButton> bttns = recursiveGetallbttns(directoryPath);
 
                 switch (filterVal)
                 {
                     case date:
-                        if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
+                        if (!reverse) bttns.Sort(delegate (IssueButton x, IssueButton y) {
                             return y.fragment.Documentation.CreationDateTime.CompareTo(x.fragment.Documentation.CreationDateTime);
                         });
-                        else bttns.Sort(delegate (MyButton y, MyButton x) {
+                        else bttns.Sort(delegate (IssueButton y, IssueButton x) {
                             return y.fragment.Documentation.CreationDateTime.CompareTo(x.fragment.Documentation.CreationDateTime);
                         });
                         break;
                     case priority:
-                        if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
+                        if (!reverse) bttns.Sort(delegate (IssueButton x, IssueButton y) {
                             return y.fragment.Documentation.Priority.CompareTo(x.fragment.Documentation.Priority);
                         });
-                        else bttns.Sort(delegate (MyButton y, MyButton x) {
+                        else bttns.Sort(delegate (IssueButton y, IssueButton x) {
                             return y.fragment.Documentation.Priority.CompareTo(x.fragment.Documentation.Priority);
                         });
                         break;
                     case effort:
-                        if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
+                        if (!reverse) bttns.Sort(delegate (IssueButton x, IssueButton y) {
                             return y.fragment.Documentation.Effort.CompareTo(x.fragment.Documentation.Effort);
                         });
-                        else bttns.Sort(delegate (MyButton y, MyButton x) {
+                        else bttns.Sort(delegate (IssueButton y, IssueButton x) {
                             return y.fragment.Documentation.Effort.CompareTo(x.fragment.Documentation.Effort);
                         });
                         break;
                     case upvotes:
-                        if (!reverse) bttns.Sort(delegate (MyButton x, MyButton y) {
+                        if (!reverse) bttns.Sort(delegate (IssueButton x, IssueButton y) {
                             return y.fragment.Documentation.ClientsUpvotes.Count.CompareTo(x.fragment.Documentation.ClientsUpvotes.Count);
                         });
-                        else bttns.Sort(delegate (MyButton y, MyButton x) {
+                        else bttns.Sort(delegate (IssueButton y, IssueButton x) {
                             return y.fragment.Documentation.ClientsUpvotes.Count.CompareTo(x.fragment.Documentation.ClientsUpvotes.Count);
                         });
                         break;
                     case filename:
-                        if (!reverse) bttns.Sort(delegate (MyButton y, MyButton x) {
+                        if (!reverse) bttns.Sort(delegate (IssueButton y, IssueButton x) {
                             return y.filename.CompareTo(x.filename);
                         });
-                        else bttns.Sort(delegate (MyButton x, MyButton y) {
+                        else bttns.Sort(delegate (IssueButton x, IssueButton y) {
                             return y.filename.CompareTo(x.filename);
                         });
                         break;
                     case title:
-                        if (!reverse) bttns.Sort(delegate (MyButton y, MyButton x) {
+                        if (!reverse) bttns.Sort(delegate (IssueButton y, IssueButton x) {
                             return y.fragment.Documentation.Title.CompareTo(x.fragment.Documentation.Title);
                         });
-                        else bttns.Sort(delegate (MyButton x, MyButton y) {
+                        else bttns.Sort(delegate (IssueButton x, IssueButton y) {
                             return y.fragment.Documentation.Title.CompareTo(x.fragment.Documentation.Title);
                         });
                         break;
                 }
 
                 int row = 1;
-                foreach (MyButton bttn in bttns)
+                foreach (IssueButton bttn in bttns)
                 {
                     mainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(25)});
 
@@ -139,9 +139,9 @@ namespace TDPlugin.ToolWindows
         }
 
 
-        private List<MyButton> recursiveGetallbttns(string directoryPath)
+        private List<IssueButton> recursiveGetallbttns(string directoryPath)
         {
-            List<MyButton> resbttn = new List<MyButton>();
+            List<IssueButton> resbttn = new List<IssueButton>();
 
             string[] direct = Directory.GetDirectories(directoryPath);
             if (direct.Length > 0)
@@ -149,7 +149,7 @@ namespace TDPlugin.ToolWindows
                 foreach (string dir in direct)
                 {
                     var bb = recursiveGetallbttns(dir);
-                    foreach (MyButton b in bb)
+                    foreach (IssueButton b in bb)
                         resbttn.Add(b);
                 }
             }
@@ -160,7 +160,7 @@ namespace TDPlugin.ToolWindows
                 var documentation = Services.DocumentationFileSerializer.Deserialize(file);
                 foreach (DocumentationFragment fragment in documentation.Fragments)
                 {
-                    MyButton butt = new MyButton(fragment, file, serviceProvider);
+                    IssueButton butt = new IssueButton(fragment, file, serviceProvider);
                     resbttn.Add(butt);
                 }
             }

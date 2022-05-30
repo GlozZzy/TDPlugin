@@ -109,7 +109,6 @@ namespace TDPlugin
         {
             EnvDTE80.DTE2 applicationObject = serviceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
             return applicationObject.ActiveDocument.FullName;
-            
         }
 
         private TextViewSelection GetSelection(IServiceProvider serviceProvider)

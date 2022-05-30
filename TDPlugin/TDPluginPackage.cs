@@ -36,9 +36,10 @@ namespace TDPlugin
     [Guid(TDPluginPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [ProvideToolWindow(typeof(TDPlugin.ToolWindows.ToolWindowStat))]
     [ProvideAutoLoad(VSConstants.UICONTEXT.NoSolution_string)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string)]
+
+    [ProvideToolWindow(typeof(ToolWindows.ToolWindowStat), Orientation = ToolWindowOrientation.Left)]
     public sealed class TDPluginPackage : Package
     {
         /// <summary>
